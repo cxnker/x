@@ -1,7 +1,7 @@
 -- Keybind to open for pc is "comma" -> " , "
 -- Made By Roun95
 
-local IsStudio = false
+local IsStudio = true
 
 local ContextActionService = game:GetService("ContextActionService")
 local HttpService = game:GetService("HttpService")
