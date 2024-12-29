@@ -1,7 +1,7 @@
 --keybind to open is comma
 --made by Gi#7331
 
-local IsStudio = false
+local IsStudio = true
 
 local ContextActionService = game:GetService("ContextActionService")
 local HttpService = game:GetService("HttpService")
