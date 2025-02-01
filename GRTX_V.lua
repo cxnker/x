@@ -1,6 +1,6 @@
 local a = game.Lighting
 a.Ambient = Color3.fromRGB(33, 33, 33)
-a.Brightness = 3.69
+a.Brightness = 1.69
 a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
 a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
 a.EnvironmentDiffuseScale = 0.105
