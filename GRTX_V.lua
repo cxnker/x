@@ -52,5 +52,3 @@ local s = Instance.new("SunRaysEffect", a)
 s.Enabled = true
 s.Intensity = 0.01
 s.Spread = 0.146
-
-print("RTX Graphics loaded! Created by BrickoIcko")
