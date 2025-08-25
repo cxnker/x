@@ -41,7 +41,7 @@ local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(0, 200, 1, 0)
 titleLabel.Position = UDim2.new(0, 50, 0, 0)
 titleLabel.BackgroundTransparency = 1
-titleLabel.Text = "Project Legma"
+titleLabel.Text = "Nova Executor"
 titleLabel.Font = Enum.Font.SourceSansBold
 titleLabel.TextSize = 20
 titleLabel.TextColor3 = Color3.fromRGB(50, 50, 50)
@@ -193,4 +193,5 @@ for i, name in ipairs(buttonNames) do
 			end
 		end)
 	end
+
 end
