@@ -1,4 +1,4 @@
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/p/refs/heads/main/Redzhubui"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
 
 local Window = redzlib:MakeWindow({
     Title = "Nova Hub (Español)",
@@ -47,7 +47,7 @@ end
 local executorName = detectExecutor()
 local Paragraph = Tab1:AddParagraph({"Executor", executorName})
 local Section = Tab1:AddSection({"Version 1.12 (Premium)"})
-local Paragraph = Tab1:AddParagraph({"Creador", "Sigueme en Roblox como: Roun95\n(Nova)"})
+local Paragraph = Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n Roun95 (Nova)"})
 
 Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
@@ -4088,7 +4088,7 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
-    Name = "RTX Grafics",
+    Name = "Improved Graphics",
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/GRTX_V.lua"))()
@@ -4114,7 +4114,7 @@ Tab11:AddButton({
 local Section = Tab11:AddSection({"Paneles"})
 
 Tab11:AddButton({
-    Name = "AFEM Emotes Main",
+    Name = "AFEM Emotes Menu",
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AFEM.lua"))()
