@@ -4096,20 +4096,36 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
+    Name = "Super Ring V3",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/SuperRingV3.lua"))()
+    end
+})
+
+Tab11:AddButton({
     Name = "Bring Flings Players",
     Description = "Universal",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/BringFling-Players_Gui.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/BringflingPlayers.lua"))()
     end
 })
 ----------------------------------------------------------------------------------------------------
 local Section = Tab11:AddSection({"Paneles"})
 
 Tab11:AddButton({
+    Name = "AFEM Emotes Main",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AFEM.lua"))()
+    end
+})
+
+Tab11:AddButton({
     Name = "System Broken HUB",
     Description = "Universal",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/p/refs/heads/main/SystemBroken"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/SystemBroken.lua"))()
     end
 })
 
