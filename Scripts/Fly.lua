@@ -132,11 +132,12 @@ local speaker = game:GetService("Players").LocalPlayer
 local chr = game.Players.LocalPlayer.Character
 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = "Follow the creator!";
-    Text = "Follow me for more scripts: @Roun95";
-    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
-Duration = 10;
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Follow the creator!",
+    Text = "Follow me for more scripts: @Roun95",
+    Icon = Players:GetUserThumbnailAsync(Players:GetUserIdFromNameAsync("Roun95"), Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
+    Duration = 10
+})
 frame.Active = true -- main = gui
 frame.Draggable = true
 flybtn.MouseButton1Down:connect(function()
