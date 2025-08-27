@@ -48,7 +48,7 @@ button.Position = UDim2.new(0.1, 0, 0, 60)
 button.Text = "Apagado"
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
-button.Font = Enum.Font.SourceSans
+button.Font = Enum.Font.Gotham
 button.TextSize = 16
 
 -- Noclip Function
