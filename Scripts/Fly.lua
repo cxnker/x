@@ -1,13 +1,13 @@
 local main = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
+local frame = Instance.new("Frame")
 local up = Instance.new("TextButton")
 local down = Instance.new("TextButton")
-local flyb = Instance.new("TextButton")
+local flybtn = Instance.new("TextButton")
 local name = Instance.new("TextLabel")
 local plus = Instance.new("TextButton")
 local speed = Instance.new("TextLabel")
 local mine = Instance.new("TextButton")
-local close = Instance.new("TextButton")
+local closebtn = Instance.new("TextButton")
 local mini = Instance.new("TextButton")
 local mini2 = Instance.new("TextButton")
 
@@ -16,42 +16,42 @@ main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 main.ResetOnSpawn = false
 
-Frame.Parent = main
-Frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
-Frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
-Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
-Frame.Size = UDim2.new(0, 190, 0, 57)
+frame.Parent = main
+frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
+frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
+frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
+frame.Size = UDim2.new(0, 190, 0, 57)
 
 up.Name = "up"
-up.Parent = Frame
+up.Parent = frame
 up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
 up.Size = UDim2.new(0, 44, 0, 28)
 up.Font = Enum.Font.SourceSans
 up.Text = "UP"
 up.TextColor3 = Color3.fromRGB(0, 0, 0)
-up.TextSize = 14.000
+up.TextSize = 14
 
 down.Name = "down"
-down.Parent = Frame
+down.Parent = frame
 down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
 down.Position = UDim2.new(0, 0, 0.491228074, 0)
 down.Size = UDim2.new(0, 44, 0, 28)
 down.Font = Enum.Font.SourceSans
 down.Text = "DOWN"
 down.TextColor3 = Color3.fromRGB(0, 0, 0)
-down.TextSize = 14.000
+down.TextSize = 14
 
-flyb.Name = "fly"
-flyb.Parent = Frame
-flyb.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
-flyb.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
-flyb.Size = UDim2.new(0, 56, 0, 28)
-flyb.Font = Enum.Font.SourceSans
-flyb.Text = "FLY"
-flyb.TextColor3 = Color3.fromRGB(0, 0, 0)
-flyb.TextSize = 14.000
+flybtn.Name = "flybtn"
+flybtn.Parent = frame
+flybtn.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
+flybtn.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
+flybtn.Size = UDim2.new(0, 56, 0, 28)
+flybtn.Font = Enum.Font.SourceSans
+flybtn.Text = "FLY"
+flybtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+flybtn.TextSize = 14
 
-name.Parent = Frame
+name.Parent = frame
 name.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
 name.Position = UDim2.new(0.469327301, 0, 0, 0)
 name.Size = UDim2.new(0, 100, 0, 28)
@@ -59,11 +59,11 @@ name.Font = Enum.Font.SourceSans
 name.Text = "Fly Gui"
 name.TextColor3 = Color3.fromRGB(0, 0, 0)
 name.TextScaled = true
-name.TextSize = 14.000
+name.TextSize = 14
 name.TextWrapped = true
 
 plus.Name = "plus"
-plus.Parent = Frame
+plus.Parent = frame
 plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
 plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Size = UDim2.new(0, 45, 0, 28)
@@ -71,11 +71,11 @@ plus.Font = Enum.Font.SourceSans
 plus.Text = "+"
 plus.TextColor3 = Color3.fromRGB(0, 0, 0)
 plus.TextScaled = true
-plus.TextSize = 14.000
+plus.TextSize = 14
 plus.TextWrapped = true
 
 speed.Name = "speed"
-speed.Parent = Frame
+speed.Parent = frame
 speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
 speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
 speed.Size = UDim2.new(0, 44, 0, 28)
@@ -83,11 +83,11 @@ speed.Font = Enum.Font.SourceSans
 speed.Text = "1"
 speed.TextColor3 = Color3.fromRGB(0, 0, 0)
 speed.TextScaled = true
-speed.TextSize = 14.000
+speed.TextSize = 14
 speed.TextWrapped = true
 
 mine.Name = "mine"
-mine.Parent = Frame
+mine.Parent = frame
 mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
 mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
 mine.Size = UDim2.new(0, 45, 0, 29)
@@ -95,17 +95,17 @@ mine.Font = Enum.Font.SourceSans
 mine.Text = "-"
 mine.TextColor3 = Color3.fromRGB(0, 0, 0)
 mine.TextScaled = true
-mine.TextSize = 14.000
+mine.TextSize = 14
 mine.TextWrapped = true
 
-close.Name = "Close"
-close.Parent = main.Frame
-close.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
-close.Font = "SourceSans"
-close.Size = UDim2.new(0, 45, 0, 28)
-close.Text = "X"
-close.TextSize = 30
-close.Position =  UDim2.new(0, 0, -1, 27)
+closebtn.Name = "Close"
+closebtn.Parent = main.Frame
+closebtn.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
+closebtn.Font = "SourceSans"
+closebtn.Size = UDim2.new(0, 45, 0, 28)
+closebtn.Text = "X"
+closebtn.TextSize = 30
+closebtn.Position =  UDim2.new(0, 0, -1, 27)
 
 mini.Name = "minimize"
 mini.Parent = main.Frame
@@ -131,17 +131,17 @@ speeds = 1
 local speaker = game:GetService("Players").LocalPlayer
 local chr = game.Players.LocalPlayer.Character
 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-fly = false
-game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Follow the creator!",
-    Text = "Follow me for more scripts: @Roun95",
-    Icon = Players:GetUserThumbnailAsync(Players:GetUserIdFromNameAsync("Roun95"), Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)})
+nowe = false
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Follow the creator!";
+    Text = "Follow me for more scripts: @Roun95";
+    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
 Duration = 10;
-Frame.Active = true -- main = gui
-Frame.Draggable = true
-flyb.MouseButton1Down:connect(function()
-    if fly == true then
-        fly = false
+frame.Active = true -- main = gui
+frame.Draggable = true
+flybtn.MouseButton1Down:connect(function()
+    if nowe == true then
+        nowe = false
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
@@ -159,7 +159,7 @@ flyb.MouseButton1Down:connect(function()
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
         speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
     else 
-        fly = true
+        nowe = true
         for i = 1, speeds do
             spawn(function()
                 local rs = game:GetService("RunService").Heartbeat    
@@ -206,6 +206,7 @@ flyb.MouseButton1Down:connect(function()
         local lastctrl = {f = 0, b = 0, l = 0, r = 0}
         local maxspeed = 50
         local speed = 0
+
         local bg = Instance.new("BodyGyro", torso)
         bg.P = 9e4
         bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
@@ -213,11 +214,11 @@ flyb.MouseButton1Down:connect(function()
         local bv = Instance.new("BodyVelocity", torso)
         bv.velocity = Vector3.new(0,0.1,0)
         bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        if fly == true then
+        if nowe == true then
             plr.Character.Humanoid.PlatformStand = true
         end
 
-        while fly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
             game:GetService("RunService").RenderStepped:Wait()
             if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
                 speed = speed+.5+(speed/maxspeed)
@@ -268,10 +269,10 @@ flyb.MouseButton1Down:connect(function()
         local bv = Instance.new("BodyVelocity", UpperTorso)
         bv.velocity = Vector3.new(0,0.1,0)
         bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        if fly == true then
+        if nowe == true then
             plr.Character.Humanoid.PlatformStand = true
         end
-        while fly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
             wait()
 
             if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
@@ -317,7 +318,7 @@ up.MouseButton1Down:connect(function()
         end
     end)
 end)
- 
+
 up.MouseLeave:connect(function()
     if tis then
         tis:Disconnect()
@@ -353,7 +354,7 @@ end)
 plus.MouseButton1Down:connect(function()
     speeds = speeds + 1
     speed.Text = speeds
-    if fly == true then
+    if nowe == true then
 
         tpwalking = false
         for i = 1, speeds do
@@ -368,6 +369,7 @@ plus.MouseButton1Down:connect(function()
                         chr:TranslateBy(hum.MoveDirection)
                     end
                 end
+ 
             end)
         end
     end
@@ -380,12 +382,12 @@ mine.MouseButton1Down:connect(function()
     else
         speeds = speeds - 1
         speed.Text = speeds
-        if fly == true then
+        if nowe == true then
             tpwalking = false
             for i = 1, speeds do
                 spawn(function()
                     local rs = game:GetService("RunService").Heartbeat    
- 
+
                     tpwalking = true
                     local chr = game.Players.LocalPlayer.Character
                     local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
@@ -399,33 +401,33 @@ mine.MouseButton1Down:connect(function()
         end
     end
 end)
- 
-close.MouseButton1Click:Connect(function()
+
+closebtn.MouseButton1Click:Connect(function()
     main:Destroy()
 end)
- 
+
 mini.MouseButton1Click:Connect(function()
     up.Visible = false
     down.Visible = false
-    flyb.Visible = false
+    flybtn.Visible = false
     plus.Visible = false
     speed.Visible = false
     mine.Visible = false
     mini.Visible = false
     mini2.Visible = true
     main.Frame.BackgroundTransparency = 1
-    close.Position =  UDim2.new(0, 0, -1, 57)
+    closebtn.Position =  UDim2.new(0, 0, -1, 57)
 end)
- 
+
 mini2.MouseButton1Click:Connect(function()
     up.Visible = true
     down.Visible = true
-    flyb.Visible = true
+    flybtn.Visible = true
     plus.Visible = true
     speed.Visible = true
     mine.Visible = true
     mini.Visible = true
     mini2.Visible = false
     main.Frame.BackgroundTransparency = 0 
-    close.Position =  UDim2.new(0, 0, -1, 27)
+    closebtn.Position =  UDim2.new(0, 0, -1, 27)
 end)
