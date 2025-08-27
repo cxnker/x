@@ -131,18 +131,17 @@ speeds = 1
 local speaker = game:GetService("Players").LocalPlayer
 local chr = game.Players.LocalPlayer.Character
 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-nowe = false
-game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Follow the creator!",
-    Text = "Follow me for more scripts: @Roun95",
-    Icon = game.Players:GetUserThumbnailAsync(game.Players:GetUserIdFromNameAsync("Roun95"), Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420),
-    Duration = 10
-})
+fly = false
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Follow the creator!";
+    Text = "Follow me for more scripts: @Roun95";
+    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+Duration = 10;
 frame.Active = true -- main = gui
 frame.Draggable = true
 flybtn.MouseButton1Down:connect(function()
-    if nowe == true then
-        nowe = false
+    if fly == true then
+        fly = false
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
@@ -160,7 +159,7 @@ flybtn.MouseButton1Down:connect(function()
         speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
         speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
     else 
-        nowe = true
+        fly = true
         for i = 1, speeds do
             spawn(function()
                 local rs = game:GetService("RunService").Heartbeat    
@@ -207,7 +206,6 @@ flybtn.MouseButton1Down:connect(function()
         local lastctrl = {f = 0, b = 0, l = 0, r = 0}
         local maxspeed = 50
         local speed = 0
-
         local bg = Instance.new("BodyGyro", torso)
         bg.P = 9e4
         bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
@@ -215,11 +213,11 @@ flybtn.MouseButton1Down:connect(function()
         local bv = Instance.new("BodyVelocity", torso)
         bv.velocity = Vector3.new(0,0.1,0)
         bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        if nowe == true then
+        if fly == true then
             plr.Character.Humanoid.PlatformStand = true
         end
 
-        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+        while fly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
             game:GetService("RunService").RenderStepped:Wait()
             if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
                 speed = speed+.5+(speed/maxspeed)
@@ -252,7 +250,6 @@ flybtn.MouseButton1Down:connect(function()
         plr.Character.Humanoid.PlatformStand = false
         game.Players.LocalPlayer.Character.Animate.Disabled = false
         tpwalking = false
-
     else
         local plr = game.Players.LocalPlayer
         local UpperTorso = plr.Character.UpperTorso
@@ -262,7 +259,6 @@ flybtn.MouseButton1Down:connect(function()
         local lastctrl = {f = 0, b = 0, l = 0, r = 0}
         local maxspeed = 50
         local speed = 0
-
         local bg = Instance.new("BodyGyro", UpperTorso)
         bg.P = 9e4
         bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
@@ -270,10 +266,10 @@ flybtn.MouseButton1Down:connect(function()
         local bv = Instance.new("BodyVelocity", UpperTorso)
         bv.velocity = Vector3.new(0,0.1,0)
         bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        if nowe == true then
+        if fly == true then
             plr.Character.Humanoid.PlatformStand = true
         end
-        while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+        while fly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
             wait()
 
             if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
@@ -355,7 +351,7 @@ end)
 plus.MouseButton1Down:connect(function()
     speeds = speeds + 1
     speed.Text = speeds
-    if nowe == true then
+    if fly == true then
 
         tpwalking = false
         for i = 1, speeds do
@@ -375,6 +371,7 @@ plus.MouseButton1Down:connect(function()
         end
     end
 end)
+
 mine.MouseButton1Down:connect(function()
     if speeds == 1 then
         speed.Text = 'cannot be less than 1'
@@ -383,7 +380,7 @@ mine.MouseButton1Down:connect(function()
     else
         speeds = speeds - 1
         speed.Text = speeds
-        if nowe == true then
+        if fly == true then
             tpwalking = false
             for i = 1, speeds do
                 spawn(function()
