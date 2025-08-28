@@ -738,7 +738,8 @@ Tab3:AddButton({
 local Section = Tab3:AddSection({"Editor de avatar"})
 
 Tab3:AddParagraph({
-    Title = "Tu avatar se reiniciara, Ajusta las proporciones de tu avatar para un mejor resultado",
+    Title = "Tu avatar se reiniciara",
+    Description = "Ajusta las proporciones de tu avatar para un mejor resultado",
     Content = ""
 })
 -- Cria um botão para equipar todas as partes do corpo
