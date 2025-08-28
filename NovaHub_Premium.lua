@@ -4119,13 +4119,13 @@ Tab11:AddButton({
             TS = game:GetService("TeleportService")
 
             if #Players:GetPlayers() <= 1 then
-            game.Players.localPlayer:kick("Rejoining...")
+            Players.LocalPlayer:kick("Rejoining...")
             wait()
             TS:Teleport(game.PlaceId, Players.LocalPlayer)
             else
             TS:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
             end
-        end
+        end)
 
         game.StarterGui:SetCore("SendNotification", {
             Title = success and "Exito" or "Error",
