@@ -360,6 +360,24 @@ Tab2:AddButton({
     Name = "Rejoin",
     Callback = function()
         local success, _ = pcall(function()
+gui = game.CoreGui.RobloxPromptGui.promptOverlay:WaitForChild("ErrorPrompt")
+
+gui.Size = UDim2.new(0, 400, 0, 230)
+
+leave = gui.MessageArea.ErrorFrame.ButtonArea.LeaveButton
+
+gui.MessageArea.MessageAreaPadding.PaddingTop = UDim.new(0,-20)
+gui.MessageArea.ErrorFrame.ErrorFrameLayout.Padding = UDim.new(0, 5)
+
+gui.MessageArea.ErrorFrame.ButtonArea.ButtonLayout.CellPadding = UDim2.new(0, 0, 0, 5)
+
+if not leave.Parent:FindFirstChild"Rejoin" then
+rejoin = leave:Clone()
+rejoin.Parent = leave.Parent
+rejoin.Name="Rejoin"
+rejoin.ButtonText.Text = "Rejoin"
+end
+
 Players = game:GetService("Players")
 TeleportService = game:GetService("TeleportService")
 
@@ -373,6 +391,30 @@ task.wait(1)
   TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
  end
 end)
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Fly GUI cargado!" or "Fallo al cargar Fly GUI.",
+            Duration = 5
+        })
+    end
+})
+
+Tab2:AddButton({
+    Name = "Rejoiiin",
+    Callback = function()
+        local success, _ = pcall(function()
+            Players = game:GetService("Players")
+TeleportService = game:GetService("TeleportService")
+
+ if #Players:GetPlayers() <= 1 then
+game.Players.localPlayer:kick("Rejoining...")
+wait()
+  TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
+ else
+  TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+ end
         end)
 
         game.StarterGui:SetCore("SendNotification", {
