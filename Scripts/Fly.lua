@@ -82,7 +82,8 @@ speed.Size = UDim2.new(0, 44, 0, 27)
 speed.Font = "SourceSans"
 speed.Text = "1"
 speed.TextColor3 = Color3.fromRGB(202,178,251)
-speed.TextSize = 25
+speed.TextScaled = true
+speed.TextSize = 14
 speed.TextWrapped = true
 
 flybtn.Name = "fly"
