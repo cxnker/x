@@ -47,7 +47,7 @@ Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Label.BorderSizePixel = 0
 Label.Size = UDim2.new(1, 0, 0.160583943, 0)
 Label.FontFace = Font.new("rbxasset://fonts/families/Nunito.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
-Label.Text = "Bring Parts | Nova"
+Label.Text = "Bring Parts | @Roun95"
 Label.TextColor3 = Color3.fromRGB(255, 255, 255)
 Label.TextScaled = true
 Label.TextSize = 14.000
@@ -73,7 +73,6 @@ UITextSizeConstraint_3.Parent = Button
 UITextSizeConstraint_3.MaxTextSize = 28
 
 -- Scripts:
-
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
@@ -123,7 +122,6 @@ if not getgenv().Network then
 			end
 		end)
 	end
-
 	EnablePartControl()
 end
 
@@ -201,7 +199,7 @@ end
 
 local player = nil
 
-local function VDOYZQL_fake_script() -- Box.Script 
+local function SearchPlayer() -- Box Script 
 	local script = Instance.new('Script', Box)
 
 	script.Parent.FocusLost:Connect(function(enterPressed)
@@ -216,8 +214,8 @@ local function VDOYZQL_fake_script() -- Box.Script
 		end
 	end)
 end
-coroutine.wrap(VDOYZQL_fake_script)()
-local function JUBNQKI_fake_script() -- Button.Script 
+coroutine.wrap(SearchPlayer)()
+local function SelectPlayer() -- Button Script 
 	local script = Instance.new('Script', Button)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -230,4 +228,4 @@ local function JUBNQKI_fake_script() -- Button.Script
 		end
 	end)
 end
-coroutine.wrap(JUBNQKI_fake_script)()
+coroutine.wrap(SelectPlayer)()
