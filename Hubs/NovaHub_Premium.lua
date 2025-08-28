@@ -737,11 +737,11 @@ Tab3:AddButton({
 ----------------------------------------------------------------------------------------------------
 local Section = Tab3:AddSection({"Editor de avatar"})
 
-Tab3:AddTextBox({
-    Name = "Tu avatar se reiniciara",
-    Description = "Ajusta las proporciones de tu avatar para un mejor resultado",
+Tab3:AddParagraph({
+    Title = "Tu avatar se reiniciara, Ajusta las proporciones de tu avatar para un mejor resultado",
 })
--- Cria um botão para equipar todas as partes do corpo
+
+-- Crea un boton para equipar todas las partes del cuerpo.
 Tab3:AddButton({
     Name = "Mini-Plushie (Headless)",
     Callback = function()
