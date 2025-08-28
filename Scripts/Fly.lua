@@ -1,12 +1,12 @@
 local main = Instance.new("ScreenGui")
 local frame = Instance.new("Frame")
+local name = Instance.new("TextLabel")
 local up = Instance.new("TextButton")
 local down = Instance.new("TextButton")
-local flybtn = Instance.new("TextButton")
-local name = Instance.new("TextLabel")
 local plus = Instance.new("TextButton")
-local speed = Instance.new("TextLabel")
 local mine = Instance.new("TextButton")
+local speed = Instance.new("TextLabel")
+local flybtn = Instance.new("TextButton")
 local closebtn = Instance.new("TextButton")
 local mini = Instance.new("TextButton")
 local mini2 = Instance.new("TextButton")
@@ -21,37 +21,6 @@ frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 frame.BorderColor3 = Color3.fromRGB(30, 30, 30)
 frame.Position = UDim2.new(0.1, 0, 0.1, 0)
 frame.Size = UDim2.new(0, 189, 0, 54)
-
-closebtn.Name = "Close"
-closebtn.Parent = main.Frame
-closebtn.BackgroundColor3 = Color3.fromRGB(54,57,62)
-closebtn.Font = "SourceSans"
-closebtn.Size = UDim2.new(0, 44, 0, 27)
-closebtn.Text = "X"
-closebtn.TextColor3 = Color3.fromRGB(202,178,251)
-closebtn.TextSize = 30
-closebtn.Position =  UDim2.new(0, 0, -1, 27)
-
-mini.Name = "minimize"
-mini.Parent = main.Frame
-mini.BackgroundColor3 = Color3.fromRGB(46,49,54)
-mini.Font = "SourceSans"
-mini.Size = UDim2.new(0, 44, 0, 27)
-mini.Text = "-"
-mini.TextColor3 = Color3.fromRGB(202,178,251)
-mini.TextSize = 40
-mini.Position = UDim2.new(0, 44, -1, 27)
-
-mini2.Name = "minimize2"
-mini2.Parent = main.Frame
-mini2.BackgroundColor3 = Color3.fromRGB(46,49,54)
-mini2.Font = "SourceSans"
-mini2.Size = UDim2.new(0, 44, 0, 27)
-mini2.Text = "+"
-mini2.TextColor3 = Color3.fromRGB(202,178,251)
-mini2.TextSize = 40
-mini2.Position = UDim2.new(0, 44, -1, 57)
-mini2.Visible = false
 
 name.Name = "title"
 name.Parent = frame
@@ -129,6 +98,37 @@ flybtn.Font = Enum.Font.SourceSans
 flybtn.Text = "FLY"
 flybtn.TextColor3 = Color3.fromRGB(202,178,251)
 flybtn.TextSize = 14
+
+closebtn.Name = "Close"
+closebtn.Parent = main.Frame
+closebtn.BackgroundColor3 = Color3.fromRGB(54,57,62)
+closebtn.Font = "SourceSans"
+closebtn.Size = UDim2.new(0, 44, 0, 27)
+closebtn.Text = "X"
+closebtn.TextColor3 = Color3.fromRGB(202,178,251)
+closebtn.TextSize = 30
+closebtn.Position =  UDim2.new(0, 0, -1, 27)
+
+mini.Name = "minimize"
+mini.Parent = main.Frame
+mini.BackgroundColor3 = Color3.fromRGB(46,49,54)
+mini.Font = "SourceSans"
+mini.Size = UDim2.new(0, 44, 0, 27)
+mini.Text = "-"
+mini.TextColor3 = Color3.fromRGB(202,178,251)
+mini.TextSize = 40
+mini.Position = UDim2.new(0, 44, -1, 27)
+
+mini2.Name = "minimize2"
+mini2.Parent = main.Frame
+mini2.BackgroundColor3 = Color3.fromRGB(46,49,54)
+mini2.Font = "SourceSans"
+mini2.Size = UDim2.new(0, 44, 0, 27)
+mini2.Text = "+"
+mini2.TextColor3 = Color3.fromRGB(202,178,251)
+mini2.TextSize = 40
+mini2.Position = UDim2.new(0, 44, -1, 57)
+mini2.Visible = false
 
 speeds = 1
 
