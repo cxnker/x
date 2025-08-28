@@ -163,7 +163,7 @@ flybtn.MouseButton1Down:connect(function()
         fly = true
         for i = 1, speeds do
             spawn(function()
-                local rs = game:GetService("RunService").Heartbeat    
+                local rs = game:GetService("RunService").Heartbeat
                 tpwalking = true
                 local chr = game.Players.LocalPlayer.Character
                 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
@@ -357,8 +357,7 @@ plus.MouseButton1Down:connect(function()
         tpwalking = false
         for i = 1, speeds do
             spawn(function()
-                local rs = game:GetService("RunService").Heartbeat    
-
+                local rs = game:GetService("RunService").Heartbeat
                 tpwalking = true
                 local chr = game.Players.LocalPlayer.Character
                 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
@@ -367,7 +366,6 @@ plus.MouseButton1Down:connect(function()
                         chr:TranslateBy(hum.MoveDirection)
                     end
                 end
- 
             end)
         end
     end
