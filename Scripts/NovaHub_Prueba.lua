@@ -360,7 +360,19 @@ Tab2:AddButton({
     Name = "Rejoin",
     Callback = function()
         local success, _ = pcall(function()
-            game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+Players = game:GetService("Players")
+TeleportService = game:GetService("TeleportService")
+
+rejoin.MouseButton1Click:Connect(function()
+ if #Players:GetPlayers() <= 1 then
+game.Players.localPlayer:kick("Rejoining...")
+rejoin: destroy ()
+task.wait(1)
+  TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
+ else
+  TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+ end
+end)
         end)
 
         game.StarterGui:SetCore("SendNotification", {
