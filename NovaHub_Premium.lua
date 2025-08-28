@@ -4110,6 +4110,30 @@ Tab11:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/BringflingPlayers.lua"))()
     end
 })
+
+Tab11:AddButton({
+    Name = "Rejoin Server",
+    Callback = function()
+        local success, _ = pcall(function()
+            Players = game:GetService("Players")
+            TS = game:GetService("TeleportService")
+
+            if #Players:GetPlayers() <= 1 then
+            game.Players.localPlayer:kick("Rejoining...")
+            wait()
+            TS:Teleport(game.PlaceId, Players.LocalPlayer)
+            else
+            TS:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+            end
+        end
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Has sido Reingresado!" or "Fallo el Reingreso.",
+            Duration = 5
+        })
+    end
+})
 ----------------------------------------------------------------------------------------------------
 local Section = Tab11:AddSection({"Paneles"})
 
