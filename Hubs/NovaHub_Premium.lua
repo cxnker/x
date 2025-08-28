@@ -3,11 +3,11 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnke
 local Window = redzlib:MakeWindow({
     Title = "Nova Hub (Español)",
     SubTitle = "by Roun95",
-    SaveFolder = "NovaData"
+    SaveFolder = "NData_Brookhaven"
   })
 
   Window:AddMinimizeButton({
-    Button = { Image = "rbxassetid://108662620575463", BackgroundTransparency = 0 },
+    Button = { Image = "rbxassetid://121315989944092", BackgroundTransparency = 0 },
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
