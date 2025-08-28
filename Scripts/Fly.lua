@@ -22,6 +22,18 @@ frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
 frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
 frame.Size = UDim2.new(0, 189, 0, 56)
 
+name.Name = "title"
+name.Parent = frame
+name.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
+name.Position = UDim2.new(0.475, 0, 0, 0)
+name.Size = UDim2.new(0, 100, 0, 28)
+name.Font = Enum.Font.SourceSans
+name.Text = "Fly Gui"
+name.TextColor3 = Color3.fromRGB(0, 0, 0)
+name.TextScaled = true
+name.TextSize = 14
+name.TextWrapped = true
+
 up.Name = "up"
 up.Parent = frame
 up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
@@ -41,27 +53,6 @@ down.Text = "DOWN"
 down.TextColor3 = Color3.fromRGB(0, 0, 0)
 down.TextSize = 14
 
-flybtn.Name = "flybtn"
-flybtn.Parent = frame
-flybtn.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
-flybtn.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
-flybtn.Size = UDim2.new(0, 56, 0, 28)
-flybtn.Font = Enum.Font.SourceSans
-flybtn.Text = "FLY"
-flybtn.TextColor3 = Color3.fromRGB(0, 0, 0)
-flybtn.TextSize = 14
-
-name.Parent = frame
-name.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
-name.Position = UDim2.new(0.469327301, 0, 0, 0)
-name.Size = UDim2.new(0, 100, 0, 28)
-name.Font = Enum.Font.SourceSans
-name.Text = "Fly Gui"
-name.TextColor3 = Color3.fromRGB(0, 0, 0)
-name.TextScaled = true
-name.TextSize = 14
-name.TextWrapped = true
-
 plus.Name = "plus"
 plus.Parent = frame
 plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
@@ -77,14 +68,24 @@ plus.TextWrapped = true
 speed.Name = "speed"
 speed.Parent = frame
 speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
-speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
-speed.Size = UDim2.new(0, 44, 0, 28)
+speed.Position = UDim2.new(0.475, 0, 0.52, 0)
+speed.Size = UDim2.new(0, 44, 0, 27)
 speed.Font = Enum.Font.SourceSans
 speed.Text = "1"
 speed.TextColor3 = Color3.fromRGB(0, 0, 0)
 speed.TextScaled = true
 speed.TextSize = 14
 speed.TextWrapped = true
+
+mini2.Name = "minimize2"
+mini2.Parent = main.Frame
+mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini2.Font = "SourceSans"
+mini2.Size = UDim2.new(0, 45, 0, 28)
+mini2.Text = "+"
+mini2.TextSize = 40
+mini2.Position = UDim2.new(0, 44, -1, 57)
+mini2.Visible = false
 
 mine.Name = "mine"
 mine.Parent = frame
@@ -116,15 +117,15 @@ mini.Text = "-"
 mini.TextSize = 40
 mini.Position = UDim2.new(0, 44, -1, 27)
 
-mini2.Name = "minimize2"
-mini2.Parent = main.Frame
-mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
-mini2.Font = "SourceSans"
-mini2.Size = UDim2.new(0, 45, 0, 28)
-mini2.Text = "+"
-mini2.TextSize = 40
-mini2.Position = UDim2.new(0, 44, -1, 57)
-mini2.Visible = false
+flybtn.Name = "flybtn"
+flybtn.Parent = frame
+flybtn.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
+flybtn.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
+flybtn.Size = UDim2.new(0, 56, 0, 28)
+flybtn.Font = Enum.Font.SourceSans
+flybtn.Text = "FLY"
+flybtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+flybtn.TextSize = 14
 
 speeds = 1
 
