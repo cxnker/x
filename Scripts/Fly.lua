@@ -20,7 +20,7 @@ frame.Parent = main
 frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
 frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
 frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
-frame.Size = UDim2.new(0, 190, 0, 57)
+frame.Size = UDim2.new(0, 189, 0, 56)
 
 up.Name = "up"
 up.Parent = frame
