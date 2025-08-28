@@ -329,7 +329,6 @@ local selectedColor = "RGB Suave"
 -- Noclip
 local noclip = false
 
-local function Noclip()
     noclip = not noclip
 
 	if noclip then
@@ -348,12 +347,11 @@ local function Noclip()
 			end
 		end
 	end
-end
 
 Tab2:AddToggle({
     Name = "Noclip",
     Default = false,
-    Callback = Noclip and function(Value)
+    Callback = function(Value)
        noclip = Value
     end
 })
