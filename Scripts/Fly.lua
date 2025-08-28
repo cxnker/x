@@ -17,14 +17,14 @@ main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 main.ResetOnSpawn = false
 
 frame.Parent = main
-frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
-frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderColor3 = Color3.fromRGB(30, 30, 30)
 frame.Position = UDim2.new(0.1, 0, 0.1, 0)
 frame.Size = UDim2.new(0, 189, 0, 54)
 
 closebtn.Name = "Close"
 closebtn.Parent = main.Frame
-closebtn.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
+closebtn.BackgroundColor3 = Color3.fromRGB(225, 0, 0)
 closebtn.Font = "SourceSans"
 closebtn.Size = UDim2.new(0, 44, 0, 27)
 closebtn.Text = "X"
@@ -33,7 +33,7 @@ closebtn.Position =  UDim2.new(0, 0, -1, 27)
 
 mini.Name = "minimize"
 mini.Parent = main.Frame
-mini.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
 mini.Font = "SourceSans"
 mini.Size = UDim2.new(0, 44, 0, 27)
 mini.Text = "-"
@@ -42,7 +42,7 @@ mini.Position = UDim2.new(0, 44, -1, 27)
 
 mini2.Name = "minimize2"
 mini2.Parent = main.Frame
-mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini2.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
 mini2.Font = "SourceSans"
 mini2.Size = UDim2.new(0, 44, 0, 27)
 mini2.Text = "+"
@@ -52,8 +52,8 @@ mini2.Visible = false
 
 name.Name = "title"
 name.Parent = frame
-name.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
-name.Position = UDim2.new(0.475, 0, 0, 0)
+name.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
+name.Position = UDim2.new(0.476, 0, 0, 0)
 name.Size = UDim2.new(0, 100, 0, 28)
 name.Font = Enum.Font.SourceSans
 name.Text = "Fly Gui"
@@ -64,7 +64,7 @@ name.TextWrapped = true
 
 up.Name = "up"
 up.Parent = frame
-up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
+up.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 up.Size = UDim2.new(0, 44, 0, 27)
 up.Font = Enum.Font.SourceSans
 up.Text = "UP"
@@ -73,7 +73,7 @@ up.TextSize = 14
 
 down.Name = "down"
 down.Parent = frame
-down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
+down.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 down.Position = UDim2.new(0, 0, 0.52, 0)
 down.Size = UDim2.new(0, 44, 0, 27)
 down.Font = Enum.Font.SourceSans
@@ -83,7 +83,7 @@ down.TextSize = 14
 
 plus.Name = "plus"
 plus.Parent = frame
-plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
+plus.BackgroundColor3 = Color3.fromRGB(85, 85, 255)
 plus.Position = UDim2.new(0.236, 0, 0, 0)
 plus.Size = UDim2.new(0, 44, 0, 27)
 plus.Font = Enum.Font.SourceSans
@@ -95,7 +95,7 @@ plus.TextWrapped = true
 
 mine.Name = "mine"
 mine.Parent = frame
-mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
+mine.BackgroundColor3 = Color3.fromRGB(85, 85, 255)
 mine.Position = UDim2.new(0.236, 0, 0.516, 0)
 mine.Size = UDim2.new(0, 44, 0, 27)
 mine.Font = Enum.Font.SourceSans
@@ -107,7 +107,7 @@ mine.TextWrapped = true
 
 speed.Name = "speed"
 speed.Parent = frame
-speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+speed.BackgroundColor3 = Color3.fromRGB(85, 255, 255)
 speed.Position = UDim2.new(0.476, 0, 0.52, 0)
 speed.Size = UDim2.new(0, 44, 0, 27)
 speed.Font = Enum.Font.SourceSans
