@@ -1,9 +1,9 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-local SoundService = game:GetService("SoundService")
 local StarterGui = game:GetService("StarterGui")
 local TextChatService = game:GetService("TextChatService")
+local SoundService = game:GetService("SoundService")
 local LocalPlayer = Players.LocalPlayer
 
 -- Sound Effects
@@ -22,7 +22,7 @@ playSound("2865227271")
 
 -- GUI Creation
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "SuperRingPartsGUI"
+ScreenGui.Name = "SuperRingPartsGui"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
@@ -44,7 +44,7 @@ Title.Position = UDim2.new(0, 0, 0, 0)
 Title.Text = "Super Ring Parts"
 Title.TextColor3 = Color3.fromRGB(101, 67, 33) -- Dark brown
 Title.BackgroundColor3 = Color3.fromRGB(222, 184, 135) -- Lighter brown
-Title.Font = Enum.Font.GothamMedium -- More elegant font
+Title.Font = Enum.Font.SourceSansBold -- Main font
 Title.TextSize = 22
 Title.Parent = MainFrame
 
@@ -101,7 +101,7 @@ IncreaseCorner.Parent = IncreaseRadius
 local RadiusDisplay = Instance.new("TextLabel")
 RadiusDisplay.Size = UDim2.new(0.4, 0, 0, 35)
 RadiusDisplay.Position = UDim2.new(0.3, 0, 0.6, 0)
-RadiusDisplay.Text = "Radius: 50"
+RadiusDisplay.Text = "Alcance: 50"
 RadiusDisplay.BackgroundColor3 = Color3.fromRGB(210, 180, 140) -- Tan
 RadiusDisplay.TextColor3 = Color3.fromRGB(101, 67, 33) -- Dark brown
 RadiusDisplay.Font = Enum.Font.Gotham
@@ -130,7 +130,7 @@ MinimizeButton.Position = UDim2.new(1, -35, 0, 5)
 MinimizeButton.Text = "-"
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(139, 69, 19) -- Saddle brown
 MinimizeButton.TextColor3 = Color3.fromRGB(255, 248, 220) -- Cornsilk
-MinimizeButton.Font = Enum.Font.Fondamento
+MinimizeButton.Font = Enum.Font.Gotham
 MinimizeButton.TextSize = 18
 MinimizeButton.Parent = MainFrame
 
@@ -298,19 +298,16 @@ ToggleButton.MouseButton1Click:Connect(function()
     ringPartsEnabled = not ringPartsEnabled
     ToggleButton.Text = ringPartsEnabled and "Encendido" or "Apagado"
     ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(50, 205, 50) or Color3.fromRGB(160, 82, 45)
-    playSound("12221967")
 end)
 
 DecreaseRadius.MouseButton1Click:Connect(function()
-    radius = math.max(10, radius - 10)
-    RadiusDisplay.Text = "Radius: " .. radius
-    playSound("12221967")
+    radius = math.max(5, radius - 5)
+    RadiusDisplay.Text = "Alcance: " .. radius
 end)
 
 IncreaseRadius.MouseButton1Click:Connect(function()
-    radius = math.min(200, radius + 10)
-    RadiusDisplay.Text = "Radius: " .. radius
-    playSound("12221967")
+    radius = math.min(200, radius + 5)
+    RadiusDisplay.Text = "Alcance: " .. radius
 end)
 
 -- Get player thumbnail
@@ -324,5 +321,5 @@ StarterGui:SetCore("SendNotification", {
     Title = "Follow the creator!",
     Text = "Follow me for more scripts: @Roun95",
     Icon = content,
-    Duration = 5
+    Duration = 10
 })
