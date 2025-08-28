@@ -356,6 +356,21 @@ Tab2:AddToggle({
     end
 })
 
+Tab2:AddButton({
+    Name = "Rejoin",
+    Callback = function()
+        local success, _ = pcall(function()
+            game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Fly GUI cargado!" or "Fallo al cargar Fly GUI.",
+            Duration = 5
+        })
+    end
+})
+
 -- Fly GUI Button
 Tab2:AddButton({
     Name = "Fly GUI Universal",
