@@ -313,7 +313,7 @@ end)
 ToggleButton.MouseButton1Click:Connect(function()
     ringPartsEnabled = not ringPartsEnabled
     ToggleButton.Text = ringPartsEnabled and "Encendido" or "Apagado"
-    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(50, 205, 50) or Color3.fromRGB(32,34,37)
+    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(0,200,0) or Color3.fromRGB(32,34,37)
 end)
 
 DecreaseRadius.MouseButton1Click:Connect(function()
@@ -339,5 +339,6 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
 
 
