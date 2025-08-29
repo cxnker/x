@@ -144,7 +144,7 @@ local minimized = false
 MinimizeButton.MouseButton1Click:Connect(function()
     minimized = not minimized
     if minimized then
-        MainFrame:TweenSize(UDim2.new(0, 220, 0, 40), "Out", "Quad", 0.3, true)
+        MainFrame:TweenSize(UDim2.new(0, 180, 0, 40), "Out", "Quad", 0.3, true)
         MinimizeButton.Text = "+"
         ToggleButton.Visible = false
         DecreaseRadius.Visible = false
@@ -152,7 +152,7 @@ MinimizeButton.MouseButton1Click:Connect(function()
         RadiusDisplay.Visible = false
         Watermark.Visible = false
     else
-        MainFrame:TweenSize(UDim2.new(0, 220, 0, 190), "Out", "Quad", 0.3, true)
+        MainFrame:TweenSize(UDim2.new(0, 180, 0, 160), "Out", "Quad", 0.3, true)
         MinimizeButton.Text = "-"
         ToggleButton.Visible = true
         DecreaseRadius.Visible = true
@@ -204,7 +204,7 @@ end)
 if not getgenv().Network then
     getgenv().Network = {
         BaseParts = {},
-        Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424)
+        Velocity = Vector3.new(14, 14, 14)
     }
     Network.RetainPart = function(Part)
         if typeof(Part) == "Instance" and Part:IsA("BasePart") and Part:IsDescendantOf(workspace) then
@@ -323,5 +323,6 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
 
 
