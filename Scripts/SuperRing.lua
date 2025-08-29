@@ -22,7 +22,7 @@ playSound("2865227271")
 
 -- GUI Creation
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "SuperRingParts"
+ScreenGui.Name = "ByRoun95"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
@@ -128,9 +128,10 @@ local CloseButton = Instance.new("TextButton")
 CloseButton.Size = UDim2.new(0, 30, 0, 30)
 CloseButton.Position = UDim2.new(1, -175, 0, 5)
 CloseButton.Text = "X"
+CloseButton.BackgroundTransparency = 1
 CloseButton.BackgroundColor3 = Color3.fromRGB(32,34,37)
 CloseButton.TextColor3 = Color3.fromRGB(170,0,0)
-CloseButton.Font = Enum.Font.Gotham
+CloseButton.Font = Enum.Font.SourceSansBold
 CloseButton.TextSize = 24
 CloseButton.Parent = MainFrame
 
@@ -141,7 +142,7 @@ MinimizeButton.Position = UDim2.new(1, -35, 0, 5)
 MinimizeButton.Text = "-"
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(32,34,37)
 MinimizeButton.TextColor3 = Color3.fromRGB(202,178,251)
-MinimizeButton.Font = Enum.Font.Gotham
+MinimizeButton.Font = Enum.Font.SourceSansBold
 MinimizeButton.TextSize = 14
 MinimizeButton.Parent = MainFrame
 
@@ -338,4 +339,5 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
 
