@@ -126,7 +126,7 @@ Watermark.Parent = MainFrame
 -- Close button
 local CloseButton = Instance.new("TextButton")
 CloseButton.Size = UDim2.new(0, 30, 0, 30)
-CloseButton.Position = UDim2.new(1, -35, 0, 5)
+CloseButton.Position = UDim2.new(1, -175, 0, 5)
 CloseButton.Text = "X"
 CloseButton.BackgroundColor3 = Color3.fromRGB(32,34,37)
 CloseButton.TextColor3 = Color3.fromRGB(170,0,0)
@@ -304,7 +304,7 @@ RunService.Heartbeat:Connect(function()
     end
 end)
 -- Close button functionality
-closebtn.MouseButton1Click:Connect(function()
+CloseButton.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
 
@@ -338,3 +338,4 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
