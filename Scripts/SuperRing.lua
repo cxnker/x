@@ -27,7 +27,7 @@ ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 200, 0, 150)
+MainFrame.Size = UDim2.new(0, 180, 0, 160)
 MainFrame.Position = UDim2.new(0.5, -110, 0.5, -95)
 MainFrame.BackgroundColor3 = Color3.fromRGB(47,49,54)
 MainFrame.BorderSizePixel = 0
@@ -45,7 +45,7 @@ Title.Text = "Super Ring Parts"
 Title.TextColor3 = Color3.fromRGB(202,178,251)
 Title.BackgroundColor3 = Color3.fromRGB(41,43,47)
 Title.Font = Enum.Font.SourceSansBold
-Title.TextSize = 22
+Title.TextSize = 18
 Title.Parent = MainFrame
 
 -- Round the title
@@ -60,7 +60,7 @@ ToggleButton.Text = "Apagado"
 ToggleButton.BackgroundColor3 = Color3.fromRGB(32,34,37)
 ToggleButton.TextColor3 = Color3.fromRGB(202,178,251)
 ToggleButton.Font = Enum.Font.Gotham
-ToggleButton.TextSize = 18
+ToggleButton.TextSize = 14
 ToggleButton.Parent = MainFrame
 
 -- Round the toggle button
@@ -75,7 +75,7 @@ DecreaseRadius.Text = "<"
 DecreaseRadius.BackgroundColor3 = Color3.fromRGB(32,34,37)
 DecreaseRadius.TextColor3 = Color3.fromRGB(202,178,251)
 DecreaseRadius.Font = Enum.Font.Gotham
-DecreaseRadius.TextSize = 18
+DecreaseRadius.TextSize = 14
 DecreaseRadius.Parent = MainFrame
 
 -- Round the decrease button
@@ -90,7 +90,7 @@ IncreaseRadius.Text = ">"
 IncreaseRadius.BackgroundColor3 = Color3.fromRGB(32,34,37)
 IncreaseRadius.TextColor3 = Color3.fromRGB(202,178,251)
 IncreaseRadius.Font = Enum.Font.Gotham
-IncreaseRadius.TextSize = 18
+IncreaseRadius.TextSize = 14
 IncreaseRadius.Parent = MainFrame
 
 -- Round the increase button
@@ -105,7 +105,7 @@ RadiusDisplay.Text = "Alcance: 50"
 RadiusDisplay.BackgroundColor3 = Color3.fromRGB(41,43,47)
 RadiusDisplay.TextColor3 = Color3.fromRGB(202,178,251)
 RadiusDisplay.Font = Enum.Font.Gotham
-RadiusDisplay.TextSize = 18
+RadiusDisplay.TextSize = 14
 RadiusDisplay.Parent = MainFrame
 
 -- Round the radius display
@@ -120,7 +120,7 @@ Watermark.Text = "Super Ring GUI - By @Roun95"
 Watermark.TextColor3 = Color3.fromRGB(202,178,251)
 Watermark.BackgroundTransparency = 1
 Watermark.Font = Enum.Font.Gotham
-Watermark.TextSize = 14
+Watermark.TextSize = 12
 Watermark.Parent = MainFrame
 
 -- Add minimize button
@@ -131,7 +131,7 @@ MinimizeButton.Text = "-"
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(32,34,37)
 MinimizeButton.TextColor3 = Color3.fromRGB(202,178,251)
 MinimizeButton.Font = Enum.Font.Gotham
-MinimizeButton.TextSize = 18
+MinimizeButton.TextSize = 14
 MinimizeButton.Parent = MainFrame
 
 -- Round the minimize button
@@ -323,4 +323,5 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
 
