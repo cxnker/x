@@ -13,8 +13,8 @@ gui.ResetOnSpawn = false
 
 -- Main Frame
 local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0, 200, 0, 100)
-frame.Position = UDim2.new(0, 20, 0, 20)
+frame.Size = UDim2.new(0, 90, 0, 80)
+frame.Position = UDim2.new(0, 20, 0, 0)
 frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 frame.BackgroundTransparency = 0.3
 frame.BorderSizePixel = 0
@@ -29,27 +29,27 @@ title.Text = "Noclip Gui"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.BackgroundTransparency = 1
 title.Font = Enum.Font.SourceSansBold
-title.TextSize = 20
+title.TextSize = 18
 
 -- Credits
 local label = Instance.new("TextLabel", frame)
 label.Size = UDim2.new(1, 0, 0, 20)
-label.Position = UDim2.new(0, 0, 0, 30)
+label.Position = UDim2.new(0, 0, 0, 25)
 label.Text = "By @Roun95"
 label.TextColor3 = Color3.fromRGB(200, 200, 200)
 label.BackgroundTransparency = 1
 label.Font = Enum.Font.SourceSans
-label.TextSize = 18
+label.TextSize = 14
 
 -- Noclip Toggle
 local button = Instance.new("TextButton", frame)
-button.Size = UDim2.new(0.8, 0, 0, 30)
-button.Position = UDim2.new(0.1, 0, 0, 60)
+button.Size = UDim2.new(0.6, 0, 0, 25)
+button.Position = UDim2.new(0.2, 0, 0, 50)
 button.Text = "Apagado"
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Font = Enum.Font.Gotham
-button.TextSize = 16
+button.TextSize = 14
 
 -- Noclip Function
 local noclip = false
