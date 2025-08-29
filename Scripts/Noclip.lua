@@ -13,7 +13,7 @@ gui.ResetOnSpawn = false
 
 -- Main Frame
 local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0, 90, 0, 80)
+frame.Size = UDim2.new(0, 100, 0, 90)
 frame.Position = UDim2.new(0, 20, 0, 0)
 frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 frame.BackgroundTransparency = 0.3
@@ -43,8 +43,8 @@ label.TextSize = 14
 
 -- Noclip Toggle
 local button = Instance.new("TextButton", frame)
-button.Size = UDim2.new(0.6, 0, 0, 25)
-button.Position = UDim2.new(0.2, 0, 0, 50)
+button.Size = UDim2.new(0.8, 0, 0, 25)
+button.Position = UDim2.new(0.1, 0, 0, 50)
 button.Text = "Apagado"
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
