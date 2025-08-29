@@ -27,7 +27,7 @@ ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 220, 0, 190)
+MainFrame.Size = UDim2.new(0, 200, 0, 150)
 MainFrame.Position = UDim2.new(0.5, -110, 0.5, -95)
 MainFrame.BackgroundColor3 = Color3.fromRGB(47,49,54)
 MainFrame.BorderSizePixel = 0
@@ -323,3 +323,4 @@ StarterGui:SetCore("SendNotification", {
     Icon = content,
     Duration = 10
 })
+
