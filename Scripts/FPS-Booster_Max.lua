@@ -8,14 +8,21 @@ t.WaterWaveSpeed = 0
 t.WaterReflectance = 0
 t.WaterTransparency = 1
 l.GlobalShadows = false
-l.FogEnd = 9e9
 l.Brightness = 0
+l.FogEnd = 9e9
+l.FogStart = 9e9
 settings().Rendering.QualityLevel = "Level01"
 settings().Rendering.ReloadAssets = false
 for i, v in pairs(g:GetDescendants()) do
 	if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
             v.Material = "Plastic"
             v.Reflectance = 0
+			v.BackSurface = "SmoothNoOutlines"
+			v.BottomSurface = "SmoothNoOutlines"
+			v.FrontSurface = "SmoothNoOutlines"
+			v.LeftSurface = "SmoothNoOutlines"
+			v.RightSurface = "SmoothNoOutlines"
+			v.TopSurface = "SmoothNoOutlines"
         elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
             v.Transparency = 1
         elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
@@ -23,7 +30,7 @@ for i, v in pairs(g:GetDescendants()) do
         elseif v:IsA("Explosion") then
             v.BlastPressure = 1
             v.BlastRadius = 1
-        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") or v:IsA("Beam") then
             v.Enabled = false
         elseif v:IsA("MeshPart") then
             v.Material = "Plastic"
@@ -33,7 +40,15 @@ for i, v in pairs(g:GetDescendants()) do
         end
     end
     for i, e in pairs(l:GetChildren()) do
-        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") or e:IsA("PostEffect") then
             e.Enabled = false
         end
+	w.DescendantAdded:Connect(function(child)
+		task.spawn(function()
+			if child:IsA('ForceField') or child:IsA('Sparkles') or child:IsA('Smoke') or child:IsA('Fire') or child:IsA('Beam') then
+				g.RunService.Heartbeat:Wait()
+				child:Destroy()
+			end
+		end)
+	end)
     end
