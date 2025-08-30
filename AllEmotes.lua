@@ -341,10 +341,7 @@ local function PlayEmote(name: string, id: IntValue)
 			HumanoidPlayEmote(Humanoid, name, id)
 		end
 	else
-		SendNotification(
-			"r6? lol",
-			"you gotta be r15 dude"
-		)
+		SendNotification("r6? lol","you gotta be r15 dude")
 	end
 end
 
@@ -361,8 +358,8 @@ params.AssetTypes = {Enum.AvatarAssetType.EmoteAnimation}
 params.SortType = Enum.CatalogSortType.RecentlyCreated
 params.SortAggregation = Enum.CatalogSortAggregation.AllTime
 params.IncludeOffSale = true
-params.CreatorName = ""
-params.Limit = 999
+params.CreatorName = "All"
+params.Limit = 150
 
 local function getCatalogPage()
 	local success, catalogPage = pcall(function()
@@ -623,4 +620,5 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
 
