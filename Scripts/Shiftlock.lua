@@ -10,7 +10,7 @@ local button = Instance.new("ImageButton", gui)
 button.Size = UDim2.new(0,35,0,35)
 button.Position = UDim2.new(0.9,0,0.9,0) -- Left of jump
 button.BackgroundTransparency = 1
-button.Image = "rbxassetid://3926305904"
+button.Image = "rbxassetid://106470362496957"
 
 -- Toggle function
 local function applyShiftLock(enabled)
