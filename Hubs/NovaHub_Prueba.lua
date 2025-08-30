@@ -12,6 +12,18 @@ Window:AddMinimizeButton({
 })
 
 local Tab1 = Window:MakeTab({"Credits", "info"})
+local Dialog = Window:Dialog({
+    Title = "Aviso",
+    Text = "NovaHub ",
+    Options = {
+      {"Si!", function()
+
+      end},
+      {"No", function()
+        
+      end}
+    }
+})
 local Tab2= Window:MakeTab({"Player", "fun"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "home"})
