@@ -124,7 +124,7 @@ mini2.Size = UDim2.new(0, 44, 0, 27)
 mini2.Text = "+"
 mini2.TextColor3 = Color3.fromRGB(202,178,251)
 mini2.TextSize = 30
-mini2.Position = UDim2.new(0, 44, -1, 57)
+mini2.Position = UDim2.new(0, 44, -1, 54)
 mini2.Visible = false
 
 speeds = 1
@@ -414,7 +414,7 @@ mini.MouseButton1Click:Connect(function()
     mini.Visible = false
     mini2.Visible = true
     main.Frame.BackgroundTransparency = 1
-    closebtn.Position =  UDim2.new(0, 0, -1, 57)
+    closebtn.Position =  UDim2.new(0, 0, -1, 54)
 end)
 
 mini2.MouseButton1Click:Connect(function()
