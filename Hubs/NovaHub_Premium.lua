@@ -17,8 +17,6 @@ local Dialog = Window:Dialog({
     Text = "Nova Hub (Brookhaven-Español) fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
     Options = {
         {"Esta bien", function()
-        end},
-        {"Continuar", function()
         end}
     }
 })
@@ -4235,8 +4233,7 @@ Tab12:AddButton({
 })
 
 local Section = Tab13:AddSection({"Mejoras graficas"})
-shadersTab:AddButton({"Shaders", function()
-    -- Aviso: script otimizado, ativação automática sem interface gráfica.
+Tab13:AddButton({"Shaders", function()
 
 local workspace = game:GetService("Workspace")
 local Lighting = game:GetService("Lighting")
@@ -4591,6 +4588,8 @@ Lighting.EnvironmentSpecularScale = 1
 Lighting.EnvironmentDiffuseScale = 0.5
 
 local sky = Instance.new("Sky")
+sky.MoonTextureId = "http://www.roblox.com/asset/?id=9027816797"
+sky.SunTextureId = "http://www.roblox.com/asset/?id=5560116180"
 sky.SkyboxBk = "rbxassetid://159454299"
 sky.SkyboxDn = "rbxassetid://159454296"
 sky.SkyboxFt = "rbxassetid://159454293"
@@ -4616,4 +4615,5 @@ sunRays.Spread = 0.8
 
 local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
-end})
+end
+})
