@@ -8,9 +8,9 @@ local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 gui.Name = "ShiftLockMobile"
 local button = Instance.new("ImageButton", gui)
 button.Size = UDim2.new(0,35,0,35)
-button.Position = UDim2.new(0.9,0,0.9,0) -- Left of jump
+button.Position = UDim2.new(0.8,0,0.8,0) -- Left of jump
 button.BackgroundTransparency = 1
-button.Image = "rbxassetid://106470362496957"
+button.Image = "rbxassetid://83349936062601"
 
 -- Toggle function
 local function applyShiftLock(enabled)
