@@ -361,8 +361,8 @@ params.AssetTypes = {Enum.AvatarAssetType.EmoteAnimation}
 params.SortType = Enum.CatalogSortType.RecentlyCreated
 params.SortAggregation = Enum.CatalogSortAggregation.AllTime
 params.IncludeOffSale = true
-params.CreatorName = "Roblox"
-params.Limit = 120
+params.CreatorName = ""
+params.Limit = 999
 
 local function getCatalogPage()
 	local success, catalogPage = pcall(function()
@@ -623,3 +623,4 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
