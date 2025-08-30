@@ -1,10 +1,8 @@
---- Keybind to open for pc is "comma" -> " , "
--- Made by Gi#7331
-
 game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Tips!",
-                Text = "Wait 1 - 15 seconds to show gui if it don't show try execute again",
-                 Duration = 15})
+	Title = "Tips!",
+	Text = "Wait 5 - 20 seconds to show gui if it don't show try execute again",
+	Duration = 15
+})
 
 if game:GetService("CoreGui"):FindFirstChild("Emotes") then
     game:GetService("CoreGui"):FindFirstChild("Emotes"):Destroy()
@@ -383,10 +381,7 @@ local function PlayEmote(name: string, id: IntValue)
 			Humanoid:PlayEmoteAndGetAnimTrackById(id)
 		end
 	else
-		SendNotification(
-			"r6? lol",
-			"you gotta be r15 dude"
-		)
+		SendNotification("R6?", "R15 Only")
 	end
 end
 
@@ -428,7 +423,6 @@ AddEmote("Head Banging", 5915779725)
 AddEmote("Face Calisthenics", 9830731012)
 
 --wait for emotes to finish loading
-
 local function EmotesLoaded()
 	for i, loaded in pairs(LoadedEmotes) do
 		if not loaded then
@@ -517,119 +511,119 @@ local function CharacterAdded(Character)
 			v:Destroy()
 		end
 	end
-	local Humanoid = WaitForChildOfClass(Character, "Humanoid")
-	local Description = Humanoid:WaitForChild("HumanoidDescription", 5) or Instance.new("HumanoidDescription", Humanoid)
-	local random = Instance.new("TextButton")
-	local Ratio = Instance.new("UIAspectRatioConstraint")
-	Ratio.AspectType = Enum.AspectType.ScaleWithParentSize
-	Ratio.Parent = random
-	random.LayoutOrder = 0
-	random.TextColor3 = Color3.new(1, 1, 1)
-	random.BorderSizePixel = 0
-	random.BackgroundTransparency = 0.5
-	random.BackgroundColor3 = Color3.new(0, 0, 0)
-	random.TextScaled = true
-	random.Text = "Random"
-	random:SetAttribute("name", "")
-	Corner:Clone().Parent = random
-	random.MouseButton1Click:Connect(function()
-		local randomemote = Emotes[math.random(1, #Emotes)]
-		PlayEmote(randomemote.name, randomemote.id)
+local Humanoid = WaitForChildOfClass(Character, "Humanoid")
+local Description = Humanoid:WaitForChild("HumanoidDescription", 5) or Instance.new("HumanoidDescription", Humanoid)
+local random = Instance.new("TextButton")
+local Ratio = Instance.new("UIAspectRatioConstraint")
+Ratio.AspectType = Enum.AspectType.ScaleWithParentSize
+Ratio.Parent = random
+random.LayoutOrder = 0
+random.TextColor3 = Color3.new(1, 1, 1)
+random.BorderSizePixel = 0
+random.BackgroundTransparency = 0.5
+random.BackgroundColor3 = Color3.new(0, 0, 0)
+random.TextScaled = true
+random.Text = "Random"
+random:SetAttribute("name", "")
+Corner:Clone().Parent = random
+random.MouseButton1Click:Connect(function()
+	local randomemote = Emotes[math.random(1, #Emotes)]
+	PlayEmote(randomemote.name, randomemote.id)
+end)
+random.MouseEnter:Connect(function()
+	EmoteName.Text = "Random"
+end)
+random.Parent = Frame
+for i,Emote in pairs(Emotes) do
+	Description:AddEmote(Emote.name, Emote.id)
+	local EmoteButton = Instance.new("ImageButton")
+	local IsFavorited = table.find(FavoritedEmotes, Emote.id)
+	EmoteButton.LayoutOrder = Emote.sort[CurrentSort] + ((IsFavorited and 0) or #Emotes)
+	EmoteButton.Name = Emote.id
+	EmoteButton:SetAttribute("name", Emote.name)
+	Corner:Clone().Parent = EmoteButton
+	EmoteButton.Image = Emote.icon
+	EmoteButton.BackgroundTransparency = 0.5
+	EmoteButton.BackgroundColor3 = Color3.new(0, 0, 0)
+	EmoteButton.BorderSizePixel = 0
+	Ratio:Clone().Parent = EmoteButton
+	local EmoteNumber = Instance.new("TextLabel")
+	EmoteNumber.Name = "number"
+	EmoteNumber.TextScaled = true
+	EmoteNumber.BackgroundTransparency = 1
+	EmoteNumber.TextColor3 = Color3.new(1, 1, 1)
+	EmoteNumber.BorderSizePixel = 0
+	EmoteNumber.AnchorPoint = Vector2.new(0.5, 0.5)
+	EmoteNumber.Size = UDim2.new(0.2, 0, 0.2, 0)
+	EmoteNumber.Position = UDim2.new(0.1, 0, 0.9, 0)
+	EmoteNumber.Text = Emote.sort[CurrentSort]
+	EmoteNumber.TextXAlignment = Enum.TextXAlignment.Center
+	EmoteNumber.TextYAlignment = Enum.TextYAlignment.Center
+	local UIStroke = Instance.new("UIStroke")
+	UIStroke.Transparency = 0.5
+	UIStroke.Parent = EmoteNumber
+	EmoteNumber.Parent = EmoteButton
+	EmoteButton.Parent = Frame
+	EmoteButton.MouseButton1Click:Connect(function()
+		PlayEmote(Emote.name, Emote.id)
 	end)
-	random.MouseEnter:Connect(function()
-		EmoteName.Text = "Random"
+	EmoteButton.MouseEnter:Connect(function()
+		EmoteName.Text = Emote.name
 	end)
-	random.Parent = Frame
-	for i,Emote in pairs(Emotes) do
-		Description:AddEmote(Emote.name, Emote.id)
-		local EmoteButton = Instance.new("ImageButton")
-		local IsFavorited = table.find(FavoritedEmotes, Emote.id)
-		EmoteButton.LayoutOrder = Emote.sort[CurrentSort] + ((IsFavorited and 0) or #Emotes)
-		EmoteButton.Name = Emote.id
-		EmoteButton:SetAttribute("name", Emote.name)
-		Corner:Clone().Parent = EmoteButton
-		EmoteButton.Image = Emote.icon
-		EmoteButton.BackgroundTransparency = 0.5
-		EmoteButton.BackgroundColor3 = Color3.new(0, 0, 0)
-		EmoteButton.BorderSizePixel = 0
-		Ratio:Clone().Parent = EmoteButton
-		local EmoteNumber = Instance.new("TextLabel")
-		EmoteNumber.Name = "number"
-		EmoteNumber.TextScaled = true
-		EmoteNumber.BackgroundTransparency = 1
-		EmoteNumber.TextColor3 = Color3.new(1, 1, 1)
-		EmoteNumber.BorderSizePixel = 0
-		EmoteNumber.AnchorPoint = Vector2.new(0.5, 0.5)
-		EmoteNumber.Size = UDim2.new(0.2, 0, 0.2, 0)
-		EmoteNumber.Position = UDim2.new(0.1, 0, 0.9, 0)
-		EmoteNumber.Text = Emote.sort[CurrentSort]
-		EmoteNumber.TextXAlignment = Enum.TextXAlignment.Center
-		EmoteNumber.TextYAlignment = Enum.TextYAlignment.Center
-		local UIStroke = Instance.new("UIStroke")
-		UIStroke.Transparency = 0.5
-		UIStroke.Parent = EmoteNumber
-		EmoteNumber.Parent = EmoteButton
-		EmoteButton.Parent = Frame
-		EmoteButton.MouseButton1Click:Connect(function()
-			PlayEmote(Emote.name, Emote.id)
-		end)
-		EmoteButton.MouseEnter:Connect(function()
-			EmoteName.Text = Emote.name
-		end)
-		local Favorite = Instance.new("ImageButton")
-		Favorite.Name = "favorite"
-		if table.find(FavoritedEmotes, Emote.id) then
-			Favorite.Image = FavoriteOn
-		else
+	local Favorite = Instance.new("ImageButton")
+	Favorite.Name = "favorite"
+	if table.find(FavoritedEmotes, Emote.id) then
+		Favorite.Image = FavoriteOn
+	else
+		Favorite.Image = FavoriteOff
+	end
+	Favorite.AnchorPoint = Vector2.new(0.5, 0.5)
+	Favorite.Size = UDim2.new(0.2, 0, 0.2, 0)
+	Favorite.Position = UDim2.new(0.9, 0, 0.9, 0)
+	Favorite.BorderSizePixel = 0
+	Favorite.BackgroundTransparency = 1
+	Favorite.Parent = EmoteButton
+	Favorite.MouseButton1Click:Connect(function()
+		local index = table.find(FavoritedEmotes, Emote.id)
+		if index then
+			table.remove(FavoritedEmotes, index)
 			Favorite.Image = FavoriteOff
+			EmoteButton.LayoutOrder = Emote.sort[CurrentSort] + #Emotes
+		else
+			table.insert(FavoritedEmotes, Emote.id)
+			Favorite.Image = FavoriteOn
+			EmoteButton.LayoutOrder = Emote.sort[CurrentSort]
 		end
-		Favorite.AnchorPoint = Vector2.new(0.5, 0.5)
-		Favorite.Size = UDim2.new(0.2, 0, 0.2, 0)
-		Favorite.Position = UDim2.new(0.9, 0, 0.9, 0)
-		Favorite.BorderSizePixel = 0
-		Favorite.BackgroundTransparency = 1
-		Favorite.Parent = EmoteButton
-		Favorite.MouseButton1Click:Connect(function()
-			local index = table.find(FavoritedEmotes, Emote.id)
-			if index then
-				table.remove(FavoritedEmotes, index)
-				Favorite.Image = FavoriteOff
-				EmoteButton.LayoutOrder = Emote.sort[CurrentSort] + #Emotes
-			else
-				table.insert(FavoritedEmotes, Emote.id)
-				Favorite.Image = FavoriteOn
-				EmoteButton.LayoutOrder = Emote.sort[CurrentSort]
-			end
-			writefile("FavoritedEmotes.txt", HttpService:JSONEncode(FavoritedEmotes))
-		end)
-	end
-	for i=1,9 do
-		local EmoteButton = Instance.new("Frame")
-		EmoteButton.LayoutOrder = 2147483647
-		EmoteButton.Name = "filler"
-		EmoteButton.BackgroundTransparency = 1
-		EmoteButton.BorderSizePixel = 0
-		Ratio:Clone().Parent = EmoteButton
-		EmoteButton.Visible = true
-		EmoteButton.Parent = Frame
-		EmoteButton.MouseEnter:Connect(function()
-			EmoteName.Text = "Select an Emote"
-		end)
-	end
+		writefile("FavoritedEmotes.txt", HttpService:JSONEncode(FavoritedEmotes))
+	end)
+end
+for i=1,9 do
+	local EmoteButton = Instance.new("Frame")
+	EmoteButton.LayoutOrder = 2147483647
+	EmoteButton.Name = "filler"
+	EmoteButton.BackgroundTransparency = 1
+	EmoteButton.BorderSizePixel = 0
+	Ratio:Clone().Parent = EmoteButton
+	EmoteButton.Visible = true
+	EmoteButton.Parent = Frame
+	EmoteButton.MouseEnter:Connect(function()
+	EmoteName.Text = "Select an Emote"
+	end)
+end
 end
 
 if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
-
 wait(1)
 
 game.CoreGui.Emotes.Enabled = true
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Done!",
-                Text = "Emotes gui is here!",
-                 Duration = 10})
+	Title = "Done!",
+	Text = "Emotes gui loaded! By @Roun95",
+	Duration = 10
+})
 
 game.Players.LocalPlayer.PlayerGui.ContextActionGui:Destroy()
