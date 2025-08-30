@@ -10,12 +10,12 @@ local button = Instance.new("ImageButton", gui)
 button.Size = UDim2.new(0,35,0,35)
 button.Position = UDim2.new(0.8,0,0.8,0) -- Left of jump
 button.BackgroundTransparency = 1
-button.Image = "rbxassetid://105987953182009"
+button.Image = "rbxassetid://125910766200945"
 
 -- Toggle function
 local function applyShiftLock(enabled)
 	if humanoid then if enabled then
-			humanoid.CameraOffset = Vector3.new(2,0,0)
+			humanoid.CameraOffset = Vector3.new(8,0,0)
 			button.ImageColor3 = Color3.fromRGB(0,170,255)
 			cam.CameraSubject = humanoid
 			humanoid.AutoRotate = false
