@@ -20,7 +20,7 @@ local Dialog = Window:Dialog({
         end}
     }
 })
-local Tab2= Window:MakeTab({"Player", "user"})
+local Tab2 = Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "home"})
 local Tab5 = Window:MakeTab({"Car", "car"})
@@ -3705,7 +3705,7 @@ Tab9:AddTextBox({
 
         local player = findPlayerByPartialName(Value)
         if player then
-            -- Verifica se o jogador já está excluído
+            -- Comprueba si el jugador ya esta excluido
             for _, excluded in ipairs(excludedPlayers) do
                 if excluded == player then
                     showNotification("El jugador ya está en la lista de espera", "Jugador " .. player.Name .. " ya se ha añadido.", getPlayerThumbnail(player.UserId))
@@ -3999,8 +3999,8 @@ Tab9:AddButton({"Fling All V2", function()
         end
     end)
 end})
--- Parar Tudo
-Tab9:AddButton({"Stop All", function()
+-- Parar todo
+Tab9:AddButton({"Parar todo", function()
     -- Parar Orbitando
     orbitando = false
     if orbitConn then
@@ -4022,7 +4022,7 @@ Tab9:AddButton({"Stop All", function()
         allConn2:Disconnect()
         allConn2 = nil
     end
-    -- Restaurar propriedades da bola
+    -- Restaurar las propiedades del balon
     if soccerBall and originalProperties then
         soccerBall.Anchored = originalProperties.Anchored
         soccerBall.CanCollide = originalProperties.CanCollide
