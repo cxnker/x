@@ -65,7 +65,7 @@ Tab1:AddButton({
     end
 })
 ----------------------------------------------------------------------------------------------------
-                                    -- === Tab 2: Fun === --
+                                    -- === Tab 2: User === --
 ----------------------------------------------------------------------------------------------------
 local Section = Tab2:AddSection({"Personaje del jugador"})
 
@@ -136,7 +136,7 @@ local function findPlayerByPartialName(partial)
     return nil
 end
 
--- Notificacion con imagen del jugador
+-- Notificacion con imagen del jugador seleccionado
 local function notifyPlayerSelected(player)
     local StarterGui = game:GetService("StarterGui")
     local thumbType = Enum.ThumbnailType.HeadShot
@@ -265,7 +265,7 @@ Tab2:AddToggle({
     end
 })
 
--- Toggle para Anti-Sit
+-- Interruptor para Anti-Sit
 local antiSitConnection = nil
 local antiSitEnabled = false
 
@@ -325,7 +325,7 @@ Tab2:AddToggle({
     end
 })
 
--- Noclip GUI Button
+-- Ejecutar Noclip
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
     Callback = function()
@@ -340,7 +340,8 @@ Tab2:AddButton({
         })
     end
 })
--- Fly GUI Button
+
+-- Ejecutar Fly
 Tab2:AddButton({
     Name = "Fly GUI Universal",
     Callback = function()
@@ -517,6 +518,7 @@ local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 local PlayerValue
 local Target = nil
 
+-- Funcion para obtener los nombres de los jugadores
 local function GetPlayerNames()
     local playerNames = {}
     for _, player in ipairs(Players:GetPlayers()) do
@@ -527,6 +529,7 @@ local function GetPlayerNames()
     return playerNames
 end
 
+-- Menu desplegable
 local Dropdown = Tab3:AddDropdown({
     Name = "Seleccionar jugador",
     Description = "",
@@ -535,7 +538,7 @@ local Dropdown = Tab3:AddDropdown({
     Flag = "player list",
     Callback = function(playername)
         PlayerValue = playername
-        Target = playername -- Conecta el menu a Copiar avatar
+        Target = playername -- Conecta el menu con Copiar avatar
     end
 })
 
@@ -545,6 +548,7 @@ end
 
 UptadePlayers()
 
+-- Boton para actualizar lista de jugadores
 Tab3:AddButton({"Actualizar lista", function()
     UptadePlayers()
 end})
@@ -552,6 +556,7 @@ end})
 Players.PlayerAdded:Connect(UptadePlayers)
 Players.PlayerRemoving:Connect(UptadePlayers)
 
+-- Boton para copiar el avatar del jugador seleccionado
 Tab3:AddButton({
     Name = "Copiar avatar",
     Callback = function()
@@ -566,7 +571,7 @@ Tab3:AddButton({
             local THumanoid = TPlayer.Character:FindFirstChildOfClass("Humanoid")
 
             if LHumanoid and THumanoid then
-                -- REINICIAR LOCALPLAYER
+                -- REINICIAR PERSONAJE
                 local LDesc = LHumanoid:GetAppliedDescription()
 
                 -- Remover accesorios, ropa y caras actuales
@@ -704,7 +709,7 @@ function AvatarManager:GetAvatarNames()
     return nomes
 end
 
--- Funcion para equipar el avatar
+-- Funcion para equipar el avatar seleccionado
 function AvatarManager:EquiparAvatar(avatarName)
     for _, avatar in ipairs(self.Avatares) do
         if avatar.Nome == avatarName then
@@ -723,7 +728,7 @@ function AvatarManager:EquiparAvatar(avatarName)
     self:MostrarNotificacao("Avatar " .. avatarName .. " no encontrado!")
 end
 
--- Tab3: Opción de avatar
+-- Menu desplegable
 local AvatarDropdown = Tab3:AddDropdown({
     Name = "Selecciona una opcion",
     Default = nil,
@@ -733,7 +738,7 @@ local AvatarDropdown = Tab3:AddDropdown({
     end
 })
 
--- Boton para equipar el avatar
+-- Boton para equipar el avatar seleccionado
 Tab3:AddButton({
     Name = "Equipar",
     Callback = function()
@@ -991,7 +996,7 @@ TeleportCarro.Workspace = Workspace
 TeleportCarro.LocalPlayer = LocalPlayer
 TeleportCarro.Camera = Camera
 
--- Funcion para la notificacion
+-- Notificacion
 function TeleportCarro:MostrarNotificacao(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -1002,7 +1007,7 @@ function TeleportCarro:MostrarNotificacao(mensagem)
     end)
 end
 
--- Funcion para activar/desactivar daño de caida
+-- Funcion para activar/desactivar el daño de caida
 function TeleportCarro:ToggleFallDamage(disable)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then return false end
     local humanoid = self.LocalPlayer.Character.Humanoid
@@ -1408,7 +1413,7 @@ Tab5:AddButton({
     end
 })
 
--- Mantener el estado de daño por caida al reiniciar el personaje
+-- Mantener el daño por caida al reiniciar el personaje
 local fallDamageDisabled = false
 TeleportCarro.LocalPlayer.CharacterAdded:Connect(function(character)
     local humanoid = character:WaitForChild("Humanoid")
@@ -1870,7 +1875,7 @@ local function createMusicDropdown(title, musicOptions, defaultOption)
     end
 
     local function playMusic(soundId)
-        tocarMusica(tostring(soundId)) -- Utiliza la funcion playMusic para reproducir en todos los contextos
+        tocarMusica(tostring(soundId)) -- Utiliza la funcion playMusic para reproducir en todos los lugares
     end
 
     Tab8:AddDropdown({
@@ -2176,7 +2181,7 @@ local function updateDropdown(dropdown, spectateToggle)
     pcall(function()
         local currentValue = dropdown:Get()
         local playerNames = getPlayerNames()
-        dropdown:Set(playerNames) -- Usando :Set como solicitado
+        dropdown:Set(playerNames) -- Mantiene el nombre del jugador
         if currentValue and not table.find(playerNames, currentValue) then
             dropdown:Set("")
             selectedPlayer = nil
@@ -2195,7 +2200,7 @@ local function updateDropdown(dropdown, spectateToggle)
                 if flingToggle then pcall(function() flingToggle:Set(false) end) end
             end
         elseif currentValue and table.find(playerNames, currentValue) then
-            dropdown:Set(currentValue) -- Mantém seleção se jogador ainda está no jogo
+            dropdown:Set(currentValue) -- Mantiene la seleccion si el jugador todavia esta en el juego
         end
     end)
 end
@@ -2397,7 +2402,7 @@ local SpectateToggleTab10 = Tab9:AddToggle({
     end
 })
 
--- Remoção automática de jogadores que saem
+-- Remueve automaticamente los jugadores que salen
 Players.PlayerRemoving:Connect(function(player)
     updateDropdown(DropdownPlayerTab2, SpectateToggleTab10)
     if selectedPlayer == player then
@@ -2414,13 +2419,13 @@ Players.PlayerRemoving:Connect(function(player)
     end
 end)
 
--- Atualização automática quando um novo jogador entra
+-- Actualizacion automatica de un nuevo jugador ingresado
 Players.PlayerAdded:Connect(function()
-    task.wait(1) -- pequeno delay para garantir que o jogador esteja pronto
+    task.wait(1) -- Pequeño retraso para garantizar que el reproductor este listo
     updateDropdown(DropdownPlayerTab2, SpectateToggleTab10)
 end)
 
--- Inicializa o dropdown
+-- Inicia el menu desplegable
 updateDropdown(DropdownPlayerTab2, SpectateToggleTab10)
 ----------------------------------------------------------------------------------------------------
 local Section = Tab9:AddSection({"Matar o Atraer jugador"})
@@ -3348,7 +3353,7 @@ local function flingWithTruck(targetPlayer)
     local myHRP = character:FindFirstChild("HumanoidRootPart")
     if not humanoid or not myHRP then return end
     savedPosition = myHRP.Position
-    -- Teletransporta para a posição inicial do ônibus para invocar o caminhão
+    -- Se teletransporta a la posicion inicial del autobus para invocar el camion.
     pcall(function()
         myHRP.Anchored = true
         myHRP.CFrame = CFrame.new(Vector3.new(1181.83, 76.08, -1158.83))
@@ -3359,26 +3364,26 @@ local function flingWithTruck(targetPlayer)
         if humanoid then humanoid:ChangeState(Enum.HumanoidStateType.GettingUp) end
     end)
     task.wait(0.5)
-    -- Desativa o cliente de carro para evitar interferências
+    -- Desactiva el cliente del vehiculo para evitar interferencias.
     disableCarClient()
-    -- Deleta qualquer veículo existente
+    -- Eliminar cualquier vehiculo existente
     local args = { [1] = "DeleteAllVehicles" }
     pcall(function()
         ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Ca1r"):FireServer(unpack(args))
     end)
-    -- Invoca o caminhão (Semi) usando o comando fornecido
+    -- Invoca el camion (Semi) usando el comando dado
     args = { [1] = "PickingCar", [2] = "Semi" }
     pcall(function()
         ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Ca1r"):FireServer(unpack(args))
     end)
     task.wait(1)
-    -- Encontra o caminhão invocado
+    -- Encuentra el camion invocado
     local vehiclesFolder = Workspace:FindFirstChild("Vehicles")
     if not vehiclesFolder then return end
     local truckName = LocalPlayer.Name .. "Car"
     local truck = vehiclesFolder:FindFirstChild(truckName)
     if not truck then return end
-    -- Teletransporta para a posição do assento do caminhão
+    -- Se teletransporta al asiento del camion.
     pcall(function()
         myHRP.Anchored = true
         myHRP.CFrame = CFrame.new(Vector3.new(1176.56, 79.90, -1166.65))
@@ -3628,7 +3633,7 @@ soccerBall = nil
 originalProperties = nil
 excludedPlayers = {} -- Tabla para jugadores excluidos de los flings
 
--- Función auxiliar para obtener la foto de perfil del jugador
+-- Funcion auxiliar para obtener la foto de perfil del jugador
 local function getPlayerThumbnail(userId)
     local thumbType = Enum.ThumbnailType.HeadShot
     local thumbSize = Enum.ThumbnailSize.Size420x420
@@ -3643,7 +3648,7 @@ local function getPlayerThumbnail(userId)
     end
 end
 
--- Función para buscar jugadores por parte del nombre
+-- Funcion para buscar jugadores por parte del nombre
 local function findPlayerByPartialName(partialName)
     partialName = partialName:lower()
     for _, plr in ipairs(Players:GetPlayers()) do
@@ -3654,7 +3659,7 @@ local function findPlayerByPartialName(partialName)
     return nil
 end
 
--- Función para mostrar las notificaciones
+-- Funcion para mostrar las notificaciones
 local function showNotification(title, description, icon)
     pcall(function()
         StarterGui:SetCore("SendNotification", {
