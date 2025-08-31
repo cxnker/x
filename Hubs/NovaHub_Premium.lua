@@ -256,7 +256,7 @@ Tab2:AddButton({
         InfiniteJumpEnabled = false
     end
 })
- 
+
 Tab2:AddToggle({
 	Name = "Infinite Jump",
     Default = false,
@@ -325,16 +325,6 @@ Tab2:AddToggle({
     end
 })
 
--- Servicios
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-
--- Variables
-local billboardGuis = {}
-local connections = {}
-local espEnabled = false
-local selectedColor = "RGB Suave"
-
 -- Noclip GUI Button
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
@@ -367,6 +357,14 @@ Tab2:AddButton({
 })
 ----------------------------------------------------------------------------------------------------
 local Section = Tab2:AddSection({"ESP"})
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local billboardGuis = {}
+local connections = {}
+local espEnabled = false
+local selectedColor = "RGB Suave"
 
 -- Menú desplegable de color
 Tab2:AddDropdown({
@@ -451,7 +449,7 @@ local function removeESP(player)
     end
 end
 
--- Interruptor de activación para el ESP
+-- Interruptor para activar el ESP
 local Toggle1 = Tab2:AddToggle({
     Name = "Activar ESP",
     Description = "Muestra la entidad de los jugadores.",
@@ -685,6 +683,7 @@ function AvatarManager:MostrarNotificacao(mensagem)
         })
     end)
 end
+
 -- Lista de ropa 3D
 AvatarManager.Avatares = {
     { Nome = "Black-Arm-Bandages-1-0", ID = 11458078735 },
@@ -695,6 +694,7 @@ AvatarManager.Avatares = {
 
     { Nome = "Mini-Cat-Suit", ID = 121465611890520 }
 }
+
 -- Funcion para obtener los nombres de los avatares del menu
 function AvatarManager:GetAvatarNames()
     local nomes = {}
@@ -751,7 +751,7 @@ Tab3:AddParagraph({
     Title = "Tu avatar se reiniciara, Ajusta las proporciones de tu avatar para un mejor resultado",
 })
 
--- Crea un boton para equipar todas las partes del cuerpo.
+-- Boton para equipar todas las partes del cuerpo.
 Tab3:AddButton({
     Name = "Mini-Plushie (Headless)",
     Callback = function()
@@ -1112,7 +1112,7 @@ function TeleportCarro:AtualizarListaCarros()
     return listaCarros
 end
 
--- Boton para eliminar todos los vehiculos
+-- Interruptor para eliminar todos los vehiculos
 Tab5:AddToggle({
     Name = "Eliminar todos los vehiculos",
     Description = "Teletransporta los vehiculos al vacio",
@@ -1174,7 +1174,6 @@ Tab5:AddToggle({
 ----------------------------------------------------------------------------------------------------
 local Section = Tab5:AddSection({"Características del vehiculo"})
 
--- Crear el menu desplegable
 local Dropdown = Tab5:AddDropdown({
     Name = "Seleccionar vehiculo",
     Description = "Seleccione el vehiculo de un jugador",
@@ -1185,7 +1184,7 @@ local Dropdown = Tab5:AddDropdown({
     end
 })
 
--- Boton para ver la camara del vehiculo seleccionado
+-- Interruptor para ver la camara del vehiculo seleccionado
 Tab5:AddToggle({
     Name = "Ver camara del vehiculo seleccionado",
     Description = "Ve la camara de un vehiculo",
@@ -1484,6 +1483,7 @@ local ToggleCasa = Tab6:AddToggle({
     Name = "Casa RGB",
     Default = false
 })
+
 ToggleCasa:Callback(function(Value)
     getgenv().rgbCasa = Value
     task.spawn(function()
@@ -1584,7 +1584,6 @@ Tab7:AddToggle({
     end
 })
 
--- Tab6: Dropdown
 local function createSoundDropdown(title, musicOptions, defaultOption)
     local musicNames = {}
     local categoryMap = {}
@@ -1858,7 +1857,6 @@ Tab8:AddTextBox({
     end
 })
 
--- Tab8: Dropdown
 local function createMusicDropdown(title, musicOptions, defaultOption)
     local musicNames = {}
     local categoryMap = {}
@@ -2260,43 +2258,43 @@ local function stopSpectating()
     end
 end
 
--- Função para teletransportar para o jogador selecionado (com ancoragem segura)
+-- Funcion para teletransportarse al jugador seleccionado (con anclaje seguro)
 local function teleportToPlayer(playerName)
     local targetPlayer = Players:FindFirstChild(playerName)
     if targetPlayer and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
         local myHRP = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         local myHumanoid = LocalPlayer.Character:FindFirstChild("Humanoid")
         if not myHRP or not myHumanoid then
-            print("Su personaje no ha cargado para teletransportar.")
+            print("Su personaje no ha cargado para teletransportarse.")
             return
         end
 
-        -- Zerar a física do personagem antes do teleporte
+        -- Restablecer la fisica del personaje antes de la teletransportacion
         for _, part in ipairs(LocalPlayer.Character:GetDescendants()) do
             if part:IsA("BasePart") then
                 part.Velocity = Vector3.zero
                 part.RotVelocity = Vector3.zero
-                part.Anchored = true -- Ancorar temporariamente para evitar movimento
+                part.Anchored = true -- Anclar temporalmente para evitar el movimiento
             end
         end
 
-        -- Teleportar para a posição do jogador-alvo
+        -- Teletransportarse a la posicion del jugador objetivo
         local success, errorMessage = pcall(function()
-            myHRP.CFrame = CFrame.new(targetPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 2, 0)) -- Leve elevação para evitar colisão com o chão
+            myHRP.CFrame = CFrame.new(targetPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 2, 0)) -- Ligera elevacion para evitar colision con el suelo.
         end)
         if not success then
             warn("Error al transportar: " .. tostring(errorMessage))
             return
         end
 
-        -- Garantir que o Humanoid saia do estado sentado ou voando
+        -- Asegurese de que el Humanoid salga del estado sentado o de vuelo.
         myHumanoid.Sit = false
         myHumanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
 
-        -- Aguardar 0,5 segundos com o personagem ancorado
+        -- Espere 0,5 segundos con el personaje anclado
         task.wait(0.5)
 
-        -- Desancorar todas as partes do personagem e restaurar física
+        -- Desacoplar todas las partes del personaje y restaurar la fisica.
         for _, part in ipairs(LocalPlayer.Character:GetDescendants()) do
             if part:IsA("BasePart") then
                 part.Anchored = false
