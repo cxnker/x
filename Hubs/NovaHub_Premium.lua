@@ -4159,6 +4159,14 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
+    Name = "PShade-Ultimate",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/pshade-ultimate/refs/heads/main/src/cd.lua"))()
+    end
+})
+
+Tab11:AddButton({
     Name = "System Broken HUB",
     Description = "Universal",
     Callback = function()
