@@ -3041,21 +3041,21 @@ end
 -- Lanzar con Balon --
 local function equipBall()
     local backpack = LocalPlayer:WaitForChild("Backpack")
-    local bola = backpack:FindFirstChild("SoccerBall") or LocalPlayer.Character:FindFirstChild("SoccerBall")
-    if not bola then
+    local ball = backpack:FindFirstChild("SoccerBall") or LocalPlayer.Character:FindFirstChild("SoccerBall")
+    if not ball then
         local args = { [1] = "PickingTools", [2] = "SoccerBall" }
         local success = pcall(function()
             ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Too1l"):InvokeServer(unpack(args))
         end)
         if not success then return false end
         repeat
-            bola = backpack:FindFirstChild("SoccerBall")
+            ball = backpack:FindFirstChild("SoccerBall")
             task.wait()
-        until bola or task.wait(5)
-        if not bola then return false end
+        until ball or task.wait(5)
+        if not ball then return false end
     end
-    if bola.Parent ~= LocalPlayer.Character then
-        bola.Parent = LocalPlayer.Character
+    if ball.Parent ~= LocalPlayer.Character then
+        ball.Parent = LocalPlayer.Character
     end
     return true
 end
