@@ -1,13 +1,13 @@
 local Vignette = true -- change to false if you don't want a shadow frame
 
-local Lighting = game:GetService("Lighting")
 local StarterGui = game:GetService("StarterGui")
+local Lighting = game:GetService("Lighting")
+local Sky = Instance.new("Sky")
+local Atmosphere = Instance.new("Atmosphere")
 local Bloom = Instance.new("BloomEffect")
 local Blur = Instance.new("BlurEffect")
 local ColorCor = Instance.new("ColorCorrectionEffect")
 local SunRays = Instance.new("SunRaysEffect")
-local Sky = Instance.new("Sky")
-local Atmosphere = Instance.new("Atmosphere")
 local DepthOfField = Instance.new("DepthOfFieldEffect")
 
 for i, v in pairs(Lighting:GetChildren()) do
@@ -16,12 +16,12 @@ for i, v in pairs(Lighting:GetChildren()) do
 	end
 end
 
+Sky.Parent = Lighting
+Atmosphere.Parent = Lighting
 Bloom.Parent = Lighting
 Blur.Parent = Lighting
 ColorCor.Parent = Lighting
 SunRays.Parent = Lighting
-Sky.Parent = Lighting
-Atmosphere.Parent = Lighting
 DepthOfField.Parent = Lighting
 
 if Vignette == true then
@@ -39,6 +39,30 @@ if Vignette == true then
 	ShadowFrame.ImageTransparency = 0.3
 	ShadowFrame.ZIndex = 10
 end
+
+Lighting.Ambient = Color3.fromRGB(2,2,2)
+Lighting.Brightness = 0.1
+Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
+Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
+Lighting.EnvironmentDiffuseScale = 0.2
+Lighting.EnvironmentSpecularScale = 0.2
+Lighting.GlobalShadows = true
+Lighting.ShadowSoftness = 0.2
+Lighting.GeographicLatitude = 45
+Lighting.ExposureCompensation = 0.5
+
+Sky.CelestialBodiesShown = true
+Sky.StarCount = 4500
+Sky.SunAngularSize = 9
+Sky.MoonAngularSize = 9
+Sky.MoonTextureId = "http://www.roblox.com/asset/?id=9027816797"
+Sky.SunTextureId = "http://www.roblox.com/asset/?id=5560116180"
+Sky.SkyboxBk = "http://www.roblox.com/asset/?version=1&id=133184290"
+Sky.SkyboxDn = "http://www.roblox.com/asset/?version=1&id=133184311"
+Sky.SkyboxFt = "http://www.roblox.com/asset/?version=1&id=133184318"
+Sky.SkyboxLf = "http://www.roblox.com/asset/?version=1&id=133184299"
+Sky.SkyboxRt = "http://www.roblox.com/asset/?version=1&id=133184333"
+Sky.SkyboxUp = "http://www.roblox.com/asset/?version=1&id=133184341"
 
 Bloom.Intensity = 0.5
 Bloom.Size = 30
@@ -58,30 +82,6 @@ DepthOfField.NearIntensity = 0.75
 
 SunRays.Intensity = 0.075
 SunRays.Spread = 0.727
-
-Sky.CelestialBodiesShown = true
-Sky.StarCount = 4500
-Sky.SunAngularSize = 9
-Sky.MoonAngularSize = 9
-Sky.MoonTextureId = "http://www.roblox.com/asset/?id=9027816797"
-Sky.SunTextureId = "http://www.roblox.com/asset/?id=5560116180"
-Sky.SkyboxBk = "http://www.roblox.com/asset/?version=1&id=133184290"
-Sky.SkyboxDn = "http://www.roblox.com/asset/?version=1&id=133184311"
-Sky.SkyboxFt = "http://www.roblox.com/asset/?version=1&id=133184318"
-Sky.SkyboxLf = "http://www.roblox.com/asset/?version=1&id=133184299"
-Sky.SkyboxRt = "http://www.roblox.com/asset/?version=1&id=133184333"
-Sky.SkyboxUp = "http://www.roblox.com/asset/?version=1&id=133184341"
-
-Lighting.Ambient = Color3.fromRGB(2,2,2)
-Lighting.Brightness = 0.1
-Lighting.ColorShift_Bottom = Color3.fromRGB(0,0,0)
-Lighting.ColorShift_Top = Color3.fromRGB(0,0,0)
-Lighting.EnvironmentDiffuseScale = 0.2
-Lighting.EnvironmentSpecularScale = 0.2
-Lighting.GlobalShadows = true
-Lighting.ShadowSoftness = 0.2
-Lighting.GeographicLatitude = 45
-Lighting.ExposureCompensation = 0.5
 
 Atmosphere.Density = 0.48
 Atmosphere.Offset = 0.556
