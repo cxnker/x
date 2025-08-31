@@ -11,7 +11,6 @@ Window:AddMinimizeButton({
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
-local Tab1 = Window:MakeTab({"Credits", "info"})
 local Dialog = Window:Dialog({
     Title = "Aviso",
     Text = "Nova Hub (Brookhaven-Español) fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
@@ -20,6 +19,7 @@ local Dialog = Window:Dialog({
         end}
     }
 })
+local Tab1 = Window:MakeTab({"Credits", "info"})
 local Tab2 = Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "home"})
@@ -679,7 +679,7 @@ local AvatarManager = {}
 AvatarManager.ReplicatedStorage = ReplicatedStorage
 
 -- Funcion para la notificacion
-function AvatarManager:MostrarNotificacao(mensagem)
+function AvatarManager:showNotify(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Aviso",
@@ -718,14 +718,14 @@ function AvatarManager:EquiparAvatar(avatarName)
                 return self.ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
             end)
             if success then
-                self:MostrarNotificacao("Avatar " .. avatarName .. " Equipado!")
+                self:showNotify("Avatar " .. avatarName .. " Equipado!")
             else
-                self:MostrarNotificacao("No se pudo equipar " .. avatarName .. "!")
+                self:showNotify("No se pudo equipar " .. avatarName .. "!")
             end
             return
         end
     end
-    self:MostrarNotificacao("Avatar " .. avatarName .. " no encontrado!")
+    self:showNotify("Avatar " .. avatarName .. " no encontrado!")
 end
 
 -- Menu desplegable
@@ -743,7 +743,7 @@ Tab3:AddButton({
     Name = "Equipar",
     Callback = function()
         if not _G.SelectedAvatar or _G.SelectedAvatar == "" then
-            AvatarManager:MostrarNotificacao("Ningun avatar seleccionado!")
+            AvatarManager:showNotify("Ningun avatar seleccionado!")
             return
         end
         AvatarManager:EquiparAvatar(_G.SelectedAvatar)
@@ -1011,14 +1011,14 @@ local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
 -- Espacio de nombres para evitar conflictos
-local TeleportCarro = {}
-TeleportCarro.Players = Players
-TeleportCarro.Workspace = Workspace
-TeleportCarro.LocalPlayer = LocalPlayer
-TeleportCarro.Camera = Camera
+local vehicleTeleport = {}
+vehicleTeleport.Players = Players
+vehicleTeleport.Workspace = Workspace
+vehicleTeleport.LocalPlayer = LocalPlayer
+vehicleTeleport.Camera = Camera
 
 -- Notificacion
-function TeleportCarro:MostrarNotificacao(mensagem)
+function vehicleTeleport:showNotify(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Aviso",
@@ -1029,7 +1029,7 @@ function TeleportCarro:MostrarNotificacao(mensagem)
 end
 
 -- Funcion para activar/desactivar el daño de caida
-function TeleportCarro:ToggleFallDamage(disable)
+function vehicleTeleport:ToggleFallDamage(disable)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then return false end
     local humanoid = self.LocalPlayer.Character.Humanoid
     if disable then
@@ -1046,15 +1046,15 @@ function TeleportCarro:ToggleFallDamage(disable)
 end
 
 -- Funcion para teletransportar el jugador al asiento del vehiculo
-function TeleportCarro:TeleportToSeat(seat, car)
+function vehicleTeleport:TeleportToSeat(seat, car)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        self:MostrarNotificacao("Personaje no encontrado!")
+        self:showNotify("Personaje no encontrado!")
         return false
     end
     local humanoid = self.LocalPlayer.Character.Humanoid
     local rootPart = self.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     if not rootPart then
-        self:MostrarNotificacao("No se encontro HumanoidRootPart!")
+        self:showNotify("No se encontro HumanoidRootPart!")
         return false
     end
 
@@ -1070,9 +1070,9 @@ function TeleportCarro:TeleportToSeat(seat, car)
 end
 
 -- Funcion para teletransportar el vehiculo al vacío con retraso
-function TeleportCarro:TeleportToVoid(car)
+function vehicleTeleport:TeleportToVoid(car)
     if not car then
-        self:MostrarNotificacao("Vehiculo invalido!")
+        self:showNotify("Vehiculo invalido!")
         return
     end
     if not car.PrimaryPart then
@@ -1080,7 +1080,7 @@ function TeleportCarro:TeleportToVoid(car)
         if body and body:IsA("BasePart") then
             car.PrimaryPart = body
         else
-            self:MostrarNotificacao("Parte principal del vehiculo no encontrado!")
+            self:showNotify("Parte principal del vehiculo no encontrado!")
             return
         end
     end
@@ -1090,9 +1090,9 @@ function TeleportCarro:TeleportToVoid(car)
 end
 
 -- Funcion para teletransportar el vehiculo a la posicion del jugador con retraso.
-function TeleportCarro:TeleportToPlayer(car, playerPos)
+function vehicleTeleport:TeleportToPlayer(car, playerPos)
     if not car then
-        self:MostrarNotificacao("Vehiculo invalido!")
+        self:showNotify("Vehiculo invalido!")
         return
     end
     if not car.PrimaryPart then
@@ -1100,7 +1100,7 @@ function TeleportCarro:TeleportToPlayer(car, playerPos)
         if body and body:IsA("BasePart") then
             car.PrimaryPart = body
         else
-            self:MostrarNotificacao("Parte principal del vehiculo no encontrado!")
+            self:showNotify("Parte principal del vehiculo no encontrado!")
             return
         end
     end
@@ -1110,7 +1110,7 @@ function TeleportCarro:TeleportToPlayer(car, playerPos)
 end
 
 -- Funcion para salir del vehiculo y volver a la posicion original.
-function TeleportCarro:ExitCarAndReturn(originalPos)
+function vehicleTeleport:ExitCarAndReturn(originalPos)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then return end
     local humanoid = self.LocalPlayer.Character.Humanoid
     if humanoid.SeatPart then
@@ -1123,7 +1123,7 @@ function TeleportCarro:ExitCarAndReturn(originalPos)
 end
 
 -- Funcion para actualizar la lista de vehiculos en el desplegable
-function TeleportCarro:AtualizarListaCarros()
+function vehicleTeleport:UpdateVehicleList()
     local pastaVeiculos = self.Workspace:FindFirstChild("Vehicles")
     local listaCarros = {}
     
@@ -1152,16 +1152,16 @@ Tab5:AddToggle({
             if self.LocalPlayer.Character and self.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                 originalPosition = self.LocalPlayer.Character.HumanoidRootPart.Position
             else
-                TeleportCarro:MostrarNotificacao("Personaje no encontrado!")
+                vehicleTeleport:showNotify("Personaje no encontrado!")
                 return
             end
 
-            fallDamageDisabled = TeleportCarro:ToggleFallDamage(true)
+            fallDamageDisabled = vehicleTeleport:ToggleFallDamage(true)
 
             spawn(function()
-                local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
+                local vehiclesFolder = vehicleTeleport.Workspace:FindFirstChild("Vehicles")
                 if not vehiclesFolder then
-                    TeleportCarro:MostrarNotificacao("Vehiculo no encontrado!")
+                    vehicleTeleport:showNotify("Vehiculo no encontrado!")
                     return
                 end
 
@@ -1177,10 +1177,10 @@ Tab5:AddToggle({
 
                     local vehicleSeat = car:FindFirstChildWhichIsA("VehicleSeat", true)
                     if vehicleSeat and vehicleSeat.Occupant == nil then
-                        local success = TeleportCarro:TeleportToSeat(vehicleSeat, car)
+                        local success = vehicleTeleport:TeleportToSeat(vehicleSeat, car)
                         if success then
-                            TeleportCarro:TeleportToVoid(car)
-                            TeleportCarro:ExitCarAndReturn(originalPosition)
+                            vehicleTeleport:TeleportToVoid(car)
+                            vehicleTeleport:ExitCarAndReturn(originalPosition)
                             task.wait(1)
                         end
                     end
@@ -1188,12 +1188,12 @@ Tab5:AddToggle({
 
                 if teleportActive then
                     teleportActive = false
-                    TeleportCarro:ToggleFallDamage(false)
+                    vehicleTeleport:ToggleFallDamage(false)
                 end
             end)
         else
             teleportActive = false
-            TeleportCarro:ToggleFallDamage(false)
+            vehicleTeleport:ToggleFallDamage(false)
         end
     end
 })
@@ -1204,9 +1204,9 @@ local Dropdown = Tab5:AddDropdown({
     Name = "Seleccionar vehiculo",
     Description = "Seleccione el vehiculo de un jugador",
     Default = nil,
-    Options = TeleportCarro:AtualizarListaCarros(),
-    Callback = function(carroSelecionado)
-        _G.SelectedVehicle = carroSelecionado
+    Options = vehicleTeleport:UpdateVehicleList(),
+    Callback = function(selectedCar)
+        _G.SelectedVehicle = selectedCar
     end
 })
 
@@ -1218,55 +1218,55 @@ Tab5:AddToggle({
     Callback = function(state)
         if state then
             if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-                TeleportCarro:MostrarNotificacao("Ningun vehiculo seleccionado!")
+                vehicleTeleport:showNotify("Ningun vehiculo seleccionado!")
                 return
             end
 
-            local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
+            local vehiclesFolder = vehicleTeleport.Workspace:FindFirstChild("Vehicles")
             if not vehiclesFolder then
-                TeleportCarro:MostrarNotificacao("Vehiculo no encontrado en la carpeta!")
+                vehicleTeleport:showNotify("Vehiculo no encontrado en la carpeta!")
                 return
             end
 
             local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
             if not vehicle then
-                TeleportCarro:MostrarNotificacao("Vehiculo no encontrado!")
+                vehicleTeleport:showNotify("Vehiculo no encontrado!")
                 return
             end
 
             local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
             if not vehicleSeat then
-                TeleportCarro:MostrarNotificacao("Asiento del vehiculo no encontrado!")
+                vehicleTeleport:showNotify("Asiento del vehiculo no encontrado!")
                 return
             end
 
             -- Restaurar el estado de la camara del vehiculo
-            TeleportCarro.OriginalCameraSubject = TeleportCarro.Camera.CameraSubject
-            TeleportCarro.OriginalCameraType = TeleportCarro.Camera.CameraType
+            vehicleTeleport.OriginalCameraSubject = vehicleTeleport.Camera.CameraSubject
+            vehicleTeleport.OriginalCameraType = vehicleTeleport.Camera.CameraType
 
             -- Ajustar la camara para el asiento del vehiculo
-            TeleportCarro.Camera.CameraSubject = vehicleSeat
-            TeleportCarro.Camera.CameraType = Enum.CameraType.Follow
-            TeleportCarro:MostrarNotificacao("Camara ajustada para el vehiculo " .. _G.SelectedVehicle .. "!")
+            vehicleTeleport.Camera.CameraSubject = vehicleSeat
+            vehicleTeleport.Camera.CameraType = Enum.CameraType.Follow
+            vehicleTeleport:showNotify("Camara ajustada para el vehiculo " .. _G.SelectedVehicle .. "!")
         else
             -- Restaurar el estado original de la camara
-            if TeleportCarro.OriginalCameraSubject then
-                TeleportCarro.Camera.CameraSubject = TeleportCarro.OriginalCameraSubject
-                TeleportCarro.Camera.CameraType = TeleportCarro.OriginalCameraType or Enum.CameraType.Custom
-                TeleportCarro:MostrarNotificacao("Camara restaurada!")
-                TeleportCarro.OriginalCameraSubject = nil
-                TeleportCarro.OriginalCameraType = nil
+            if vehicleTeleport.OriginalCameraSubject then
+                vehicleTeleport.Camera.CameraSubject = vehicleTeleport.OriginalCameraSubject
+                vehicleTeleport.Camera.CameraType = vehicleTeleport.OriginalCameraType or Enum.CameraType.Custom
+                vehicleTeleport:showNotify("Camara restaurada!")
+                vehicleTeleport.OriginalCameraSubject = nil
+                vehicleTeleport.OriginalCameraType = nil
             end
         end
     end
 })
 
 --Actualizar el menu desplegable dinamicamente
-TeleportCarro.Workspace:WaitForChild("Vehicles").ChildAdded:Connect(function()
-    Dropdown:Set(TeleportCarro:AtualizarListaCarros())
+vehicleTeleport.Workspace:WaitForChild("Vehicles").ChildAdded:Connect(function()
+    Dropdown:Set(vehicleTeleport:UpdateVehicleList())
 end)
-TeleportCarro.Workspace:WaitForChild("Vehicles").ChildRemoved:Connect(function()
-    Dropdown:Set(TeleportCarro:AtualizarListaCarros())
+vehicleTeleport.Workspace:WaitForChild("Vehicles").ChildRemoved:Connect(function()
+    Dropdown:Set(vehicleTeleport:UpdateVehicleList())
 end)
 
 local Section = Tab5:AddSection({"Otras funciones"})
@@ -1277,51 +1277,51 @@ Tab5:AddButton({
     Description = "Teletransporta el vehiculo seleccionado al vacio",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-            TeleportCarro:MostrarNotificacao("Ningun vehiculo seleccionado!")
+            vehicleTeleport:showNotify("Ningun vehiculo seleccionado!")
             return
         end
 
-        local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
+        local vehiclesFolder = vehicleTeleport.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Vehiculo no encontrado en la carpeta!")
+            vehicleTeleport:showNotify("Vehiculo no encontrado en la carpeta!")
             return
         end
 
         local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
         if not vehicle then
-            TeleportCarro:MostrarNotificacao("Vehiculo no encontrado!")
+            vehicleTeleport:showNotify("Vehiculo no encontrado!")
             return
         end
 
         local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
         if not vehicleSeat then
-            TeleportCarro:MostrarNotificacao("Asiento del vehiculo no encontrado!")
+            vehicleTeleport:showNotify("Asiento del vehiculo no encontrado!")
             return
         end
 
         if vehicleSeat.Occupant then
-            TeleportCarro:MostrarNotificacao("Vehiculo en uso, no fue posible eliminarlo!")
+            vehicleTeleport:showNotify("Vehiculo en uso, no fue posible eliminarlo!")
             return
         end
 
         local originalPos
-        if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
+        if vehicleTeleport.LocalPlayer.Character and vehicleTeleport.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            originalPos = vehicleTeleport.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personaje del jugador no encontrado!")
+            vehicleTeleport:showNotify("Personaje del jugador no encontrado!")
             return
         end
 
-        local isFallDamageOff = TeleportCarro:ToggleFallDamage(true)
-        local success = TeleportCarro:TeleportToSeat(vehicleSeat, vehicle)
+        local isFallDamageOff = vehicleTeleport:ToggleFallDamage(true)
+        local success = vehicleTeleport:TeleportToSeat(vehicleSeat, vehicle)
         if success then
-            TeleportCarro:TeleportToVoid(vehicle)
-            TeleportCarro:MostrarNotificacao("Vehiculo " .. _G.SelectedVehicle .. " Fue teletransportado al vacio!")
-            TeleportCarro:ExitCarAndReturn(originalPos)
+            vehicleTeleport:TeleportToVoid(vehicle)
+            vehicleTeleport:showNotify("Vehiculo " .. _G.SelectedVehicle .. " Fue teletransportado al vacio!")
+            vehicleTeleport:ExitCarAndReturn(originalPos)
         else
-            TeleportCarro:MostrarNotificacao("Fallo al sentarte en el vehiculo!")
+            vehicleTeleport:showNotify("Fallo al sentarte en el vehiculo!")
         end
-        TeleportCarro:ToggleFallDamage(false)
+        vehicleTeleport:ToggleFallDamage(false)
     end
 })
 
@@ -1331,51 +1331,51 @@ Tab5:AddButton({
     Description = "Teletransporta el vehiculo a tu posicion",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-            TeleportCarro:MostrarNotificacao("Ningun vehiculo seleccionado!")
+            vehicleTeleport:showNotify("Ningun vehiculo seleccionado!")
             return
         end
 
-        local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
+        local vehiclesFolder = vehicleTeleport.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Vehiculo no encontrado en carpeta!")
+            vehicleTeleport:showNotify("Vehiculo no encontrado en carpeta!")
             return
         end
 
         local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
         if not vehicle then
-            TeleportCarro:MostrarNotificacao("Vehiculo no encontrado!")
+            vehicleTeleport:showNotify("Vehiculo no encontrado!")
             return
         end
 
         local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
         if not vehicleSeat then
-            TeleportCarro:MostrarNotificacao("Asiento del vehiculo no encontrado!")
+            vehicleTeleport:showNotify("Asiento del vehiculo no encontrado!")
             return
         end
 
         if vehicleSeat.Occupant then
-            TeleportCarro:MostrarNotificacao("El vehiculo esta en uso, teletransporte fallido!")
+            vehicleTeleport:showNotify("El vehiculo esta en uso, teletransporte fallido!")
             return
         end
 
         local originalPos
-        if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
+        if vehicleTeleport.LocalPlayer.Character and vehicleTeleport.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            originalPos = vehicleTeleport.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personaje del jugador no encontrado!")
+            vehicleTeleport:showNotify("Personaje del jugador no encontrado!")
             return
         end
 
-        local isFallDamageOff = TeleportCarro:ToggleFallDamage(true)
-        local success = TeleportCarro:TeleportToSeat(vehicleSeat, vehicle)
+        local isFallDamageOff = vehicleTeleport:ToggleFallDamage(true)
+        local success = vehicleTeleport:TeleportToSeat(vehicleSeat, vehicle)
         if success then
-            TeleportCarro:TeleportToPlayer(vehicle, originalPos)
-            TeleportCarro:MostrarNotificacao("Vehiculo " .. _G.SelectedVehicle .. " fue teletransportando a ti!")
-            TeleportCarro:ExitCarAndReturn(originalPos)
+            vehicleTeleport:TeleportToPlayer(vehicle, originalPos)
+            vehicleTeleport:showNotify("Vehiculo " .. _G.SelectedVehicle .. " fue teletransportando a ti!")
+            vehicleTeleport:ExitCarAndReturn(originalPos)
         else
-            TeleportCarro:MostrarNotificacao("Fallo al sentarte en el vehiculo!")
+            vehicleTeleport:showNotify("Fallo al sentarte en el vehiculo!")
         end
-        TeleportCarro:ToggleFallDamage(false)
+        vehicleTeleport:ToggleFallDamage(false)
     end
 })
 
@@ -1385,20 +1385,20 @@ Tab5:AddButton({
     Description = "Teletransporta todos los vehiculos a tu posicion",
     Callback = function()
         local originalPos
-        if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
+        if vehicleTeleport.LocalPlayer.Character and vehicleTeleport.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            originalPos = vehicleTeleport.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personaje del jugador no encontrado!")
+            vehicleTeleport:showNotify("Personaje del jugador no encontrado!")
             return
         end
 
-        local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
+        local vehiclesFolder = vehicleTeleport.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Vehiculo no encontrado en carpeta!")
+            vehicleTeleport:showNotify("Vehiculo no encontrado en carpeta!")
             return
         end
 
-        local isFallDamageOff = TeleportCarro:ToggleFallDamage(true)
+        local isFallDamageOff = vehicleTeleport:ToggleFallDamage(true)
         local cars = {}
         for _, car in ipairs(vehiclesFolder:GetChildren()) do
             if car.Name:match("Car$") then
@@ -1409,34 +1409,34 @@ Tab5:AddButton({
         for _, car in ipairs(cars) do
             local vehicleSeat = car:FindFirstChildWhichIsA("VehicleSeat", true)
             if vehicleSeat and vehicleSeat.Occupant == nil then
-                local success = TeleportCarro:TeleportToSeat(vehicleSeat, car)
+                local success = vehicleTeleport:TeleportToSeat(vehicleSeat, car)
                 if success then
-                    TeleportCarro:TeleportToPlayer(car, originalPos)
-                    TeleportCarro:ExitCarAndReturn(originalPos)
-                    TeleportCarro:MostrarNotificacao("Vehiculo " .. car.Name .. " fue teletransportado a ti!")
+                    vehicleTeleport:TeleportToPlayer(car, originalPos)
+                    vehicleTeleport:ExitCarAndReturn(originalPos)
+                    vehicleTeleport:showNotify("Vehiculo " .. car.Name .. " fue teletransportado a ti!")
                     task.wait(1)
                 else
-                    TeleportCarro:MostrarNotificacao("No puedes sentarte en el vehiculo " .. car.Name .. "!")
+                    vehicleTeleport:showNotify("No puedes sentarte en el vehiculo " .. car.Name .. "!")
                 end
             else
                 if vehicleSeat then
-                    TeleportCarro:MostrarNotificacao("Vehiculo " .. car.Name .. " Vehiculo en uso!")
+                    vehicleTeleport:showNotify("Vehiculo " .. car.Name .. " Vehiculo en uso!")
                 else
-                    TeleportCarro:MostrarNotificacao("Vehiculo " .. car.Name .. " Asiento no encontrado!")
+                    vehicleTeleport:showNotify("Vehiculo " .. car.Name .. " Asiento no encontrado!")
                 end
             end
         end
 
-        TeleportCarro:ToggleFallDamage(false)
+        vehicleTeleport:ToggleFallDamage(false)
         if #cars == 0 then
-            TeleportCarro:MostrarNotificacao("Ningun vehiculo disponible para teletransportar!")
+            vehicleTeleport:showNotify("Ningun vehiculo disponible para teletransportar!")
         end
     end
 })
 
 -- Mantener el daño por caida al reiniciar el personaje
 local fallDamageDisabled = false
-TeleportCarro.LocalPlayer.CharacterAdded:Connect(function(character)
+vehicleTeleport.LocalPlayer.CharacterAdded:Connect(function(character)
     local humanoid = character:WaitForChild("Humanoid")
     if fallDamageDisabled then
         humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
