@@ -2342,7 +2342,7 @@ LocalPlayer.CharacterAdded:Connect(function(character)
     end
 end)
 
-local valor_do_nome_do_joagdor
+local player_name_value
 
 local DropdownPlayerTab2 = Tab9:AddDropdown({
     Name = "Seleccionar Jugador",
@@ -2352,7 +2352,7 @@ local DropdownPlayerTab2 = Tab9:AddDropdown({
     Options = getPlayerNames(),
     Flag = "player list",
     Callback = function(selectedPlayerName)
-        valor_do_nome_do_joagdor = selectedPlayerName
+        player_name_value = selectedPlayerName
         if selectedPlayerName == "" or selectedPlayerName == nil then
             selectedPlayer = nil
             if running or isFollowingKill or isFollowingPull then
@@ -2394,7 +2394,7 @@ Tab9:AddButton({
     Title = "Teletransportarse al jugador",
     Desc = "Teletransportarse a la posicion del jugador seleccionado",
     Callback = function()
-        local selectedPlayerName = valor_do_nome_do_joagdor
+        local selectedPlayerName = player_name_value
         if selectedPlayerName and selectedPlayerName ~= "" then
             local success, errorMessage = pcall(teleportToPlayer, selectedPlayerName)
             if not success then
@@ -3040,7 +3040,7 @@ local function flingWithBus(targetPlayer)
 end
 ----------------------------------------------------------------------------------------------------
 -- Lanzar con Balon --
-local function equipBola()
+local function equipBall()
     local backpack = LocalPlayer:WaitForChild("Backpack")
     local bola = backpack:FindFirstChild("SoccerBall") or LocalPlayer.Character:FindFirstChild("SoccerBall")
     if not bola then
@@ -3067,7 +3067,7 @@ local function flingWithBall(targetPlayer)
     local humanoid = character:FindFirstChildOfClass("Humanoid")
     local myHRP = character:FindFirstChild("HumanoidRootPart")
     if not humanoid or not myHRP then return end
-    if not equipBola() then return end
+    if not equipBall() then return end
     task.wait(0.5)
     local args = { [1] = "PlayerWantsToDeleteTool", [2] = "SoccerBall" }
     pcall(function()
@@ -3155,7 +3155,7 @@ local function flingWithBallV2(targetPlayer)
     local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local myHRP = character:FindFirstChild("HumanoidRootPart")
     if not myHRP then return end
-    if not equipBola() then return end
+    if not equipBall() then return end
     task.wait(0.5)
     local args = { [1] = "PlayerWantsToDeleteTool", [2] = "SoccerBall" }
     pcall(function()
@@ -3744,7 +3744,7 @@ end})
 
 Tab9:AddButton({"Orbiting Fling Ball", function()
     if orbitando then return end
-    if not equipBola() then return end
+    if not equipBall() then return end
     task.wait(0.5)
     local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local myHRP = character:FindFirstChild("HumanoidRootPart")
@@ -3789,7 +3789,7 @@ end})
 
 Tab9:AddButton({"Fling All V1", function()
     if allFling then return end
-    if not equipBola() then return end
+    if not equipBall() then return end
     task.wait(0.5)
     local args = { [1] = "PlayerWantsToDeleteTool", [2] = "SoccerBall" }
     pcall(function()
@@ -3910,7 +3910,7 @@ end})
 
 Tab9:AddButton({"Fling All V2", function()
     if allFling2 then return end
-    if not equipBola() then return end
+    if not equipBall() then return end
     task.wait(0.5)
     local args = { [1] = "PlayerWantsToDeleteTool", [2] = "SoccerBall" }
     pcall(function()
