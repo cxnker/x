@@ -233,6 +233,43 @@
         },
         "BundleId": 7
     },
+{
+    "Animations": [],
+    "BundleId": 2623795,
+    "Name": "adidas Community ",
+    "ProductId": 6167667640785567
+  },
+  {
+    "Animations": {
+      "idle": {
+        "Animation2": "http://www.roblox.com/asset/?id=10921232093",
+        "Animation1": "http://www.roblox.com/asset/?id=10921230744"
+      },
+      "jump": {
+        "jump": "http://www.roblox.com/asset/?id=10921242013"
+      },
+      "run": {
+        "run": "http://www.roblox.com/asset/?id=10921240218"
+      },
+      "swim": {
+        "Swim": "http://www.roblox.com/asset/?id=10921243048"
+      },
+      "swimidle": {
+        "SwimIdle": "http://www.roblox.com/asset/?id=10921244018"
+      },
+      "climb": {
+        "ClimbAnim": "http://www.roblox.com/asset/?id=10921229866"
+      },
+      "fall": {
+        "fall": "http://www.roblox.com/asset/?id=10921241244"
+      },
+      "pose": {
+        "Animation": "http://www.roblox.com/asset/?id=10921233298"
+      },
+      "walk": {
+        "walk": "http://www.roblox.com/asset/?id=10921244891"
+      }
+    },
     {
         "Animations": {
             "idle": {
@@ -968,4 +1005,5 @@
         "Name": "Astronaut ",
         "ProductId": 369653664
     }
+
 ]
