@@ -1667,6 +1667,11 @@ createSoundDropdown("Selecione um meme", {
         {name = "pankapakan", id = "122547522269143"}, 
        
         {name = "Gemido ultra rápido", id = "128863565301778"},
+        {name = "Hoo ze da manga", id = "106624090319571"},
+        {name = "dodichan onnn...", id = "134640594695384"},
+        {name = "Loly gemiD0", id = "119277017538197"},
+        {name = "Hentai wiaaaaan", id = "88332347208779"},
+        {name = "aahhh plankton meme", id = "95982351322190"},
         {name = "vai g0z@?", id = "116293771329297"},
         {name = "G0z33iiii", id = "93462644278510"},
         {name = "Hommmm ", id = "133135656929513"},
@@ -1675,22 +1680,15 @@ createSoundDropdown("Selecione um meme", {
         {name = "sus sex", id = "128137573022197"},
         {name = "gemido estranho", id = "131219411501419"},
         {name = "gemido kawai", id = "100409245129170"},
-        {name = "Hentai wiaaaaan", id = "88332347208779"},
         {name = "iamete cunasai", id = "108494476595033"},
-        {name = "dodichan onnn...", id = "134640594695384"},
-        {name = "Loly gemiD0", id = "119277017538197"},
         {name = "ai poison", id = "115870718113313"},
         {name = "chegachega SUS", id = "77405864184828"},
         {name = "uwu", id = "76820720070248"},
         {name = "ai meu cuzin", id = "130714479795369"},
         {name = "girl audio 2", id = "84207358477461"},
-        {name = "Hoo ze da manga", id = "106624090319571"},
         {name = "ai alexandre de moraes", id = "107261471941570"},
         {name = "haaii meme", id = "120006672159037"},
  
-    
-
-
         {name = "GoGogo gogogo", id = "103262503950995"},
         {name = "Toma jack", id = "132603645477541"},
         {name = "Toma jackV2", id = "100446887985203"},
@@ -1714,7 +1712,6 @@ createSoundDropdown("Selecione um meme", {
         {name = "my sigman", id = "103431815659907"},
         {name = "mama", id = "106850066985594"},
         {name = "OH MY GOD", id = "73349649774476"},
-        {name = "aahhh plankton meme", id = "95982351322190"},
         {name = "CHINABOY", id = "84403553163931"},
         {name = "PASTOR MIRIM E A LÍNGUA DOS ANJOS", id = "71153532555470"},
         
