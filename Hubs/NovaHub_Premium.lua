@@ -884,6 +884,27 @@ Tab3:AddButton({
 })
 
 Tab3:AddButton({
+    Name = "E-Boy Body (Headless)",
+    Callback = function()
+        local args = {
+            {
+                2517207746, -- Right Leg
+                2517204456,  -- Left Leg
+                4416788553,  -- Right Arm
+                4416785861,  -- Left Arm
+                32336059, -- Torso
+                15093053680   -- Head
+            }
+        }
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("Remotes")
+            :WaitForChild("ChangeCharacterBody")
+            :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
     Name = "Classic-Female-v2-Torso (Headless)",
     Callback = function()
         local args = {
