@@ -175,16 +175,16 @@ Tab2:AddButton({"", function()
     if not headsitActive then
         local target = Players:FindFirstChild(selectedPlayerName)
         if target and headsitOnPlayer(target) then
-            headsitActive = true
+			headsitActive = true
         end
     else
         removeHeadsit()
-        headsitActive = false
+		headsitActive = false
     end
 end})
 
 Tab2:AddSlider({
-    Name = "Speed",
+    Name = "Velocidad",
     Increase = 1,
     MinValue = 16,
     MaxValue = 500,
@@ -195,13 +195,13 @@ Tab2:AddSlider({
         local humanoid = character:FindFirstChildOfClass("Humanoid")
         
         if humanoid then
-            humanoid.WalkSpeed = Value
-        end
-    end
- })
+			humanoid.WalkSpeed = Value
+       end
+   end
+})
  
- Tab2:AddSlider({
-    Name = "Jumppower",
+Tab2:AddSlider({
+    Name = "Salto",
     Increase = 1,
     MinValue = 50,
     MaxValue = 500,
@@ -210,39 +210,39 @@ Tab2:AddSlider({
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoid = character:FindFirstChildOfClass("Humanoid")
-        
-        if humanoid then
-            humanoid.JumpPower = Value
-        end
-    end
- })
+
+		if humanoid then
+			humanoid.JumpPower = Value
+       end
+   end
+})
  
- Tab2:AddSlider({
-    Name = "Gravity",
+Tab2:AddSlider({
+    Name = "Gravedad",
     Increase = 1,
     MinValue = 0,
     MaxValue = 5000,
     Default = 196.2,
     Callback = function(Value)
         game.Workspace.Gravity = Value
-    end
- })
+	end
+})
  
- local InfiniteJumpEnabled = false
+local InfiniteJumpEnabled = false
  
- game:GetService("UserInputService").JumpRequest:Connect(function()
-    if InfiniteJumpEnabled then
-       local character = game.Players.LocalPlayer.Character
-       if character and character:FindFirstChild("Humanoid") then
-          character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-       end
-    end
- end)
+game:GetService("UserInputService").JumpRequest:Connect(function()
+	if InfiniteJumpEnabled then
+	  local character = game.Players.LocalPlayer.Character
+      if character and character:FindFirstChild("Humanoid") then
+		character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+      end
+   end
+end)
 
- Tab2:AddButton({
-    Name = "Reset Speed, Gravity, Jumppower",
+Tab2:AddButton({
+    Name = "Restablecer Gravedad, Velocidad, Salto",
     Callback = function()
-        -- Reset Speed
+        -- Restablecer velocidad y salto
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoid = character:FindFirstChildOfClass("Humanoid")
@@ -250,20 +250,20 @@ Tab2:AddSlider({
             humanoid.WalkSpeed = 16 -- Speed Value
             humanoid.JumpPower = 50 -- JumpPower Value
         end
-        -- Reset Gravity
+        -- Restablecer gravedad
         game.Workspace.Gravity = 196.2 -- Gravity Value
-        -- Deactivate Infinite Jump
+        -- Desactivar salto infinito
         InfiniteJumpEnabled = false
     end
 })
  
- Tab2:AddToggle({
-    Name = "Infinite Jump",
+Tab2:AddToggle({
+	Name = "Infinite Jump",
     Default = false,
     Callback = function(Value)
        InfiniteJumpEnabled = Value
     end
- })
+})
 
 -- Toggle para Anti-Sit
 local antiSitConnection = nil
@@ -311,14 +311,14 @@ Tab2:AddToggle({
             end)
         else
             if antiSitConnection then
-                antiSitConnection:Disconnect()
+				antiSitConnection:Disconnect()
                 antiSitConnection = nil
             end
 
             if LocalPlayer.Character then
                 local humanoid = LocalPlayer.Character:FindFirstChild("Humanoid")
                 if humanoid then
-                    humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+					humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
                 end
             end
         end
@@ -339,7 +339,7 @@ local selectedColor = "RGB Suave"
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
     Callback = function()
-        local success, _ = pcall(function()
+		local success, _ = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Noclip.lua"))()
         end)
 
@@ -457,6 +457,7 @@ local Toggle1 = Tab2:AddToggle({
     Description = "Muestra la entidad de los jugadores.",
     Default = false
 })
+
 Toggle1:Callback(function(value)
     espEnabled = value
 
@@ -536,7 +537,7 @@ local Dropdown = Tab3:AddDropdown({
     Flag = "player list",
     Callback = function(playername)
         PlayerValue = playername
-        Target = playername -- Conectar o dropdown ao Copy Avatar
+        Target = playername -- Conecta el menu a Copiar avatar
     end
 })
 
@@ -567,7 +568,7 @@ Tab3:AddButton({
             local THumanoid = TPlayer.Character:FindFirstChildOfClass("Humanoid")
 
             if LHumanoid and THumanoid then
-                -- RESETEAR LOCALPLAYER
+                -- REINICIAR LOCALPLAYER
                 local LDesc = LHumanoid:GetAppliedDescription()
 
                 -- Remover accesorios, ropa y caras actuales
@@ -670,11 +671,11 @@ Tab3:AddButton({
 local Section = Tab3:AddSection({"Ropa 3D"})
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Namespace para evitar conflitos
+-- Espacio de nombres para evitar conflictos
 local AvatarManager = {}
 AvatarManager.ReplicatedStorage = ReplicatedStorage
 
--- Função para exibir notificação
+-- Funcion para la notificacion
 function AvatarManager:MostrarNotificacao(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -684,7 +685,7 @@ function AvatarManager:MostrarNotificacao(mensagem)
         })
     end)
 end
--- Clothes 3D List
+-- Lista de ropa 3D
 AvatarManager.Avatares = {
     { Nome = "Black-Arm-Bandages-1-0", ID = 11458078735 },
     { Nome = "Black-Oversized-Warmers", ID = 10789914680 },
@@ -913,10 +914,9 @@ Tab3:AddButton({
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab4: House === --
 ----------------------------------------------------------------------------------------------------
--- Botón para remover el baneo en todas las casas
+-- Boton para remover el baneo en todas las casas
 Tab4:AddButton({
     Name = "Desbanear de todas las casas",
-    Description = "Remover ban de las casas",
     Callback = function()
         local successCount = 0
         local failCount = 0
@@ -984,14 +984,14 @@ local Workspace = game:GetService("Workspace")
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
--- Namespace para evitar conflitos
+-- Espacio de nombres para evitar conflictos
 local TeleportCarro = {}
 TeleportCarro.Players = Players
 TeleportCarro.Workspace = Workspace
 TeleportCarro.LocalPlayer = LocalPlayer
 TeleportCarro.Camera = Camera
 
--- Função para exibir notificação
+-- Funcion para la notificacion
 function TeleportCarro:MostrarNotificacao(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -1019,7 +1019,7 @@ function TeleportCarro:ToggleFallDamage(disable)
     end
 end
 
--- Función para teletransportar al jugador al asiento del vehiculo
+-- Funcion para teletransportar el jugador al asiento del vehiculo
 function TeleportCarro:TeleportToSeat(seat, car)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then
         self:MostrarNotificacao("Personaje no encontrado!")
@@ -1043,7 +1043,7 @@ function TeleportCarro:TeleportToSeat(seat, car)
     return humanoid.SeatPart == seat
 end
 
--- Función para teletransportar el vehiculo al vacío con retraso
+-- Funcion para teletransportar el vehiculo al vacío con retraso
 function TeleportCarro:TeleportToVoid(car)
     if not car then
         self:MostrarNotificacao("Vehiculo invalido!")
@@ -1062,7 +1062,8 @@ function TeleportCarro:TeleportToVoid(car)
     car:SetPrimaryPartCFrame(CFrame.new(voidPosition))
     task.wait(0.5)
 end
--- Função para teleportar o carro para a posição do jogador com delay
+
+-- Funcion para teletransportar el vehiculo a la posicion del jugador con retraso.
 function TeleportCarro:TeleportToPlayer(car, playerPos)
     if not car then
         self:MostrarNotificacao("Vehiculo invalido!")
@@ -1082,7 +1083,7 @@ function TeleportCarro:TeleportToPlayer(car, playerPos)
     task.wait(0.5)
 end
 
--- Função para sair do carro e voltar à posição original
+-- Funcion para salir del vehiculo y volver a la posicion original.
 function TeleportCarro:ExitCarAndReturn(originalPos)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then return end
     local humanoid = self.LocalPlayer.Character.Humanoid
@@ -1095,7 +1096,7 @@ function TeleportCarro:ExitCarAndReturn(originalPos)
     end
 end
 
--- Função para atualizar a lista de carros no dropdown
+-- Funcion para actualizar la lista de vehiculos en el desplegable
 function TeleportCarro:AtualizarListaCarros()
     local pastaVeiculos = self.Workspace:FindFirstChild("Vehicles")
     local listaCarros = {}
@@ -1110,10 +1111,11 @@ function TeleportCarro:AtualizarListaCarros()
     
     return listaCarros
 end
--- Toggle para matar todos os carros
+
+-- Boton para eliminar todos los vehiculos
 Tab5:AddToggle({
-    Name = "Eliminar todos los autos",
-    Description = "Teletransporta autos al vacio",
+    Name = "Eliminar todos los vehiculos",
+    Description = "Teletransporta los vehiculos al vacio",
     Default = false,
     Callback = function(state)
         local originalPosition
@@ -1172,7 +1174,7 @@ Tab5:AddToggle({
 ----------------------------------------------------------------------------------------------------
 local Section = Tab5:AddSection({"Características del vehiculo"})
 
--- Crear el menú desplegable
+-- Crear el menu desplegable
 local Dropdown = Tab5:AddDropdown({
     Name = "Seleccionar vehiculo",
     Description = "Seleccione el vehiculo de un jugador",
@@ -1183,7 +1185,7 @@ local Dropdown = Tab5:AddDropdown({
     end
 })
 
--- Toggle para ver a câmera do carro selecionado
+-- Boton para ver la camara del vehiculo seleccionado
 Tab5:AddToggle({
     Name = "Ver camara del vehiculo seleccionado",
     Description = "Ve la camara de un vehiculo",
@@ -1213,16 +1215,16 @@ Tab5:AddToggle({
                 return
             end
 
-            -- Salvar o estado original da câmera
+            -- Restaurar el estado de la camara del vehiculo
             TeleportCarro.OriginalCameraSubject = TeleportCarro.Camera.CameraSubject
             TeleportCarro.OriginalCameraType = TeleportCarro.Camera.CameraType
 
-            -- Ajustar a câmera para o assento do carro, mesmo se ocupado
+            -- Ajustar la camara para el asiento del vehiculo
             TeleportCarro.Camera.CameraSubject = vehicleSeat
             TeleportCarro.Camera.CameraType = Enum.CameraType.Follow
             TeleportCarro:MostrarNotificacao("Camara ajustada para el vehiculo " .. _G.SelectedVehicle .. "!")
         else
-            -- Restaurar a câmera ao estado original
+            -- Restaurar el estado original de la camara
             if TeleportCarro.OriginalCameraSubject then
                 TeleportCarro.Camera.CameraSubject = TeleportCarro.OriginalCameraSubject
                 TeleportCarro.Camera.CameraType = TeleportCarro.OriginalCameraType or Enum.CameraType.Custom
@@ -1234,7 +1236,7 @@ Tab5:AddToggle({
     end
 })
 
--- Atualizar o dropdown dinamicamente
+--Actualizar el menu desplegable dinamicamente
 TeleportCarro.Workspace:WaitForChild("Vehicles").ChildAdded:Connect(function()
     Dropdown:Set(TeleportCarro:AtualizarListaCarros())
 end)
@@ -1244,7 +1246,7 @@ end)
 
 local Section = Tab5:AddSection({"Otras funciones"})
 
--- Botão para destruir carro selecionado
+-- Boton para eliminar el vehiculo seleccionado
 Tab5:AddButton({
     Name = "Eliminar vehiculo seleccionado",
     Description = "Teletransporta el vehiculo seleccionado al vacio",
@@ -1298,7 +1300,7 @@ Tab5:AddButton({
     end
 })
 
--- Botão para trazer carro selecionado
+-- Boton para teletransportar el vehiculo seleccionado a tu posicion
 Tab5:AddButton({
     Name = "Traer vehiculo seleccionado",
     Description = "Teletransporta el vehiculo a tu posicion",
@@ -1352,7 +1354,7 @@ Tab5:AddButton({
     end
 })
 
--- Botão para trazer todos os carros
+-- Boton para teletransportar todos los vehiculos a tu posicion
 Tab5:AddButton({
     Name = "Traer todos los vehiculos",
     Description = "Teletransporta todos los vehiculos a tu posicion",
@@ -1407,7 +1409,7 @@ Tab5:AddButton({
     end
 })
 
--- Manter o estado de dano de queda ao recarregar o personagem
+-- Mantener el estado de daño por caida al reiniciar el personaje
 local fallDamageDisabled = false
 TeleportCarro.LocalPlayer.CharacterAdded:Connect(function(character)
     local humanoid = character:WaitForChild("Humanoid")
@@ -1425,7 +1427,7 @@ end)
                                     -- === Tab6: RGB === --
 ----------------------------------------------------------------------------------------------------
 local Section = Tab6:AddSection({"Velocidad RGB"})
--- Velocidade controlada pelo slider (quanto maior, mais rápido)
+-- Velocidad ajustable (cuanto mas alta, mas rapido)
 local rgbSpeed = 1
 
 Tab6:AddSlider({
@@ -1439,13 +1441,13 @@ Tab6:AddSlider({
     end
 })
 
--- Função para criar cor RGB suave com HSV
+-- Funcion para crear un color RGB suave con HSV
 local function getRainbowColor(speedMultiplier)
     local h = (tick() * speedMultiplier % 5) / 5 -- gira o hue suavemente de 0 a 1
     return Color3.fromHSV(h, 1, 1)
 end
 
--- Função para disparar eventos
+-- Funcion para disparar eventos
 local function fireServer(eventName, args)
     local event = game:GetService("ReplicatedStorage"):FindFirstChild("RE")
     if event and event:FindFirstChild(eventName) then
@@ -1457,10 +1459,9 @@ end
 ----------------------------------------------------------------------------------------------------
 local Section = Tab6:AddSection({"Jugador RGB"})
 
--- Nome + Bio RGB  juntos
 local nameBioRGBActive = false
 Tab6:AddToggle({
-    Name = "Nombre + Bio RGB ",
+    Name = "Nombre + Bio RGB",
     Default = false,
     Callback = function(state)
         nameBioRGBActive = state
@@ -1495,7 +1496,7 @@ ToggleCasa:Callback(function(Value)
         end
     end)
 end)
--- Vehiculo RGB
+
 local carRGBActive = false
 Tab6:AddToggle({
     Name = "Vehiculo RGB (Premium)",
@@ -1583,7 +1584,7 @@ Tab7:AddToggle({
     end
 })
 
--- Dropdowns para Tab6
+-- Tab6: Dropdown
 local function createSoundDropdown(title, musicOptions, defaultOption)
     local musicNames = {}
     local categoryMap = {}
@@ -1803,81 +1804,18 @@ local Section = Tab7:AddSection({"Reproducir sonidos de terror o efectos"})
 -- Dropdown "Efeito/Terror"
 createSoundDropdown("Seleccione un sonido de terror o efecto", {
     ["efeito/terror"] = {
-        {name = "jumpscar", id = "91784486966761"},
-        {name = "n se preocupe", id = "87041057113780"},
-        {name = "eles estao todos mortos", id = "70605158718179"},
-
-        {name = "gritoestourado", id = "7520729342"},
-        {name = "gritomedo", id = "113029085566978"},
-        {name = "Nukesiren", id = "9067330158"},
-        {name = "nuclear sirenv2", id = "675587093"},
-        {name = "Alertescola", id = "6607047008"},
-        {name = "Memealertsiren", id = "8379374771"},
-        {name = "sirenv3", id = "6766811806"},
-        {name = "Alarm estourAAAA...", id = "93354528379052"},
-        {name = "MegaMan Alarm", id = "1442382907"},
-        {name = "Alarm bookhaven", id = "1526192493"},
-
-
-
-        {name = "alet malaysia", id = "7714172940"},
-        {name = "Risada", id = "79191730206814"},
-        {name = "Hahahah", id = "90096947219465"},
-        {name = "scream", id = "314568939"},
-        {name = "Terrified meme scream", id = "5853668794"},
-        {name = "Sonic.exe Scream Effect", id = "146563959"},
-        {name = "Demon Scream", id = "2738830850"},
         {name = "SCP-096 Scream (raging)", id = "343430735"},
-        {name = "Nightmare Yelling Bursts", id = "9125713501"},
-        {name = "HORROR SCREAM 07", id = "9043345732"},
-        {name = "Female Scream Woman Screams", id = "9114397912"},
-        {name = "Scream1", id = "1319496541"},
-        {name = "Scream2", id = "199978176"},
-        {name = "scary maze scream", id = "270145703"},
-        {name = "SammyClassicSonicFan's Scream", id = "143942090"},
-        {name = "FNAF 2 Death Scream", id = "1572549161"},
-        {name = "cod zombie scream", id = "8566359672"},
-        {name = "Slendytubbies- CaveTubby Scream", id = "1482639185"},
-        {name = "FNAF 2 Death Scream", id = "5537531920"},
-        {name = "HORROR SCREAM 15", id = "9043346574"},
-        {name = "Jumpscare Scream", id = "6150329916"},
-        {name = "FNaF: Security Breach", id = "2050522547"},
-        {name = "llllllll", id = "5029269312"},
-        {name = "loud jumpscare", id = "7236490488"},
-        {name = "fnaf", id = "6982454389"},
-        {name = "Pinkamena Jumpscare 1", id = "192334186"},
-        {name = "Ennard Jumpscare 2", id = "629526707"},
-        {name = "a sla medo dino", id = "125506416092123"},
-        {name = "Backrooms Bacteria Pitfalls ", id = "81325342128575"},
-        
-        {name = "error Infinite", id = "3893790326"},
-        {name = "Screaming Meme", id = "107732411055226"},
-        {name = "Jumpscare - SCP CB", id = "97098997494905"},
-        {name = "mirror jumpscare", id = "80005164589425"},
-        {name = "PTLD-39 Jumpscare", id = "5581462381"},
-        {name = "jumpscare:Play()", id = "121519648044128"},
-        {name = "mimic jumpscare", id = "91998575878959"},
-        {name = "DOORS Glitch Jumpscare Sound", id = "96377507894391"},
-        {name = "FNAS 4 Nightmare Mario", id = "99804224106385"},
-        {name = "Death House I Jumpscare Sound", id = "8151488745"},
-        {name = "Shinky Jumpscare", id = "123447772144411"},
-        {name = "FNaTI Jumpscare Oblitus casa", id = "18338717319"},
-        {name = "fnaf jumpscare loadmode", id = "18911896588"},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
+        {name = "Alarm bookhaven", id = "1526192493"},
         {name = "", id = ""}
     }
-}, "jumpscar")
+}, "Alarm bookhaven")
 ----------------------------------------------------------------------------------------------------
                                 -- === Tab 8: Troll Musica === --
 ----------------------------------------------------------------------------------------------------
 local function tocarMusica(id)
     local ReplicatedStorage = game:GetService("ReplicatedStorage")
     
-    -- Rádio (ToolMusicText)
+    -- Radio (ToolMusicText)
     local argsRadio = {
         [1] = "ToolMusicText",
         [2] = id
@@ -1920,7 +1858,7 @@ Tab8:AddTextBox({
     end
 })
 
--- Dropdowns para Tab8
+-- Tab8: Dropdown
 local function createMusicDropdown(title, musicOptions, defaultOption)
     local musicNames = {}
     local categoryMap = {}
@@ -1934,7 +1872,7 @@ local function createMusicDropdown(title, musicOptions, defaultOption)
     end
 
     local function playMusic(soundId)
-        tocarMusica(tostring(soundId)) -- Usa a função tocarMusica para tocar em todos os contextos
+        tocarMusica(tostring(soundId)) -- Utiliza la funcion playMusic para reproducir en todos los contextos
     end
 
     Tab8:AddDropdown({
