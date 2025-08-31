@@ -1124,18 +1124,17 @@ end
 
 -- Funcion para actualizar la lista de vehiculos en el desplegable
 function vehicleTeleport:UpdateVehicleList()
-    local pastaVeiculos = self.Workspace:FindFirstChild("Vehicles")
-    local listaCarros = {}
+    local folderVehicles = self.Workspace:FindFirstChild("Vehicles")
+    local listVehicles = {}
     
-    if pastaVeiculos then
-        for _, carro in ipairs(pastaVeiculos:GetChildren()) do
-            if carro.Name:match("Car$") then
-                table.insert(listaCarros, carro.Name)
+    if folderVehicles then
+        for _, car in ipairs(folderVehicles:GetChildren()) do
+            if car.Name:match("Car$") then
+                table.insert(listVehicles, car.Name)
             end
         end
     end
-    
-    return listaCarros
+    return listVehicles
 end
 
 -- Interruptor para eliminar todos los vehiculos
