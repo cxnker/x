@@ -4,8 +4,8 @@ gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Create a Frame to hold the clock
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 200, 0, 50) -- Adjust size as needed
-frame.Position = UDim2.new(0.5, -100, 0, 20) -- Adjust position as needed
+frame.Size = UDim2.new(0, 90, 0, 20) -- Adjust size as needed
+frame.Position = UDim2.new(0.8, 0, 0, 0) -- Adjust position as needed
 frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 frame.BorderSizePixel = 0
 frame.Parent = gui
