@@ -1,0 +1,323 @@
+local FlyGuiV4 = Instance.new("ScreenGui")
+local Fly = Instance.new("Frame")
+local Close = Instance.new("TextButton")
+local Minimize = Instance.new("TextButton")
+local FlyUp = Instance.new("TextButton")
+local FlyDown = Instance.new("TextButton")
+local IncreaseSpeed = Instance.new("TextButton")
+local DecreaseSpeed = Instance.new("TextButton")
+local SpeedCounter = Instance.new("TextLabel")
+local Title = Instance.new("TextLabel")
+local StartFlyStopFly = Instance.new("TextButton")
+
+FlyGuiV4.Name = "FlyGuiV4"
+FlyGuiV4.Parent = game:GetService("CoreGui")
+FlyGuiV4.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Fly.Name = "Fly"
+Fly.Parent = FlyGuiV4
+Fly.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
+Fly.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Fly.BorderSizePixel = 0
+Fly.Position = UDim2.new(0.195678264, 0, 0.562977076, 0)
+Fly.Size = UDim2.new(0, 180, 0, 100)
+
+Close.Name = "Close"
+Close.Parent = Fly
+Close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0, 0, -0.349999994, 0)
+Close.Size = UDim2.new(0, 35, 0, 35)
+Close.Font = Enum.Font.Unknown
+Close.Text = "x"
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextSize = 30
+
+Minimize.Name = "Minimize"
+Minimize.Parent = Fly
+Minimize.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+Minimize.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Minimize.BorderSizePixel = 0
+Minimize.Position = UDim2.new(0.194444448, 0, -0.349999994, 0)
+Minimize.Size = UDim2.new(0, 35, 0, 35)
+Minimize.Font = Enum.Font.Unknown
+Minimize.Text = "-"
+Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
+Minimize.TextSize = 30
+
+FlyUp.Name = "FlyUp"
+FlyUp.Parent = Fly
+FlyUp.BackgroundColor3 = Color3.fromRGB(67, 200, 0)
+FlyUp.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FlyUp.BorderSizePixel = 0
+FlyUp.Position = UDim2.new(0, 0, 1, 0)
+FlyUp.Size = UDim2.new(0, 90, 0, 35)
+FlyUp.Font = Enum.Font.Unknown
+FlyUp.Text = "^"
+FlyUp.TextColor3 = Color3.fromRGB(255, 255, 255)
+FlyUp.TextSize = 30
+
+FlyDown.Name = "FlyDown"
+FlyDown.Parent = Fly
+FlyDown.BackgroundColor3 = Color3.fromRGB(200, 133, 0)
+FlyDown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FlyDown.BorderSizePixel = 0
+FlyDown.Position = UDim2.new(0.5, 0, 1, 0)
+FlyDown.Size = UDim2.new(0, 90, 0, 35)
+FlyDown.Font = Enum.Font.Unknown
+FlyDown.Text = "v"
+FlyDown.TextColor3 = Color3.fromRGB(255, 255, 255)
+FlyDown.TextSize = 20
+
+IncreaseSpeed.Name = "IncreaseSpeed"
+IncreaseSpeed.Parent = Fly
+IncreaseSpeed.BackgroundColor3 = Color3.fromRGB(0, 0, 200)
+IncreaseSpeed.BorderColor3 = Color3.fromRGB(0, 0, 0)
+IncreaseSpeed.BorderSizePixel = 0
+IncreaseSpeed.Size = UDim2.new(0, 70, 0, 50)
+IncreaseSpeed.Font = Enum.Font.Unknown
+IncreaseSpeed.Text = "+10 Speed"
+IncreaseSpeed.TextColor3 = Color3.fromRGB(255, 255, 255)
+IncreaseSpeed.TextScaled = true
+IncreaseSpeed.TextSize = 14
+IncreaseSpeed.TextWrapped = true
+
+DecreaseSpeed.Name = "DecreaseSpeed"
+DecreaseSpeed.Parent = Fly
+DecreaseSpeed.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+DecreaseSpeed.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DecreaseSpeed.BorderSizePixel = 0
+DecreaseSpeed.Position = UDim2.new(0, 0, 0.5, 0)
+DecreaseSpeed.Size = UDim2.new(0, 70, 0, 50)
+DecreaseSpeed.Font = Enum.Font.Unknown
+DecreaseSpeed.Text = "-10 Speed"
+DecreaseSpeed.TextColor3 = Color3.fromRGB(255, 255, 255)
+DecreaseSpeed.TextScaled = true
+DecreaseSpeed.TextSize = 14
+DecreaseSpeed.TextWrapped = true
+
+SpeedCounter.Name = "SpeedCounter"
+SpeedCounter.Parent = Fly
+SpeedCounter.BackgroundColor3 = Color3.fromRGB(67, 133, 200)
+SpeedCounter.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SpeedCounter.BorderSizePixel = 0
+SpeedCounter.Position = UDim2.new(0.388888896, 0, 0.5, 0)
+SpeedCounter.Size = UDim2.new(0, 110, 0, 50)
+SpeedCounter.Font = Enum.Font.Unknown
+SpeedCounter.Text = "Speed : 10"
+SpeedCounter.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpeedCounter.TextSize = 15
+
+Title.Name = "Title"
+Title.Parent = Fly
+Title.BackgroundColor3 = Color3.fromRGB(0, 200, 200)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.388888896, 0, -0.349999994, 0)
+Title.Size = UDim2.new(0, 110, 0, 35)
+Title.Font = Enum.Font.Unknown
+Title.Text = "Fly Gui V4"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 15
+
+StartFlyStopFly.Name = "StartFlyStopFly"
+StartFlyStopFly.Parent = Fly
+StartFlyStopFly.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+StartFlyStopFly.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StartFlyStopFly.BorderSizePixel = 0
+StartFlyStopFly.Position = UDim2.new(0.388888896, 0, 0, 0)
+StartFlyStopFly.Size = UDim2.new(0, 110, 0, 50)
+StartFlyStopFly.Font = Enum.Font.Unknown
+StartFlyStopFly.Text = "Start"
+StartFlyStopFly.TextColor3 = Color3.fromRGB(255, 255, 255)
+StartFlyStopFly.TextSize = 30
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function getRoot(char)
+	return char:FindFirstChild("HumanoidRootPart") or char:WaitForChild("HumanoidRootPart")
+end
+
+local T = getRoot(character)
+local FLYING = false
+local FLY_SPEED = 10  -- Default fly speed set to 10 (min)
+local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+
+local function updateSpeedDisplay()
+	SpeedCounter.Text = "Speed : " .. FLY_SPEED
+end
+
+local function FLY()
+	FLYING = true
+	local BG = Instance.new("BodyGyro")
+	local BV = Instance.new("BodyVelocity")
+	
+	BG.P = 9e4
+	BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+	BG.cframe = workspace.CurrentCamera.CFrame
+	BG.Parent = T
+	
+	BV.velocity = Vector3.new(0, 0, 0)
+	BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+	BV.Parent = T
+	
+	task.spawn(function()
+		while FLYING do
+			task.wait()
+			local humanoid = character:FindFirstChildOfClass("Humanoid")
+			if humanoid then
+				humanoid.PlatformStand = true
+			end
+			
+			if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+				lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+			end
+			
+			local cam = workspace.CurrentCamera
+			
+			local horizontal = cam.CFrame.LookVector * (CONTROL.F + CONTROL.B)
+			local lateral = (cam.CFrame * CFrame.new(CONTROL.L + CONTROL.R, 0, 0)).p - cam.CFrame.p
+			
+			local vertical = -(CONTROL.Q + CONTROL.E)
+			
+			BV.velocity = (horizontal + lateral + Vector3.new(0, vertical, 0)) * (((CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0) and FLY_SPEED or 0)
+			BG.cframe = cam.CFrame
+		end
+		
+		CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+		lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+		BG:Destroy()
+		BV:Destroy()
+		if character:FindFirstChildOfClass("Humanoid") then
+			character:FindFirstChildOfClass("Humanoid").PlatformStand = false
+		end
+	end)
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	local key = input.KeyCode
+
+	if key == Enum.KeyCode.W then
+		CONTROL.F = 1
+	elseif key == Enum.KeyCode.S then
+		CONTROL.B = -1
+	elseif key == Enum.KeyCode.A then
+		CONTROL.L = -1
+	elseif key == Enum.KeyCode.D then
+		CONTROL.R = 1
+	elseif key == Enum.KeyCode.Q then
+		CONTROL.Q = 1
+	elseif key == Enum.KeyCode.E then
+		CONTROL.E = -1
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	local key = input.KeyCode
+
+	if key == Enum.KeyCode.W then
+		CONTROL.F = 0
+	elseif key == Enum.KeyCode.S then
+		CONTROL.B = 0
+	elseif key == Enum.KeyCode.A then
+		CONTROL.L = 0
+	elseif key == Enum.KeyCode.D then
+		CONTROL.R = 0
+	elseif key == Enum.KeyCode.Q then
+		CONTROL.Q = 0
+	elseif key == Enum.KeyCode.E then
+		CONTROL.E = 0
+	end
+end)
+
+StartFlyStopFly.MouseButton1Click:Connect(function()
+	if not FLYING then
+		character = player.Character or player.CharacterAdded:Wait()
+		T = getRoot(character)
+		FLY()
+		StartFlyStopFly.Text = "Stop"
+	else
+		FLYING = false
+		StartFlyStopFly.Text = "Start"
+	end
+end)
+
+IncreaseSpeed.MouseButton1Click:Connect(function()
+	FLY_SPEED = math.min(FLY_SPEED + 10, 10000)
+	updateSpeedDisplay()
+end)
+
+DecreaseSpeed.MouseButton1Click:Connect(function()
+	FLY_SPEED = math.max(FLY_SPEED - 10, 10)
+	updateSpeedDisplay()
+end)
+
+FlyUp.MouseButton1Down:Connect(function()
+	CONTROL.E = -1
+end)
+FlyUp.MouseButton1Up:Connect(function()
+	CONTROL.E = 0
+end)
+
+FlyDown.MouseButton1Down:Connect(function()
+	CONTROL.Q = 1
+end)
+FlyDown.MouseButton1Up:Connect(function()
+	CONTROL.Q = 0
+end)
+
+Close.MouseButton1Click:Connect(function()
+	FlyGuiV4.Enabled = false
+end)
+
+local minimized = false
+Minimize.MouseButton1Click:Connect(function()
+	minimized = not minimized
+	FlyUp.Visible = not minimized
+	FlyDown.Visible = not minimized
+	IncreaseSpeed.Visible = not minimized
+	DecreaseSpeed.Visible = not minimized
+	SpeedCounter.Visible = not minimized
+	StartFlyStopFly.Visible = not minimized
+	if minimized then
+		Fly.Size = UDim2.new(0, 180, 0, 40)
+	else
+		Fly.Size = UDim2.new(0, 180, 0, 100)
+	end
+end)
+
+local dragging, dragInput, dragStart, startPos
+
+local function update(input)
+	local delta = input.Position - dragStart
+	Fly.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+Fly.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = Fly.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+Fly.InputChanged:Connect(function(input)
+	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		dragInput = input
+		update(input)
+	end
+end)

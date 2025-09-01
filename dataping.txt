@@ -1,0 +1,35 @@
+-- Create a ScreenGui for the GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "PingGui"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create a Frame to hold the ping display
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 50) -- Adjust size as needed
+frame.Position = UDim2.new(0, 20, 0, 20) -- Adjust position as needed
+frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+-- Create a TextLabel to display the ping
+local pingLabel = Instance.new("TextLabel")
+pingLabel.Size = UDim2.new(1, 0, 1, 0)
+pingLabel.Position = UDim2.new(0, 0, 0, 0)
+pingLabel.BackgroundTransparency = 1
+pingLabel.TextColor3 = Color3.new(1, 1, 1) -- White text
+pingLabel.Font = Enum.Font.SourceSans
+pingLabel.TextSize = 20
+pingLabel.TextStrokeTransparency = 0
+pingLabel.Parent = frame
+
+-- Function to update the ping label
+local function updatePing()
+    local ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+    pingLabel.Text = "Ping: " .. ping .. " ms"
+end
+
+-- Update the ping label every second
+while true do
+    updatePing()
+    wait(1)
+end

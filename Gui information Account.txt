@@ -1,0 +1,61 @@
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "InfoGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the main frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 400, 0, 400)  -- Set size to 400x400
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -200)  -- Adjust position to center the frame
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true  -- Enable the frame to receive input
+mainFrame.Draggable = true  -- Make the frame draggable
+mainFrame.Parent = screenGui
+
+-- Create the title label
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 50)
+titleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Text = "information hub"
+titleLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+titleLabel.Font = Enum.Font.SourceSansBold
+titleLabel.TextSize = 24
+titleLabel.Parent = mainFrame
+
+-- Function to create a label
+local function createLabel(text, parent, position)
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, 0, 0, 50)  -- Adjust height to 50 for better visibility
+    label.Position = UDim2.new(0, 0, position, 0)
+    label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    label.Text = text
+    label.TextColor3 = Color3.fromRGB(0, 0, 0)
+    label.Font = Enum.Font.SourceSans
+    label.TextSize = 18
+    label.Parent = parent
+end
+
+-- Player information
+local player = game.Players.LocalPlayer
+
+-- Create labels for player information
+createLabel("Username: " .. player.Name, mainFrame, 0.1)
+createLabel("DisplayName: " .. player.DisplayName, mainFrame, 0.2)
+createLabel("UserId: " .. player.UserId, mainFrame, 0.3)
+createLabel("AccountAge: " .. player.AccountAge, mainFrame, 0.4)
+createLabel("Executor: " .. player.Executor, mainFrame, 0.5)
+createLabel("Device: " .. player.Device, mainFrame, 0.6)
+createLabel("This Hub Is Still Beta", mainFrame, 0.7)
+
+-- Additional styling
+mainFrame.BackgroundTransparency = 0.3
+titleLabel.BackgroundTransparency = 0.3
+
+-- Adjust text scaling
+titleLabel.TextScaled = true
+for _, label in ipairs(mainFrame:GetChildren()) do
+    if label:IsA("TextLabel") then
+        label.TextScaled = true
+    end
+end

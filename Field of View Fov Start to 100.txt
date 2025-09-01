@@ -1,0 +1,49 @@
+local player = game.Players.LocalPlayer
+local camera = game.Workspace.CurrentCamera
+local screenGui = Instance.new("ScreenGui")
+local frame = Instance.new("Frame")
+local increaseButton = Instance.new("TextButton")
+local decreaseButton = Instance.new("TextButton")
+
+-- Configure ScreenGui
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Configure Frame
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame.Parent = screenGui
+
+-- Make Frame movable
+frame.Active = true
+frame.Draggable = true
+
+-- Configure Increase Button
+increaseButton.Size = UDim2.new(0, 50, 0, 50)
+increaseButton.Position = UDim2.new(0.1, 0, 0.25, 0)
+increaseButton.Text = "+"
+increaseButton.Parent = frame
+
+-- Configure Decrease Button
+decreaseButton.Size = UDim2.new(0, 50, 0, 50)
+decreaseButton.Position = UDim2.new(0.6, 0, 0.25, 0)
+decreaseButton.Text = "-"
+decreaseButton.Parent = frame
+
+-- Function to increase FOV
+local function increaseFOV()
+    if camera.FieldOfView < 900 then  -- Set an upper limit for FOV
+        camera.FieldOfView = camera.FieldOfView + 100
+    end
+end
+
+-- Function to decrease FOV
+local function decreaseFOV()
+    if camera.FieldOfView > 900 then  -- Set a lower limit for FOV
+        camera.FieldOfView = camera.FieldOfView - 100
+    end
+end
+
+-- Connect buttons to functions
+increaseButton.MouseButton1Click:Connect(increaseFOV)
+decreaseButton.MouseButton1Click:Connect(decreaseFOV)
