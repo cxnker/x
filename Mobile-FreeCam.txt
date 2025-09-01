@@ -1,0 +1,294 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local cam = workspace.CurrentCamera
+
+local freecamEnabled = false
+local movingForward = false
+local movingBackward = false
+local movingUp = false
+local movingDown = false
+local moveSpeed = 32
+local menuOpen = false
+local savedCFrame = nil
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MobileFreecamUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local topRow = Instance.new("Frame")
+topRow.Size = UDim2.new(0, 300, 0, 60)
+topRow.Position = UDim2.new(0.5, 0, 0, -40)
+topRow.AnchorPoint = Vector2.new(0.5, 0)
+topRow.BackgroundTransparency = 1
+topRow.Parent = screenGui
+
+local layout1 = Instance.new("UIListLayout", topRow)
+layout1.FillDirection = Enum.FillDirection.Horizontal
+layout1.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layout1.Padding = UDim.new(0, 10)
+
+local bottomRow = Instance.new("Frame")
+bottomRow.Size = UDim2.new(0, 300, 0, 60)
+bottomRow.Position = UDim2.new(0.5, 0, 0, 30)
+bottomRow.AnchorPoint = Vector2.new(0.5, 0)
+bottomRow.BackgroundTransparency = 1
+bottomRow.Visible = false
+bottomRow.Parent = screenGui
+
+local layout2 = Instance.new("UIListLayout", bottomRow)
+layout2.FillDirection = Enum.FillDirection.Horizontal
+layout2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layout2.Padding = UDim.new(0, 10)
+
+local function createButton(txt, parent)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0, 60, 0, 60)
+	btn.Text = txt
+	btn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	btn.TextColor3 = Color3.new(1, 1, 1)
+	btn.TextScaled = true
+	btn.Font = Enum.Font.SourceSansBold
+	btn.AutoButtonColor = true
+	btn.Parent = parent
+	Instance.new("UICorner", btn)
+	return btn
+end
+
+local toggleBtn = createButton("T", topRow)
+local forwardBtn = createButton("F", topRow)
+local backBtn = createButton("B", topRow)
+local menuBtn = createButton("M", topRow)
+
+local upBtn = createButton("U", bottomRow)
+local downBtn = createButton("L", bottomRow)
+local speedBtn = createButton("S", bottomRow)
+local loBtn = createButton("LO", bottomRow)
+
+local speedBox = Instance.new("TextBox")
+speedBox.Size = UDim2.new(0, 80, 0, 60)
+speedBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+speedBox.TextColor3 = Color3.new(1,1,1)
+speedBox.TextScaled = true
+speedBox.PlaceholderText = "Speed"
+speedBox.ClearTextOnFocus = true
+speedBox.Visible = false
+speedBox.Parent = screenGui
+Instance.new("UICorner", speedBox)
+
+local thirdRow = Instance.new("Frame")
+thirdRow.Size = UDim2.new(0, 360, 0, 60)
+thirdRow.Position = UDim2.new(0.5, 0, 0, 100)
+thirdRow.AnchorPoint = Vector2.new(0.5, 0)
+thirdRow.BackgroundTransparency = 1
+thirdRow.Visible = false
+thirdRow.Parent = screenGui
+
+local layout3 = Instance.new("UIListLayout", thirdRow)
+layout3.FillDirection = Enum.FillDirection.Horizontal
+layout3.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layout3.Padding = UDim.new(0, 10)
+
+local drBtn = createButton("DR", thirdRow)
+local tpBtn = createButton("TP", thirdRow)
+local saBtn = createButton("SA", thirdRow)
+local destroyBtn = createButton("D", thirdRow)
+
+local dragging = false
+local lastPos
+local sensitivity = 0.69
+local camRot = Vector2.new()
+
+toggleBtn.MouseButton1Click:Connect(function()
+	if savedCFrame then
+		cam.CFrame = savedCFrame
+	end
+	freecamEnabled = not freecamEnabled
+	if freecamEnabled then
+		cam.CameraType = Enum.CameraType.Scriptable
+	else
+		cam.CameraType = Enum.CameraType.Custom
+	end
+end)
+
+forwardBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	movingForward = not movingForward
+	movingBackward = false
+end)
+
+backBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	movingBackward = not movingBackward
+	movingForward = false
+end)
+
+menuBtn.MouseButton1Click:Connect(function()
+	menuOpen = not menuOpen
+	bottomRow.Visible = menuOpen
+	thirdRow.Visible = menuOpen
+end)
+
+upBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	movingUp = not movingUp
+	movingDown = false
+end)
+
+downBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	movingDown = not movingDown
+	movingUp = false
+end)
+
+speedBtn.MouseButton1Click:Connect(function()
+	speedBox.Position = UDim2.new(0.5, 0, 0, 160)
+	speedBox.AnchorPoint = Vector2.new(0.5, 0)
+	speedBox.Visible = true
+end)
+
+speedBox.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		local val = tonumber(speedBox.Text)
+		if val then
+			moveSpeed = val
+		end
+	end
+	speedBox.Visible = false
+	speedBox.Text = ""
+end)
+
+loBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	if sensitivity ~= 0 then
+		sensitivity = 0
+	else
+		sensitivity = 0.69
+	end
+end)
+
+tpBtn.MouseButton1Click:Connect(function()
+	if freecamEnabled then
+		local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+		if hrp then
+			hrp.CFrame = CFrame.new(cam.CFrame.Position)
+		end
+	end
+end)
+
+saBtn.MouseButton1Click:Connect(function()
+	if freecamEnabled then
+		if not savedCFrame then
+			savedCFrame = cam.CFrame
+		else
+			savedCFrame = nil
+		end
+	end
+end)
+
+drBtn.MouseButton1Click:Connect(function()
+	if not freecamEnabled then return end
+	if screenGui:FindFirstChild("DRFrame") then return end
+
+	local frame = Instance.new("Frame")
+	frame.Name = "DRFrame"
+	frame.Size = UDim2.new(0, 200, 0, 200)
+	frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+	frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+	frame.Parent = screenGui
+	Instance.new("UICorner", frame)
+
+	local coords = {"X","Y","Z"}
+	local boxes = {}
+
+	for i, v in ipairs(coords) do
+		local tb = Instance.new("TextBox")
+		tb.Size = UDim2.new(0, 180, 0, 40)
+		tb.Position = UDim2.new(0.5, 0, 0, (i-1)*50 + 10)
+		tb.AnchorPoint = Vector2.new(0.5, 0)
+		tb.BackgroundColor3 = Color3.fromRGB(20,20,20)
+		tb.TextColor3 = Color3.new(1,1,1)
+		tb.TextScaled = true
+		tb.ClearTextOnFocus = false
+		if i == 1 then
+			tb.Text = string.format("%.3f", camRot.X)
+		elseif i == 2 then
+			tb.Text = string.format("%.3f", camRot.Y)
+		else
+			tb.Text = string.format("%.3f", 0)
+		end
+		tb.PlaceholderText = v
+		tb.Parent = frame
+		Instance.new("UICorner", tb)
+		table.insert(boxes, tb)
+	end
+
+	local confirmBtn = Instance.new("TextButton")
+	confirmBtn.Size = UDim2.new(0, 60, 0, 40)
+	confirmBtn.Position = UDim2.new(0.5, 0, 0, 160)
+	confirmBtn.AnchorPoint = Vector2.new(0.5, 0)
+	confirmBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+	confirmBtn.Text = "✓"
+	confirmBtn.Font = Enum.Font.SourceSansBold
+	confirmBtn.TextScaled = true
+	confirmBtn.Parent = frame
+	Instance.new("UICorner", confirmBtn)
+
+	confirmBtn.MouseButton1Click:Connect(function()
+		local x = tonumber(boxes[1].Text)
+		local y = tonumber(boxes[2].Text)
+		local z = tonumber(boxes[3].Text) or 0
+		if x then camRot = Vector2.new(x, camRot.Y) end
+		if y then camRot = Vector2.new(camRot.X, y) end
+		frame:Destroy()
+	end)
+end)
+
+destroyBtn.MouseButton1Click:Connect(function()
+	freecamEnabled = false
+	screenGui:Destroy()
+	cam.CameraType = Enum.CameraType.Custom
+end)
+
+UserInputService.InputBegan:Connect(function(input, gpe)
+	if input.UserInputType == Enum.UserInputType.Touch and freecamEnabled then
+		dragging = true
+		lastPos = input.Position
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input, gpe)
+	if dragging and input.UserInputType == Enum.UserInputType.Touch and freecamEnabled then
+		local delta = input.Position - lastPos
+		lastPos = input.Position
+		camRot = camRot + Vector2.new(-delta.Y, -delta.X) * sensitivity
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input, gpe)
+	if input.UserInputType == Enum.UserInputType.Touch then
+		dragging = false
+	end
+end)
+
+RunService.RenderStepped:Connect(function(dt)
+	if freecamEnabled then
+		local rotCFrame = CFrame.Angles(0, math.rad(camRot.Y), 0) * CFrame.Angles(math.rad(camRot.X), 0, 0)
+		local pos = cam.CFrame.Position
+		if movingForward then
+			pos += rotCFrame.LookVector * moveSpeed * dt
+		elseif movingBackward then
+			pos -= rotCFrame.LookVector * moveSpeed * dt
+		end
+		if movingUp then
+			pos += Vector3.new(0, moveSpeed * dt, 0)
+		elseif movingDown then
+			pos -= Vector3.new(0, moveSpeed * dt, 0)
+		end
+		cam.CFrame = CFrame.new(pos) * rotCFrame
+	end
+end)

@@ -1,0 +1,52 @@
+
+-- LocalScript (StarterPlayer > StarterPlayerScripts)
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local defaultSpeed = humanoid.WalkSpeed
+local walkSpeed = 5
+
+-- GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "SpeedToggleGui"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Tombol kecil oval di atas tombol lompat
+local button = Instance.new("TextButton")
+button.Name = "WalkRunButton"
+button.Size = UDim2.new(0, 60, 0, 12) -- kecil, memanjang
+button.AnchorPoint = Vector2.new(0.5, 1)
+button.Position = UDim2.new(0.92, 0, 0.72, 0) -- geser sesuai posisi tombol lompat
+button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+button.BackgroundTransparency = 0.3
+button.Text = "Walk"
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.TextScaled = true
+button.Font = Enum.Font.GothamBold
+button.Parent = screenGui
+
+-- Oval effect
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(1, 0)
+corner.Parent = button
+
+-- Toggle function
+button.MouseButton1Click:Connect(function()
+	if button.Text == "Walk" then
+		humanoid.WalkSpeed = walkSpeed
+		button.Text = "Run"
+	else
+		humanoid.WalkSpeed = defaultSpeed
+		button.Text = "Walk"
+	end
+end)
+
+-- Update saat respawn
+player.CharacterAdded:Connect(function(char)
+	character = char
+	humanoid = character:WaitForChild("Humanoid")
+	defaultSpeed = humanoid.WalkSpeed
+end)
