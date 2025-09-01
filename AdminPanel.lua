@@ -92,7 +92,7 @@ local function CreateGui()
     
     -- Main Frame
     local MainFrame = Instance.new("Frame", ScreenGui)
-    MainFrame.Size = UDim2.new(0, 320, 0, 380)
+    MainFrame.Size = UDim2.new(0, 300, 0, 340)
     MainFrame.Position = UDim2.new(0.3, 0, 0.2, 0)
     MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     MainFrame.Active, MainFrame.Draggable = true, true
@@ -103,7 +103,7 @@ local function CreateGui()
     
     local Title = Instance.new("TextLabel", MainFrame)
     Title.Size = UDim2.new(1, -60, 0, 30)
-    Title.Text = "Admin Panel"
+    Title.Text = "Admin Panel by @Roun95"
     Title.BackgroundTransparency = 1
     Title.TextColor3 = Color3.new(1, 1, 1)
     Title.Font, Title.TextSize = Enum.Font.GothamBold, 18
