@@ -374,9 +374,9 @@ local function CreateGui()
     local minimized = false
     MinBtn.MouseButton1Click:Connect(function()
         if minimized then
-            TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0,320,0,380)}):Play()
+            TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0,300,0,340)}):Play()
         else
-            TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0,320,0,30)}):Play()
+            TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0,300,0,30)}):Play()
         end
         minimized = not minimized
     end)
