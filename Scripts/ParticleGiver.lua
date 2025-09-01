@@ -7,10 +7,10 @@ gui.Parent = game:GetService("CoreGui")
 gui.ResetOnSpawn = false
 
 local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0.5, 0, 0.6, 0)
-frame.Position = UDim2.new(0.25, 0, 0.2, 0)
+frame.Size = UDim2.new(0.4, 0, 0.6, 0)
+frame.Position = UDim2.new(0.1, 0, 0, 0)
 frame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-frame.BackgroundTransparency = 0.05
+frame.BackgroundTransparency = 0.1
 frame.BorderSizePixel = 0
 frame.Active = true
 frame.Draggable = true
