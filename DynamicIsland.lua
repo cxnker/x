@@ -119,7 +119,6 @@ end
 end
 end)
 
-
 spawn(function()
 while wait() do
 local ping = tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue())
@@ -217,7 +216,7 @@ SearchBox.Position = UDim2.new(0, 8, 0, 1)
 SearchBox.Size = UDim2.new(0, 485, 0, 15)
 SearchBox.ClearTextOnFocus = false
 SearchBox.Font = HeadFont
-SearchBox.PlaceholderText = "S                    e                    a                    r                    c                    h"
+SearchBox.PlaceholderText = "Search"
 SearchBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 SearchBox.Text = ""
 SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -514,12 +513,11 @@ UICorner_22.Parent = ProfilePicture_2
 UIListLayout_3.Parent = Comments_2
 UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout_3.Padding = UDim.new(0, 5)
- 
+
 getfakeasset = getcustomasset or getsynasset
- 
+
 HttpService = game:GetService("HttpService")
- 
- 
+
 page = 1
 gquery = ""
  
@@ -546,9 +544,6 @@ MainFrame.ScriptListFrame.Scripts.VerifiedScriptFrame:Destroy()
 Comment = MainFrame.InfoBox.Comments.Inner.Comments.Comment:Clone()
 MainFrame.InfoBox.Comments.Inner.Comments.Comment:Destroy()
 
-
-
-
 function _if(a, b, c)
  if a then return b else return c end
 end
@@ -560,7 +555,6 @@ function fastmodeExec(func)
   func()
  end
 end
- 
 
 function fetchScripts(query, page)
  page = page or 1
@@ -593,7 +587,6 @@ end
 function updateInfoBox(scriptObj)
  scriptObj = fixScript(scriptObj)
 
- 
  commentsUIListLayout = MainFrame.InfoBox.Comments.Inner.Comments.UIListLayout:Clone()
  MainFrame.InfoBox.Comments.Inner.Comments:ClearAllChildren()
  commentsUIListLayout.Parent = MainFrame.InfoBox.Comments.Inner.Comments
@@ -608,13 +601,12 @@ function updateInfoBox(scriptObj)
   end
  end)
 end
- 
 
 function refreshScripts(scriptTbl)
  if #scriptTbl <= 0 then
 
  end
- 
+
  UIGridLayoutCopy = Scripts.UIGridLayout:Clone()
  Scripts:ClearAllChildren()
  UIGridLayoutCopy.Parent = Scripts
@@ -666,7 +658,6 @@ end)
  pagefetchrunning = false
 end
 
-
 SearchBox.FocusLost:Connect(function(enterPressed)
  if enterPressed then
   gquery = SearchBox.Text
@@ -675,11 +666,9 @@ SearchBox.FocusLost:Connect(function(enterPressed)
   refreshScripts(scriptsTbl)
  end
 end)
- 
- 
 
 refreshScripts(fetchScripts(gquery, 1))
- 
+
 ScriptListFrame:GetPropertyChangedSignal("CanvasPosition"):Connect(function()
  if (ScriptListFrame.CanvasPosition.Y + ScriptListFrame.AbsoluteSize.Y) >= ScriptListFrame.AbsoluteCanvasSize.Y -200 and not pagefetchrunning then
   page = page + 1
