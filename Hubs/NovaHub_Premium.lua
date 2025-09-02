@@ -4039,30 +4039,6 @@ end})
                                 -- === Tab 11: Scripts === --
 ----------------------------------------------------------------------------------------------------
 Tab11:AddButton({
-    Name = "FPS Booster",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Booster.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "FPS Booster (Max)",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Booster_Max.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Improved Graphics",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BetterGraphics.lua"))()
-    end
-})
-
-Tab11:AddButton({
     Name = "Super Ring Parts",
     Description = "Universal",
     Callback = function()
@@ -4091,6 +4067,21 @@ Tab11:AddButton({
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Shiftlock.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "ServerHop (Low Players)",
+    Callback = function()
+        local success, _ = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Serverhop.lua"))()
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Has sido teletransportado!" or "Fallo el teletransporte.",
+            Duration = 5
+        })
     end
 })
 
@@ -4199,6 +4190,39 @@ Tab12:AddButton({
 })
 
 local Section = Tab13:AddSection({"Mejoras graficas"})
+
+Tab11:AddButton({
+    Name = "Improved Graphics V2",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BetterGraphicsV2.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "FPS Booster",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Booster.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "FPS Booster V2",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-BoosterV2.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "FPS Booster (Max)",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Booster_Max.lua"))()
+    end
+})
+
 Tab13:AddButton({"Shaders", function()
 
 local workspace = game:GetService("Workspace")
