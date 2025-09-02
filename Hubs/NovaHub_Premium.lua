@@ -4055,10 +4055,10 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
-    Name = "Virtual Keyboard",
+    Name = "Click Teleport Tool",
     Description = "Universal",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/VirtualKeyboard.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TPTool.lua"))()
     end
 })
 
@@ -4067,6 +4067,14 @@ Tab11:AddButton({
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Shiftlock.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "Virtual Keyboard",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/VirtualKeyboard.lua"))()
     end
 })
 
@@ -4192,6 +4200,22 @@ Tab12:AddButton({
 local Section = Tab13:AddSection({"Optimizacion"})
 
 Tab13:AddButton({
+    Name = "FPS Counter",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Counter.lua"))()
+    end
+})
+
+Tab13:AddButton({
+    Name = "FPS Counter V2",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-CounterV2.lua"))()
+    end
+})
+
+Tab13:AddButton({
     Name = "FPS Booster",
     Description = "Universal",
     Callback = function()
@@ -4216,6 +4240,14 @@ Tab13:AddButton({
 })
 
 local Section = Tab13:AddSection({"Mejoras graficas"})
+
+Tab13:AddButton({
+    Name = "Improved Graphics",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BetterGraphics.lua"))()
+    end
+})
 
 Tab13:AddButton({
     Name = "Improved Graphics V2",
