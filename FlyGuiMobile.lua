@@ -1,15 +1,13 @@
 --[[
-FE Mobile Fly By Fedoratum#6195
-
+FE Mobile Fly By @Roun95
 Type in chat !stop, to stop the script
-
 ]]--
 
 local STARTERGUI = game:GetService("StarterGui")
 
 if game:GetService("ReplicatedStorage"):FindFirstChild("BZn2q91BzN") then
 STARTERGUI:SetCore("SendNotification",{
-        Title = "FED's Mobile Fly",
+        Title = "Roun95 Mobile Fly",
         Text = "Script is already running",
          Icon = "rbxassetid://278315432",
          Duration = 4
@@ -27,7 +25,7 @@ NSound.Volume = 1
 
 function Notify(Txt, Dur)
 STARTERGUI:SetCore("SendNotification",{
-        Title = "FED's Mobile Fly",
+        Title = "Roun95 Mobile Fly",
         Text = Txt,
          Icon = "rbxassetid://278315432",
          Duration = Dur
@@ -36,11 +34,10 @@ NSound:Play()
 end
 
 -- Detect if script already ran
-
 local VdbwjS = Instance.new("StringValue",game:GetService("ReplicatedStorage"))
 VdbwjS.Name = "BZn2q91BzN"
 
-Notify("Script made by fedoratum", 5)
+Notify("Script made by Roun95", 5)
 
 local plr = game:GetService"Players"
 local Lp = plr.LocalPlayer
@@ -78,7 +75,7 @@ SpeedBox.PlaceholderText = "Speed"
 SpeedBox.Text = ""
 SpeedBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 SpeedBox.TextScaled = true
-SpeedBox.TextSize = 14.000
+SpeedBox.TextSize = 14
 SpeedBox.TextWrapped = true
 
 local controlModule = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
