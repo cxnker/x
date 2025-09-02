@@ -4208,14 +4208,6 @@ Tab13:AddButton({
 })
 
 Tab13:AddButton({
-    Name = "FPS Counter V2",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-CounterV2.lua"))()
-    end
-})
-
-Tab13:AddButton({
     Name = "FPS Booster",
     Description = "Universal",
     Callback = function()
