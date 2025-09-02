@@ -4189,17 +4189,9 @@ Tab12:AddButton({
     end
 })
 
-local Section = Tab13:AddSection({"Mejoras graficas"})
+local Section = Tab13:AddSection({"Optimizacion"})
 
-Tab11:AddButton({
-    Name = "Improved Graphics V2",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BetterGraphicsV2.lua"))()
-    end
-})
-
-Tab11:AddButton({
+Tab13:AddButton({
     Name = "FPS Booster",
     Description = "Universal",
     Callback = function()
@@ -4207,7 +4199,7 @@ Tab11:AddButton({
     end
 })
 
-Tab11:AddButton({
+Tab13:AddButton({
     Name = "FPS Booster V2",
     Description = "Universal",
     Callback = function()
@@ -4215,11 +4207,21 @@ Tab11:AddButton({
     end
 })
 
-Tab11:AddButton({
+Tab13:AddButton({
     Name = "FPS Booster (Max)",
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/FPS-Booster_Max.lua"))()
+    end
+})
+
+local Section = Tab13:AddSection({"Mejoras graficas"})
+
+Tab13:AddButton({
+    Name = "Improved Graphics V2",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BetterGraphicsV2.lua"))()
     end
 })
 
