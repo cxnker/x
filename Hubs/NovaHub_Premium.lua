@@ -4055,6 +4055,14 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
+    Name = "Highlight Players",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/HighlightPlayers.lua"))()
+    end
+})
+
+Tab11:AddButton({
     Name = "Click Teleport Tool",
     Description = "Universal",
     Callback = function()
@@ -4075,6 +4083,22 @@ Tab11:AddButton({
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/VirtualKeyboard.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "FE Particles Giver",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/ParticleGiver.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "TP To Player",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TptoPlayer.lua"))()
     end
 })
 
@@ -4115,6 +4139,14 @@ Tab11:AddButton({
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AFEM.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "Admin Panel by @Roun95",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/AdminPanel.lua"))()
     end
 })
 
