@@ -61,7 +61,7 @@ bg.D = 50
 end)
 
 local camera = Workspace.CurrentCamera
-local s = 50
+local sp = 50
 
 local Signal2
 Signal2 = game:GetService("RunService").RenderStepped:Connect(function()
@@ -82,22 +82,22 @@ Lp.Character.Humanoid.PlatformStand = false
 return
 end
 
-local Cm = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
+local controlModule = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 
 Lp.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
-local direction = Cm:GetMoveVector()
+local direction = controlModule:GetMoveVector()
 Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
 if direction.X > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*s)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*sp)
 end
 if direction.X < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*s)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*sp)
 end
 if direction.Z > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*s)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*sp)
 end
 if direction.Z < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*s)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*sp)
 end
 end
 end)
@@ -109,6 +109,7 @@ end)
 local Sbox
 Sbox = SB:GetPropertyChangedSignal("Text"):Connect(function()
 if tonumber(SB.Text) then
-s = tonumber(SB.Text)
+sp = tonumber(SB.Text)
 end
 end)
+
