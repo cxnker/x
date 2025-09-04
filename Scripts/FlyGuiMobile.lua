@@ -4,7 +4,19 @@ local SB = Instance.new("TextBox")
 local Lp = game.Players.LocalPlayer
 local On = false
 
-Gui.ResetOnSpawn = false
+local STARTERGUI = game:GetService("StarterGui")
+
+if game:GetService("ReplicatedStorage"):FindFirstChild("BZn2q91BzN") then
+STARTERGUI:SetCore("SendNotification",{
+        Title = "Roun95 Mobile Fly",
+        Text = "Script is already running",
+         Icon = "rbxassetid://278315432",
+         Duration = 4
+    })
+return
+end
+local VdbwjS = Instance.new("StringValue",game:GetService("ReplicatedStorage"))
+VdbwjS.Name = "BZn2q91BzN"
 
 FB.Parent = Gui
 FB.BackgroundColor3 = Color3.new(0,90,0)
@@ -110,5 +122,16 @@ local Sbox
 Sbox = SB:GetPropertyChangedSignal("Text"):Connect(function()
 if tonumber(SB.Text) then
 speed = tonumber(SB.Text)
+end
+end)
+
+Lp.Chatted:Connect(function(msg)
+if msg:sub(1,5) == "!stop" then
+Signal1:Disconnect()
+Signal2:Disconnect()
+Signal3:Disconnect()
+game:GetService("ReplicatedStorage"):FindFirstChild("BZn2q91BzN"):Destroy()
+Gui:Destroy()
+Lp.Character.Humanoid.Health = 0
 end
 end)
