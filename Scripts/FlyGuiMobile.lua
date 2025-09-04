@@ -60,8 +60,8 @@ bg.P = 1000
 bg.D = 50
 end)
 
-local camera = Workspace.CurrentCamera
-local sp = 50
+local camera = game.Workspace.CurrentCamera
+local speed = 50
 
 local Signal2
 Signal2 = game:GetService("RunService").RenderStepped:Connect(function()
@@ -88,16 +88,16 @@ Lp.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
 local direction = controlModule:GetMoveVector()
 Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
 if direction.X > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*sp)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
 end
 if direction.X < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*sp)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
 end
 if direction.Z > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*sp)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
 end
 if direction.Z < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*sp)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
 end
 end
 end)
@@ -109,7 +109,6 @@ end)
 local Sbox
 Sbox = SB:GetPropertyChangedSignal("Text"):Connect(function()
 if tonumber(SB.Text) then
-sp = tonumber(SB.Text)
+speed = tonumber(SB.Text)
 end
 end)
-
