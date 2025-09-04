@@ -60,11 +60,11 @@ bg.P = 1000
 bg.D = 50
 end)
 
-local camera = game.Workspace.CurrentCamera
+local camera = Workspace.CurrentCamera
 local s = 50
 
 local Signal2
-Signal2 = game.RunService.RenderStepped:Connect(function()
+Signal2 = game:GetService("RunService").RenderStepped:Connect(function()
 if Lp.Character and Lp.Character:FindFirstChildOfClass("Humanoid") and Lp.Character.Humanoid.RootPart and Lp.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and Lp.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
 
 if On then
@@ -110,3 +110,4 @@ if tonumber(SB.Text) then
 s = tonumber(SB.Text)
 end
 end)
+
