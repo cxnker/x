@@ -82,8 +82,10 @@ Lp.Character.Humanoid.PlatformStand = false
 return
 end
 
+local Cm = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
+
 Lp.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
-local direction = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule")):GetMoveVector()
+local direction = Cm:GetMoveVector()
 Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
 if direction.X > 0 then
 Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*s)
@@ -110,4 +112,3 @@ if tonumber(SB.Text) then
 s = tonumber(SB.Text)
 end
 end)
-
