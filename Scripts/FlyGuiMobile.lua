@@ -61,10 +61,10 @@ bg.D = 50
 end)
 
 local camera = game.Workspace.CurrentCamera
-local speed = 50
+local s = 50
 
 local Signal2
-Signal2 = game:GetService("RunService").RenderStepped:Connect(function()
+Signal2 = game.RunService.RenderStepped:Connect(function()
 if Lp.Character and Lp.Character:FindFirstChildOfClass("Humanoid") and Lp.Character.Humanoid.RootPart and Lp.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and Lp.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
 
 if On then
@@ -82,22 +82,20 @@ Lp.Character.Humanoid.PlatformStand = false
 return
 end
 
-local controlModule = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
-
 Lp.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
-local direction = controlModule:GetMoveVector()
+local direction = require(Lp.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule")):GetMoveVector()
 Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
 if direction.X > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*s)
 end
 if direction.X < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*s)
 end
 if direction.Z > 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*s)
 end
 if direction.Z < 0 then
-Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+Lp.Character.HumanoidRootPart.VelocityHandler.Velocity = Lp.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*s)
 end
 end
 end)
@@ -109,6 +107,6 @@ end)
 local Sbox
 Sbox = SB:GetPropertyChangedSignal("Text"):Connect(function()
 if tonumber(SB.Text) then
-speed = tonumber(SB.Text)
+s = tonumber(SB.Text)
 end
 end)
