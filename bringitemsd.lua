@@ -13,10 +13,10 @@ local Window = Library:CreateWindow{
 }
 
 local Tabs = {
-    Main = Window:CreateTab{
+    Main = Window:AddTab({
         Title = "Main",
         Icon = "phosphor-users-bold"
-    }
+    })
 }
 
 local Options = Library.Options
@@ -87,7 +87,7 @@ local function store(item)
     end
 end
 
-local Items = Tabs.Main:CreateDropdown("ItemsList", {
+local Items = Tabs.Main:AddDropdown("ItemsList", {
     Title = "Items List",
     Values = items,
     Multi = false,
@@ -97,7 +97,7 @@ Items:OnChanged(function(Value)
     name = Value
 end)
 
-local Kids = Tabs.Main:CreateDropdown("KidsList", {
+local Kids = Tabs.Main:AddDropdown("KidsList", {
     Title = "Kids List",
     Values = kids,
     Multi = false,
@@ -166,7 +166,7 @@ end
 updateItemsDropdown()
 updateKidsDropdown()
 
-Tabs.Main:CreateButton{
+Tabs.Main:AddButton({
     Title = "Bring Item",
     Description = "",
     Callback = function()
@@ -185,9 +185,9 @@ Tabs.Main:CreateButton{
         end)
         humanoidRootPart.CFrame = lastPos
     end
-}
+})
 
-Tabs.Main:CreateButton{
+Tabs.Main:AddButton({
     Title = "Teleport to Item",
     Description = "",
     Callback = function()
@@ -199,10 +199,10 @@ Tabs.Main:CreateButton{
             end
         end
     end
-}
+})
 
 local campfire = workspace:FindFirstChild("Map"):FindFirstChild("Campground"):FindFirstChild("MainFire")
-Tabs.Main:CreateButton{
+Tabs.Main:AddButton({
     Title = "Teleport to Campfire",
     Description = "",
     Callback = function()
@@ -213,7 +213,7 @@ Tabs.Main:CreateButton{
             end
         end
     end
-}
+})
 
 itemsFolder.ChildAdded:Connect(updateItemsDropdown)
 itemsFolder.ChildRemoved:Connect(updateItemsDropdown)
