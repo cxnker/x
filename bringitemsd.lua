@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/FluentUiLib.lua"))()
+local Library = loadstring(game:HttpGetAsync("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
 local Window = Library:CreateWindow{
     Title = "Items Manager",
@@ -15,7 +15,7 @@ local Window = Library:CreateWindow{
 local Tabs = {
     Main = Window:AddTab{
         Title = "Main",
-        Icon = "phosphor-users-bold"
+        Icon = "user"
     }
 }
 
