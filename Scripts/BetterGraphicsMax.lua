@@ -39,13 +39,13 @@ if model then
 end
 
 l.Brightness = 2
+l.EnvironmentSpecularScale = 1
+l.EnvironmentDiffuseScale = 0.5
 l.GlobalShadows = true
 l.OutdoorAmbient = Color3.fromRGB(70, 70, 70)
 l.FogColor = Color3.fromRGB(120, 130, 140)
-l.FogStart = 80
 l.FogEnd = 600
-l.EnvironmentSpecularScale = 1
-l.EnvironmentDiffuseScale = 0.5
+l.FogStart = 80
 
 s.MoonTextureId = "rbxassetid://9027816797"
 s.SunTextureId = "rbxassetid://5560116180"
