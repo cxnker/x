@@ -1,0 +1,254 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Loader = Instance.new("ScreenGui")
+local Load = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local loadlol = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Status = Instance.new("TextLabel")
+local UICorner_3 = Instance.new("UICorner")
+local BackGround = Instance.new("Frame")
+local LoadBar = Instance.new("Frame")
+local jjj = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+
+Loader.Name = "Loader"
+Loader.Parent = game.CoreGui
+Loader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Load.Name = "Load"
+Load.Parent = Loader
+Load.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+Load.Position = UDim2.new(0.460789472, 0, 0.512073815, 0)
+Load.Size = UDim2.new(0, 411, 0, 219)
+Load.Visible = false
+
+UICorner.Parent = Load
+
+loadlol.Name = "loadlol"
+loadlol.Parent = Load
+loadlol.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+loadlol.Position = UDim2.new(0.257402033, 0, 0.763090312, 0)
+loadlol.Size = UDim2.new(0, 217, 0, 34)
+loadlol.Font = Enum.Font.GothamBlack
+loadlol.Text = "Load Skelly X V5"
+loadlol.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadlol.TextSize = 20.000
+loadlol.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+UICorner_2.Parent = loadlol
+
+Status.Name = "Status"
+Status.Parent = Load
+Status.Active = true
+Status.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+Status.Position = UDim2.new(0.0978796557, 0, 0.578333497, 0)
+Status.Size = UDim2.new(0, 348, 0, 26)
+Status.Font = Enum.Font.GothamBlack
+Status.Text = "Status:"
+Status.TextColor3 = Color3.fromRGB(255, 255, 255)
+Status.TextSize = 20.000
+Status.TextWrapped = true
+
+UICorner_3.Parent = Status
+
+BackGround.Name = "BackGround"
+BackGround.Parent = Load
+BackGround.BackgroundColor3 = Color3.fromRGB(84, 84, 84)
+BackGround.BorderSizePixel = 0
+BackGround.Position = UDim2.new(0.170143977, 0, 0.297449589, 0)
+BackGround.Size = UDim2.new(0, 287, 0, 48)
+
+LoadBar.Name = "LoadBar"
+LoadBar.Parent = BackGround
+LoadBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LoadBar.BorderSizePixel = 0
+LoadBar.Size = UDim2.new(0, 0, 0, 48)
+
+jjj.Name = "jjj"
+jjj.Parent = Load
+jjj.Active = true
+jjj.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+jjj.Position = UDim2.new(0, 0, -0.00157520873, 0)
+jjj.Size = UDim2.new(0, 411, 0, 26)
+jjj.Font = Enum.Font.GothamBlack
+jjj.Text = "SkellyX Loader"
+jjj.TextColor3 = Color3.fromRGB(255, 255, 255)
+jjj.TextSize = 20.000
+jjj.TextWrapped = true
+
+UICorner_4.Parent = jjj
+
+-- Scripts:
+
+local function KUUK_fake_script() -- loadlol.load 
+	local script = Instance.new('LocalScript', loadlol)
+
+	script.Parent.MouseButton1Click:Connect(function()
+	local bar = script.Parent.Parent.BackGround.LoadBar
+	local status = script.Parent.Parent.Status
+	wait(0.3)
+	bar:TweenSize(UDim2.new(0, 45,0, 48), "In", "Quint", 1)
+	status.Text = ("Status: Bypassing Anticheat...")
+	wait(0.2)
+	status.Text = ("Status: Bypassing Anticheat..")
+	wait(0.2)
+	status.Text = ("Status: Bypassing Anticheat.")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat..")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat...")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat..")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat.")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat..")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat...")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat.")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat..")
+		wait(0.2)
+		status.Text = ("Status: Bypassing Anticheat...")
+	wait(0.1)
+		bar:TweenSize(UDim2.new(0, 80,0, 48), "In", "Quint", 1)
+	wait(0.2)
+		status.Text = ("Status: Initiating Skelly X...")
+	wait(0.2)
+		status.Text = ("Status: Initiating Skelly X..")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X.")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X...")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X..")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X.")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X...")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X..")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X.")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X...")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X..")
+		wait(0.2)
+		status.Text = ("Status: Initiating Skelly X.")
+	wait(0.2)
+		bar:TweenSize(UDim2.new(0, 164,0, 48), "In", "Quint", 1)
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		bar:TweenSize(UDim2.new(0, 238,0, 48), "In", "Quint", 1)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		if game.Players.LocalPlayer.Name == "Roun95" then 
+			print("whitelisted")
+		else
+			game.Players.LocalPlayer:Kick("UNWHITELISTED")
+		end
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist...")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist..")
+		wait(0.2)
+		status.Text = ("Status: Checking Whitelist.")
+		wait(0.2)
+		loadstring(game:HttpGet(("https://gist.githubusercontent.com/bart3876478326746387/8c321c9af4f5c4294c5fd87a9f8b4514/raw/ce8e4df5f3976d91e3857a8570fb9d808a5b42fb/Skellyv5"), true))()
+		bar:TweenSize(UDim2.new(0, 287,0, 48), "In", "Quint", 1)
+		status.Text = ("Status: Loaded")
+	wait(1)
+	script.Parent.Parent.Parent.Parent.Loader:Remove()
+	end)
+end
+coroutine.wrap(KUUK_fake_script)()
+local function XCHR_fake_script() -- Load.Drag 
+	local script = Instance.new('LocalScript', Load)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'In', 'Linear', 0.2, true); -- drag speed
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(XCHR_fake_script)()

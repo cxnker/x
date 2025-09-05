@@ -1,0 +1,156 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local KeyScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local text = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local Submit = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local close = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local KeyHere = Instance.new("TextBox")
+local UICorner_4 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
+
+--Properties:
+
+KeyScreenGui.Name = "Key ScreenGui"
+KeyScreenGui.Parent = game.CoreGui
+
+Frame.Parent = KeyScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+Frame.Position = UDim2.new(0.0652093738, 0, 0.114359036, 0)
+Frame.Size = UDim2.new(0, 450, 0, 217)
+Frame.Visible = false
+
+text.Name = "text"
+text.Parent = Frame
+text.Active = true
+text.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+text.Position = UDim2.new(0.121142581, 0, 0.160786912, 0)
+text.Size = UDim2.new(0, 355, 0, 70)
+text.Font = Enum.Font.GothamBlack
+text.Text = "Get ur key in bart's dms (CLIQUE#2626 or bart#2626)"
+text.TextColor3 = Color3.fromRGB(255, 255, 255)
+text.TextSize = 20.000
+text.TextWrapped = true
+
+UICorner.Parent = text
+
+Submit.Name = "Submit"
+Submit.Parent = Frame
+Submit.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+Submit.Position = UDim2.new(0.300907046, 0, 0.812349498, 0)
+Submit.Size = UDim2.new(0, 193, 0, 22)
+Submit.Font = Enum.Font.GothamBlack
+Submit.Text = "Check"
+Submit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Submit.TextSize = 20.000
+Submit.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+UICorner_2.Parent = Submit
+
+close.Name = "close"
+close.Parent = Frame
+close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+close.Position = UDim2.new(0.923356056, 0, 0.0401071049, 0)
+close.Size = UDim2.new(0, 24, 0, 23)
+close.Font = Enum.Font.SourceSans
+close.Text = ""
+close.TextColor3 = Color3.fromRGB(0, 0, 0)
+close.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0, 50)
+UICorner_3.Parent = close
+
+KeyHere.Name = "Key Here"
+KeyHere.Parent = Frame
+KeyHere.BackgroundColor3 = Color3.fromRGB(16, 188, 222)
+KeyHere.Position = UDim2.new(0.262403637, 0, 0.553982675, 0)
+KeyHere.Size = UDim2.new(0, 226, 0, 39)
+KeyHere.Font = Enum.Font.GothamBlack
+KeyHere.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+KeyHere.PlaceholderText = "Key"
+KeyHere.Text = ""
+KeyHere.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyHere.TextSize = 20.000
+KeyHere.TextWrapped = true
+
+UICorner_4.Parent = KeyHere
+
+UICorner_5.Parent = Frame
+
+-- Scripts:
+
+local function IWROO_fake_script() -- Submit.key script 
+	local script = Instance.new('LocalScript', Submit)
+
+	script.Parent.Parent.Submit.MouseButton1Click:Connect(function()
+		local key = script.Parent.Parent["Key Here"]
+		if key.Text == ("byRoun95") then
+			script.Parent.Parent.Parent.Parent["Key ScreenGui"]:Remove()
+			loadstring(game:HttpGet(("https://gist.githubusercontent.com/bart3876478326746387/54a2a1e35c860581255fe2f96eb6bb78/raw/d18819983253c0868750d687fd52f654b074441c/Loader"), true))()
+	
+		else
+			key.Text = ("Invalid Key!")
+			wait(2)
+			key.Text = ("Key")
+		end	
+	end)
+end
+coroutine.wrap(IWROO_fake_script)()
+local function ONVR_fake_script() -- close.LocalScript 
+	local script = Instance.new('LocalScript', close)
+
+	script.Parent.Parent.close.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Parent.Parent["Key ScreenGui"]:Remove()
+	end)
+end
+coroutine.wrap(ONVR_fake_script)()
+local function TWHHZ_fake_script() -- Frame.Drag 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'In', 'Linear', 0.2, true); -- drag speed
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(TWHHZ_fake_script)()
