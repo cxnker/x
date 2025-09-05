@@ -2,21 +2,21 @@ local Library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/
 
 local Window = Library:CreateWindow{
     Title = "Items Manager",
-    SubTitle = "by bac0nh1ckoff",
+    SubTitle = "by Roun95",
     TabWidth = 160,
     Size = UDim2.fromOffset(530, 325),
     Resize = true,
     MinSize = Vector2.new(470, 380),
-    Acrylic = true,
+    Acrylic = false,
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.Q
 }
 
 local Tabs = {
-    Main = Window:AddTab({
+    Main = Window:AddTab{
         Title = "Main",
         Icon = "phosphor-users-bold"
-    })
+    }
 }
 
 local Options = Library.Options
@@ -166,7 +166,7 @@ end
 updateItemsDropdown()
 updateKidsDropdown()
 
-Tabs.Main:AddButton({
+Tabs.Main:AddButton{
     Title = "Bring Item",
     Description = "",
     Callback = function()
@@ -185,9 +185,9 @@ Tabs.Main:AddButton({
         end)
         humanoidRootPart.CFrame = lastPos
     end
-})
+}
 
-Tabs.Main:AddButton({
+Tabs.Main:AddButton{
     Title = "Teleport to Item",
     Description = "",
     Callback = function()
@@ -199,10 +199,10 @@ Tabs.Main:AddButton({
             end
         end
     end
-})
+}
 
 local campfire = workspace:FindFirstChild("Map"):FindFirstChild("Campground"):FindFirstChild("MainFire")
-Tabs.Main:AddButton({
+Tabs.Main:AddButton{
     Title = "Teleport to Campfire",
     Description = "",
     Callback = function()
@@ -213,7 +213,7 @@ Tabs.Main:AddButton({
             end
         end
     end
-})
+}
 
 itemsFolder.ChildAdded:Connect(updateItemsDropdown)
 itemsFolder.ChildRemoved:Connect(updateItemsDropdown)
