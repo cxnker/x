@@ -4143,6 +4143,14 @@ Tab11:AddButton({
 })
 
 Tab11:AddButton({
+    Name = "Animation Changer Gui",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AnimationChangerGui.lua"))()
+    end
+})
+
+Tab11:AddButton({
     Name = "Admin Panel by @Roun95",
     Description = "Universal",
     Callback = function()
