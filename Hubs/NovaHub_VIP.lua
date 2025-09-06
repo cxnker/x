@@ -328,7 +328,6 @@ Tab2:AddToggle({
 local noclip = false
 local RunService = game:GetService("RunService")
 
-local function toggleNoclip()
 	noclip = not noclip
 	local character = game.Players.LocalPlayer.Character
 	if noclip then
@@ -347,7 +346,6 @@ local function toggleNoclip()
 			end
 		end
 	end
-end
 
 Tab2:AddToggle({
 	Name = "Noclip",
