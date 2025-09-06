@@ -13,7 +13,7 @@ Window:AddMinimizeButton({
 
 local Dialog = Window:Dialog({
     Title = "Aviso",
-    Text = "Nova Hub (Brookhaven-Español) fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
+    Text = "Nova Hub fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
     Options = {
         {"Esta bien", function()
         end}
