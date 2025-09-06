@@ -359,7 +359,7 @@ local noclip = false
 local RunService = game:GetService("RunService")
 
 	noclip = not noclip
-	local function noclip()
+	local function tnoclip()
 	local character = game.Players.LocalPlayer.Character
 	if noclip then
 		connection = RunService.Stepped:Connect(function()
@@ -382,7 +382,7 @@ Tab2:AddToggle({
 	Name = "Noclip",
     Default = false,
     Callback = function(Value)
-       noclip = Value
+       tnoclip and noclip = Value
     end
 })
 
