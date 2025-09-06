@@ -1,8 +1,8 @@
 -- Library
-local NovaLib = loadstring(game:HttpGet("https://pastebin.com/raw/ShJvpAGG"))()
+local NovaLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/NovaUiLib/NovaUiLib.lua"))()
 
 -- Information
-AddInfo({Title = "NOVA HUB : BASE", Font = Enum.Font.FredokaOne})
+AddInfo({Title = "NOVA HUB : EXAMPLE", Font = Enum.Font.FredokaOne})
 
 -- Notification
 AddNotify({
