@@ -7,8 +7,8 @@ AddInfo({Title = "NOVA HUB : EXAMPLE", Font = Enum.Font.FredokaOne})
 -- Notification
 AddNotify({
   Title = "NOVA HUB",
-  Text = "Spam = '" .. tostring(Value) .. "'",
-  Time = 5
+  Text = "By @Roun95",
+  Time = 10
 })
 
 -- New tab
@@ -24,7 +24,7 @@ AddButton(Tab, {
 
 -- New Toggle/Check Box
 AddToggle(Tab, {
-  Name = "alternar",
+  Name = "Toggle",
   Default = false,
   Callback = function(Value)
     print(Value)
@@ -67,3 +67,4 @@ AddLabel(Tab, {"Label"})
 
 -- New Paragraph
 AddParagraph(Tab, {"Warn", "Paragraph"})
+
