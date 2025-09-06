@@ -355,6 +355,35 @@ Tab2:AddToggle({
     end
 })
 
+Tab2:AddButton({
+    Name = "Noclip GUI Universal",
+    Callback = function(toggleNoclip)
+local noclip = false
+local RunService = game:GetService("RunService")
+
+local function toggleNoclip()
+	noclip = not noclip
+	local character = game.Players.LocalPlayer.Character
+	if noclip then
+		connection = RunService.Stepped:Connect(function()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.CanCollide then
+					part.CanCollide = false
+				end
+			end
+		end)
+	else
+		if connection then connection:Disconnect() end
+		for _, part in pairs(character:GetDescendants()) do
+			if part:IsA("BasePart") then
+				part.CanCollide = true
+			end
+		end
+	end
+end
+    end
+})
+
 -- Ejecutar Noclip
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
