@@ -11,7 +11,7 @@ Window:AddMinimizeButton({
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
-local Dialog = Window:Dialog({
+Window:Dialog({
     Title = "Aviso",
     Text = "Nova Hub fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
     Options = {
@@ -54,7 +54,7 @@ local function detectExecutor()
 end
 
 local executorName = detectExecutor()
-local Paragraph = Tab1:AddParagraph({"Executor", executorName})
+Tab1:AddParagraph({"Executor", executorName})
 
 Tab1:AddDiscordInvite({
     Name = "Nova Hub",
@@ -64,7 +64,7 @@ Tab1:AddDiscordInvite({
 })
 
 local Section = Tab1:AddSection({"Version 1.12 (Premium)"})
-local Paragraph = Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
+Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
 
 Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
