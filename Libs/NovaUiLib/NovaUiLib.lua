@@ -238,8 +238,8 @@ local Title = SetConfigs(Create("TextLabel", "Title", TopBar), {
   Text = "NOVA HUB",
   BackgroundTransparency = 1,
   TextColor3 = Configs_HUB.TextColor,
-  TextSize = 25,
-  Position = UDim2.new(0, 20, 0, 0),
+  TextSize = 18,
+  Position = UDim2.new(0, 10, 0, 0),
   Size = UDim2.new(1, 0, 1, 0),
   Font = Configs_HUB.Font,
   TextXAlignment = "Left"
@@ -267,7 +267,7 @@ local MinimizeBtn = SetConfigs(Create("TextButton", "Minimize BTN", TopBar), {
   Size = UDim2.new(0, TopBar.Size.Y.Offset, 0, TopBar.Size.Y.Offset),
   Position = UDim2.new(1, -80, 0, -2.5),
   Text = "-",
-  TextSize = 30,
+  TextSize = 28,
   TextColor3 = Color3.fromRGB(240, 240, 240),
   BackgroundTransparency = 1,
   Font = Configs_HUB.Font
@@ -318,7 +318,7 @@ local CloseBTN = SetConfigs(Create("TextButton", "Close BTN", TopBar), {
   Size = UDim2.new(0, TopBar.Size.Y.Offset, 0, TopBar.Size.Y.Offset),
   Position = MinimizeBtn.Position + UDim2.new(0, MinimizeBtn.Size.X.Offset + 5, 0, 2),
   Text = "X",
-  TextSize = 30,
+  TextSize = 28,
   TextColor3 = Color3.fromRGB(240, 0, 0),
   BackgroundTransparency = 1,
   Font = Configs_HUB.Font
@@ -1149,3 +1149,4 @@ SizeAdd(UDim2.new(0, 1, 1, -TopBar.Size.Y.Offset), UDim2.new(0, ScrollTab.Size.X
 SizeAdd(UDim2.new(1, 0, 0, 1), UDim2.new(0, 0, 0, TopBar.Size.Y.Offset))
 
 SizeAdd(UDim2.new(0, ScrollTab.Size.X.Offset, 0, 1), UDim2.new(0, 0, 1, -55))
+
