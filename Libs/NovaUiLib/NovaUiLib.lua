@@ -224,7 +224,7 @@ for i = 0, 1, 0.1 do task.wait()
   Credits.TextTransparency = i
 end
 Credits:Destroy()
-local tween = TweenService:Create(Menu, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 500, 0, 270)})tween:Play()tween.Completed:Wait()
+local tween = TweenService:Create(Menu, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 450, 0, 250)})tween:Play()tween.Completed:Wait()
 Menu.AnchorPoint = Vector2.new(0, 0)
 Menu.Position = UDim2.new(0.5, -250, 0.5, -135)
 Menu.Draggable = true
@@ -289,13 +289,13 @@ MinimizeBtn.MouseButton1Click:Connect(function()
     if ScrollBar then
       ScrollBar.Visible = false
     end
-    local tween = TweenService:Create(Menu, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 500, 0, 35)})tween:Play()tween.Completed:Wait()
+    local tween = TweenService:Create(Menu, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 450, 0, 35)})tween:Play()tween.Completed:Wait()
     local tween = TweenService:Create(Menu, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, Title.TextBounds.X + 120, 0, 35)})tween:Play()tween.Completed:Wait()
     Minimize = true
     MinimizeBtn.Text = "+"
   else
-    local tween = TweenService:Create(Menu, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 500, 0, 35)})tween:Play()tween.Completed:Wait()
-    local tween = TweenService:Create(Menu, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 500, 0, 270)})tween:Play()tween.Completed:Wait()
+    local tween = TweenService:Create(Menu, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 450, 0, 35)})tween:Play()tween.Completed:Wait()
+    local tween = TweenService:Create(Menu, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 450, 0, 250)})tween:Play()tween.Completed:Wait()
     Minimize = false
     MinimizeBtn.Text = "-"
     local Containers = Menu:FindFirstChild("Containers")
@@ -1149,4 +1149,5 @@ SizeAdd(UDim2.new(0, 1, 1, -TopBar.Size.Y.Offset), UDim2.new(0, ScrollTab.Size.X
 SizeAdd(UDim2.new(1, 0, 0, 1), UDim2.new(0, 0, 0, TopBar.Size.Y.Offset))
 
 SizeAdd(UDim2.new(0, ScrollTab.Size.X.Offset, 0, 1), UDim2.new(0, 0, 1, -55))
+
 
