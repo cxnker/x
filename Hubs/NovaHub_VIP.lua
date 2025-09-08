@@ -328,7 +328,7 @@ Tab2:AddToggle({
 Tab2:AddToggle({
     Name = "Noclipp",
     Default = false,
-    Callback = function(toggleNoclip)
+    Callback = function(connection)
 
 local noclip = noclip
 local RunService = game:GetService("RunService")
