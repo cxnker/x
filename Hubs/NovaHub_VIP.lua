@@ -353,6 +353,7 @@ local function toggleNoclip()
 		end
 	end
 end
+		end
 })
 
 -- Ejecutar Noclip
