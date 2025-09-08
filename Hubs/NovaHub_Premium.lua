@@ -654,6 +654,31 @@ Tab3:AddButton({
                     task.wait(0.3)
                 end
 
+                if tonumber(PDesc.WalkAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.WalkAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.RunAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.RunAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.JumpAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.JumpAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.FallAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.FallAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.SwimAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.SwimAnimation))
+                    task.wait(0.3)
+                end
+
                 -- Nombre, Bio y Color
                 local Bag = TPlayer:FindFirstChild("PlayersBag")
                 if Bag then
