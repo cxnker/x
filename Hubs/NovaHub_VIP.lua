@@ -330,7 +330,7 @@ Tab2:AddToggle({
     Default = false,
     Callback = function(connection)
 
-local noclip = noclip
+local noclip = false
 local RunService = game:GetService("RunService")
 
 local function toggleNoclip()
@@ -353,6 +353,34 @@ local function toggleNoclip()
 		end
 	end
 end
+end
+})
+
+Tab2:AddToggle({
+    Name = "Noclip",
+    Default = false,
+    Callback = function(noclip)
+
+local noclip = false
+local RunService = game:GetService("RunService")
+	noclip = not noclip
+
+	if noclip then
+		connection = RunService.Stepped:Connect(function()
+			for _, part in pairs(player.Character:GetDescendants()) do
+				if part:IsA("BasePart") and part.CanCollide then
+					part.CanCollide = false
+				end
+			end
+		end)
+	else
+		if connection then connection:Disconnect() end
+		for _, part in pairs(player.Character:GetDescendants()) do
+			if part:IsA("BasePart") then
+				part.CanCollide = true
+			end
+		end
+	end
 end
 })
 
