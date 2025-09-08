@@ -58,6 +58,13 @@ local Paragraph = Tab1:AddParagraph({"Executor", executorName})
 local Section = Tab1:AddSection({"Version 1.12 (Premium)"})
 local Paragraph = Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
 
+Tab1:AddDiscordInvite({
+    Name = "Nova Hub",
+    Description = "Unete a nuestro Discord",
+    Logo = "rbxassetid://111486071468142",
+    Invite = "Proximamente",
+})
+
 Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
     Callback = function()
