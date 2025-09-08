@@ -654,7 +654,7 @@ Tab3:AddButton({
                 end
 
                 if tonumber(PDesc.SwimAnimation) then
-                    Remotes.Wear:InvokeServer(tonumber(PDesc.IdleAnimation))
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.SwimAnimation))
                     task.wait(0.3)
                 end
 
