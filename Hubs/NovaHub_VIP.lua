@@ -325,79 +325,20 @@ Tab2:AddToggle({
     end
 })
 
-local noclip = false
-local RunService = game:GetService("RunService")
-
-	noclip = not noclip
-	local character = game.Players.LocalPlayer.Character
-	if noclip then
-		connection = RunService.Stepped:Connect(function()
-			for _, part in pairs(character:GetDescendants()) do
-				if part:IsA("BasePart") and part.CanCollide then
-					part.CanCollide = false
-				end
-			end
-		end)
-	else
-		if connection then connection:Disconnect() end
-		for _, part in pairs(character:GetDescendants()) do
-			if part:IsA("BasePart") then
-				part.CanCollide = true
-			end
-		end
-	end
-
 Tab2:AddToggle({
-	Name = "Noclip",
+    Name = "TNoclip",
     Default = false,
-    Callback = function(Value)
-       noclip = Value
-    end
-})
- 
-local noclip = false
-local RunService = game:GetService("RunService")
+    Callback = function(nclip)
 
-	noclip = not noclip
-	local function tnoclip()
-	local character = game.Players.LocalPlayer.Character
-	if noclip then
-		connection = RunService.Stepped:Connect(function()
-			for _, part in pairs(character:GetDescendants()) do
-				if part:IsA("BasePart") and part.CanCollide then
-					part.CanCollide = false
-				end
-			end
-		end)
-	else
-		if connection then connection:Disconnect() end
-		for _, part in pairs(character:GetDescendants()) do
-			if part:IsA("BasePart") then
-				part.CanCollide = true
-			end
-		end
-	end
-end
-Tab2:AddToggle({
-	Name = "Noclip",
-    Default = false,
-    Callback = function(Value)
-       tnoclip and noclip = Value
-    end
-})
-
-Tab2:AddButton({
-    Name = "Noclip GUI Universal",
-    Callback = function(MouseButton1Click:Connect(toggleNoclip))
-local noclip = false
+local noclip = nclip
 local RunService = game:GetService("RunService")
 
 local function toggleNoclip()
 	noclip = not noclip
-	local character = game.Players.LocalPlayer.Character
+
 	if noclip then
 		connection = RunService.Stepped:Connect(function()
-			for _, part in pairs(character:GetDescendants()) do
+			for _, part in pairs(player.Character:GetDescendants()) do
 				if part:IsA("BasePart") and part.CanCollide then
 					part.CanCollide = false
 				end
@@ -405,14 +346,13 @@ local function toggleNoclip()
 		end)
 	else
 		if connection then connection:Disconnect() end
-		for _, part in pairs(character:GetDescendants()) do
+		for _, part in pairs(player.Character:GetDescendants()) do
 			if part:IsA("BasePart") then
 				part.CanCollide = true
 			end
 		end
 	end
 end
-    end
 })
 
 -- Ejecutar Noclip
