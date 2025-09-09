@@ -176,7 +176,7 @@ Tab2:AddTextBox({
 })
 
 -- Boton para activar/desactivar el head-sit
-Tab2:AddButton({"", function()
+Tab2:AddButton({"Activar Headsit", function()
     if not selectedPlayerName then
         return
     end
@@ -277,7 +277,7 @@ local antiSitConnection = nil
 local antiSitEnabled = false
 
 Tab2:AddToggle({
-    Name = "Anti Setarse",
+    Name = "Anti sentado",
     Default = false,
     Callback = function(state)
         antiSitEnabled = state
