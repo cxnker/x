@@ -25,8 +25,6 @@ SoundPlay = setmetatable({}, {
 local TweenService= Services.TweenService
 local Players= Services.Players
 
-
-
 function AllAround(parent, cornerRadius)
 local corner= Instance.new("UICorner")
 corner.CornerRadius= UDim.new(0, cornerRadius)
@@ -35,13 +33,10 @@ Services.RunService.RenderStepped:Wait()
 return corner
 end
 
-
-
 local Players = Services.Players
 local RunService = Services.RunService
 local RacingStripes = {}
 RacingStripes.__index = RacingStripes
-
 
 RacingStripes.DefaultConfig = {
     StripeCount = 12,
@@ -58,8 +53,6 @@ RacingStripes.DefaultConfig = {
         Color3.fromRGB(0, 0, 0),      
     } 
 }
-
-
 
 function RacingStripes:SetupViewport(parentFrame)
     self.viewport = Instance.new("ViewportFrame")
@@ -231,9 +224,8 @@ local StarterGui = game:GetService("StarterGui")
 
 repeat
 local success, result = pcall(function()
-		return loadstring(game:HttpGet("https://raw.githubusercontent.com/Gazer-Ha/NOT-MINE/refs/heads/main/AkaliNotify"))()
+		return loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/Emotes/Notify"))()
 	end)
-
 	if success then
 		Notification = result
 	else
@@ -312,7 +304,7 @@ end)
  TweenService= Services.TweenService
  
 EMOTES_FILE= "emotes.json"
-defaultEmotes= loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Gaze-stuff/refs/heads/main/Default%20Emote'))()
+defaultEmotes= loadstring(game:HttpGet('https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/Emotes/EmoteList'))()
 local Screen= setmetatable({}, {
 __index= function(_, key)
 local cam= workspace.CurrentCamera
