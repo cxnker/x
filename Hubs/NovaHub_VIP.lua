@@ -361,12 +361,7 @@ end
 end
 })
 
-local Nocliptoggl = Tab2:AddToggle({
-    Name = "NoclipDD",
-    Default = false,
-    Callback = function(toggleNoclip)
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
+local player = game.Players.LocalPlayer.Character
 local noclip = false
 local RunService = game:GetService("RunService")
 
@@ -390,8 +385,13 @@ local function toggleNoclip()
 		end
 	end
 end
-Nocliptoggl.Activated:Connect(toggleNoclip)
-end
+
+Tab2:AddToggle({
+	Name = "NoclipDD",
+    Default = false,
+    Callback = function(Value)
+       toggleNoclip = Value
+    end
 })
 
 local Noclipbtn = Tab2:AddButton({"NoclipC", function(noclip)
