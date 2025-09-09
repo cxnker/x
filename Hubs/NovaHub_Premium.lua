@@ -15,8 +15,8 @@ Window:Dialog({
     Title = "Aviso",
     Text = "Nova Hub fue creado y desarrollado por @Roun95, Sigueme para traer futuras actualizaciones y mejoras!",
     Options = {
-        {"Esta bien", function()
-        end}
+	{"Esta bien", function()
+	end}
     }
 })
 local Tab1 = Window:MakeTab({"Credits", "info"})
@@ -70,7 +70,7 @@ Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
     Callback = function()
     setclipboard("https://www.tiktok.com/@lxvap")
-    end
+	end
 })
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 2: User === --
@@ -165,7 +165,7 @@ Tab2:AddTextBox({
     Description = "Ingrese parte del nombre del jugador",
     PlaceholderText = "ej: Rou → Roun95",
     Callback = function(Value)
-        local foundPlayer = findPlayerByPartialName(Value)
+    local foundPlayer = findPlayerByPartialName(Value)
         if foundPlayer then
             selectedPlayerName = foundPlayer.Name
             notifyPlayerSelected(foundPlayer)
@@ -189,7 +189,8 @@ Tab2:AddButton({"", function()
         removeHeadsit()
 		headsitActive = false
     end
-end})
+end
+})
 
 Tab2:AddSlider({
     Name = "Velocidad",
@@ -198,14 +199,13 @@ Tab2:AddSlider({
     MaxValue = 500,
     Default = 16,
     Callback = function(Value)
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
-        
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
         if humanoid then
 			humanoid.WalkSpeed = Value
-       end
-   end
+    	end
+	end
 })
  
 Tab2:AddSlider({
@@ -215,14 +215,13 @@ Tab2:AddSlider({
     MaxValue = 500,
     Default = 50,
     Callback = function(Value)
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
-
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
 		if humanoid then
 			humanoid.JumpPower = Value
-       end
-   end
+    	end
+	end
 })
  
 Tab2:AddSlider({
@@ -262,7 +261,7 @@ Tab2:AddButton({
         game.Workspace.Gravity = 196.2 -- Gravity Value
         -- Desactivar salto infinito
         InfiniteJumpEnabled = false
-    end
+	end
 })
 
 Tab2:AddToggle({
@@ -373,7 +372,7 @@ local RunService = game:GetService("RunService")
 local billboardGuis = {}
 local connections = {}
 local espEnabled = false
-local selectedColor = "RGB Suave"
+local selectedColor = "RGB"
 
 -- Menú desplegable de color
 Tab2:AddDropdown({
@@ -460,7 +459,7 @@ end
 
 -- Interruptor para activar el ESP
 local Toggle1 = Tab2:AddToggle({
-    Name = "Activar ESP",
+    Name = "Espiar jugadores",
     Description = "Muestra la entidad de los jugadores.",
     Default = false
 })
