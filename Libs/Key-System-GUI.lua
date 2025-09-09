@@ -432,7 +432,7 @@ local function CreateButtons(parent)
     
     local buttonsContainer = Instance.new("Frame")
     buttonsContainer.Size = UDim2.new(1, 0, 0, 50)
-    buttonsContainer.Position = UDim2.new(0, 0, 0, 20)
+    buttonsContainer.Position = UDim2.new(0, 0, 0, 220)
     buttonsContainer.BackgroundTransparency = 1
     buttonsContainer.ZIndex = 12
     buttonsContainer.Selectable = false
