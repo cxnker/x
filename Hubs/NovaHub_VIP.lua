@@ -363,7 +363,8 @@ end
 
 local Nocliptoggl = Tab2:AddToggle({
     Name = "NoclipDD",
-    Default = false
+    Default = false,
+    Callback = function(toggleNoclip)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local noclip = false
