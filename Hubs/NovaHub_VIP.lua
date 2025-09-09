@@ -332,14 +332,20 @@ Tab2:AddToggle({
     end
 })
 
-Tab2:AddButton({"Noclip", function(noclip)
+local button = Tab2:AddButton({
+    Name = "Noclip",
+	Callback = function(noclip)
+
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+
+-- Noclip Function
 local noclip = false
 local RunService = game:GetService("RunService")
 
 local function toggleNoclip()
 	noclip = not noclip
+	Name = noclip and "Encendido" or "Apagado"
 
 	if noclip then
 		connection = RunService.Stepped:Connect(function()
@@ -358,53 +364,30 @@ local function toggleNoclip()
 		end
 	end
 end
-end
-})
 
-local player = game.Players.LocalPlayer.Character
+button.MouseButton1Click:Connect(toggleNoclip)
+end
+)}
+
 local noclip = false
-local RunService = game:GetService("RunService")
-
-local function toggleNoclip()
-	noclip = not noclip
-
-	if noclip then
-		connection = RunService.Stepped:Connect(function()
-			for _, part in pairs(player.Character:GetDescendants()) do
-				if part:IsA("BasePart") and part.CanCollide then
-					part.CanCollide = false
-				end
-			end
-		end)
-	else
-		if connection then connection:Disconnect() end
-		for _, part in pairs(player.Character:GetDescendants()) do
-			if part:IsA("BasePart") then
-				part.CanCollide = true
-			end
-		end
-	end
-end
 
 Tab2:AddToggle({
-	Name = "NoclipDD",
+    Name = "Apagado",
     Default = false,
-    Callback = function(Value)
-       toggleNoclip = Value
-    end
-})
+    Callback = function(staten)
+        noclip = staten
 
-local Noclipbtn = Tab2:AddButton({"NoclipC", function(noclip)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
-local noclip = false
+
+-- Noclip Function
 local RunService = game:GetService("RunService")
 
 local function toggleNoclip()
-	noclip = not noclip
-	Noclipbtn.Text = noclip and "Noclip Activado" or "Noclip Desactivado"
+	staten = not staten
+	Name.Text = staten and "Encendido" or "Apagado"
 
-	if noclip then
+	if staten then
 		connection = RunService.Stepped:Connect(function()
 			for _, part in pairs(player.Character:GetDescendants()) do
 				if part:IsA("BasePart") and part.CanCollide then
@@ -421,10 +404,10 @@ local function toggleNoclip()
 		end
 	end
 end
-Noclipbtn.MouseButton1Click:Connect(toggleNoclip)
-end
-})
 
+button.MouseButton1Click:Connect(toggleNoclip)
+end
+)}
 -- Ejecutar Noclip
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
