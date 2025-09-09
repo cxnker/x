@@ -196,7 +196,7 @@ Tab2:AddSlider({
     Name = "Velocidad",
     Increase = 1,
     MinValue = 16,
-    MaxValue = 500,
+    MaxValue = 600,
     Default = 16,
     Callback = function(Value)
     local player = game.Players.LocalPlayer
@@ -212,7 +212,7 @@ Tab2:AddSlider({
     Name = "Salto",
     Increase = 1,
     MinValue = 50,
-    MaxValue = 500,
+    MaxValue = 600,
     Default = 50,
     Callback = function(Value)
     local player = game.Players.LocalPlayer
@@ -228,7 +228,7 @@ Tab2:AddSlider({
     Name = "Gravedad",
     Increase = 1,
     MinValue = 0,
-    MaxValue = 5000,
+    MaxValue = 900,
     Default = 196.2,
     Callback = function(Value)
         game.Workspace.Gravity = Value
@@ -356,6 +356,35 @@ local function toggleNoclip()
 		end
 	end
 end
+end
+})
+
+local Noclipbtn = Tab2:AddButton({"NoclipD", function()
+local noclip = false
+local RunService = game:GetService("RunService")
+
+local function toggleNoclip()
+	noclip = not noclip
+	Noclipbtn.Text = noclip and "Noclip Activado" or "Noclip Desactivado"
+
+	if noclip then
+		connection = RunService.Stepped:Connect(function()
+			for _, part in pairs(player.Character:GetDescendants()) do
+				if part:IsA("BasePart") and part.CanCollide then
+					part.CanCollide = false
+				end
+			end
+		end)
+	else
+		if connection then connection:Disconnect() end
+		for _, part in pairs(player.Character:GetDescendants()) do
+			if part:IsA("BasePart") then
+				part.CanCollide = true
+			end
+		end
+	end
+end
+Noclipbtn.MouseButton1Click:Connect(toggleNoclip)
 end
 })
 
