@@ -1,9 +1,8 @@
---// Chatgpt Ahh Code
+--// Silly Emote v2.4
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local player = Players.LocalPlayer
-
 
 local emotes = {}
 local currentAnimationTrack = nil
@@ -24,8 +23,6 @@ local filteredAndSortedEmotes = {}
 function refresh()
 print("placeholdey")
 end
-
-
 -- Default emotes (used only if no save file exists)
 local defaultEmotes = {
     {cr = "Aug 08, 2025", ugc = true, isAnimation = false, price = 50, id = 121067808279598, fav = false, imageId = 121067808279598, n = "PARROT PARTY DANCE"},
@@ -499,7 +496,7 @@ gui.ResetOnSpawn = false
 gui.Parent = game:GetService("CoreGui")
 
 local main = Instance.new("Frame")
-main.Size = UDim2.new(0, 400, 0, 450) -- Increased height for pagination
+main.Size = UDim2.new(0, 390, 0, 440) -- Increased height for pagination
 main.Position = UDim2.new(0, 20, 0.5, -225)
 main.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 main.Active = true
@@ -658,7 +655,7 @@ local searchText = ""
 
 local minimized = false
 local originalSize = main.Size
-local minimizedSize = UDim2.new(0, 400, 0, 30)
+local minimizedSize = UDim2.new(0, 390, 0, 30)
 
 minButton.MouseButton1Click:Connect(function()
     minimized = not minimized
