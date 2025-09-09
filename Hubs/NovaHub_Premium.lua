@@ -1,6 +1,6 @@
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
 
-local Window = redzlib:MakeWindow({
+local Window = lib:MakeWindow({
     Title = "Nova Hub (Español) 🎆",
     SubTitle = "by Roun95",
     SaveFolder = "NovaData"
@@ -63,7 +63,7 @@ Tab1:AddDiscordInvite({
     Invite = "Proximamente",
 })
 
-Tab1:AddSection({"Version 1.12 (Premium)"})
+Tab1:AddSection({"Version 1.12 (Premiun)"})
 Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
 
 Tab1:AddButton({
