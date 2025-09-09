@@ -1,4 +1,4 @@
-local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/RedzhubuiR.lua"))()
 
 local Window = Lib:MakeWindow({
     Title = "Nova Hub (Español) 🎆",
@@ -331,43 +331,6 @@ Tab2:AddToggle({
         end
     end
 })
-
-local button = Tab2:AddButton({
-    Name = "Noclip",
-	Callback = function(noclip)
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
--- Noclip Function
-local noclip = false
-local RunService = game:GetService("RunService")
-
-local function toggleNoclip()
-	noclip = not noclip
-	Name = noclip and "Encendido" or "Apagado"
-
-	if noclip then
-		connection = RunService.Stepped:Connect(function()
-			for _, part in pairs(player.Character:GetDescendants()) do
-				if part:IsA("BasePart") and part.CanCollide then
-					part.CanCollide = false
-				end
-			end
-		end)
-	else
-		if connection then connection:Disconnect() end
-		for _, part in pairs(player.Character:GetDescendants()) do
-			if part:IsA("BasePart") then
-				part.CanCollide = true
-			end
-		end
-	end
-end
-
-button.MouseButton1Click:Connect(toggleNoclip)
-end
-)}
 -- Ejecutar Noclip
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
