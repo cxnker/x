@@ -1,14 +1,14 @@
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
 
-local Window = lib:MakeWindow({
+local Window = Lib:MakeWindow({
     Title = "Nova Hub (Español) 🎆",
     SubTitle = "by Roun95",
     SaveFolder = "NovaData"
 })
 
 Window:AddMinimizeButton({
-    Button = { Image = "rbxassetid://111486071468142", BackgroundTransparency = 0 },
-    Corner = { CornerRadius = UDim.new(35, 1) },
+    Button = {Image = "rbxassetid://111486071468142", BackgroundTransparency = 0},
+    Corner = {CornerRadius = UDim.new(35, 1)},
 })
 
 Window:Dialog({
