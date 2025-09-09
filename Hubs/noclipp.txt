@@ -3,13 +3,14 @@ local character = player.Character or player.CharacterAdded:Wait()
 
 -- GUI
 local gui = Instance.new("ScreenGui", game.CoreGui)
+gui.Name = "NoclipGui"
 gui.ResetOnSpawn = false
 
 -- Noclip Toggle
 local button = Instance.new("TextButton", gui)
 button.Size = UDim2.new(0.1,0,0,25)
 button.Position = UDim2.new(0.1,0,0,30)
-button.Text = "Noclip"
+button.Text = "Apagado"
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.TextSize = 10
@@ -41,4 +42,3 @@ local function toggleNoclip()
 end
 
 button.MouseButton1Click:Connect(toggleNoclip)
-
