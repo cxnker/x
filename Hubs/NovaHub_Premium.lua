@@ -4087,7 +4087,7 @@ Tab12:AddButton({
     end
 })
 
-Tab11:AddButton({
+Tab12:AddButton({
     Name = "Shift Lock Mobile",
     Description = "Universal",
     Callback = function()
