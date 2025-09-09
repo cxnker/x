@@ -332,7 +332,7 @@ Tab2:AddToggle({
     end
 })
 
-Tab2:AddButton({"Noclip", function(toggleNoclip)
+Tab2:AddButton({"Noclip", function(noclip)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local noclip = false
@@ -448,8 +448,8 @@ local RunService = game:GetService("RunService")
 			end
 		end
 	end
-end
 Noclipbtn.MouseButton1Click:Connect(toggleNoclip)
+end
 })
 
 -- Ejecutar Noclip
