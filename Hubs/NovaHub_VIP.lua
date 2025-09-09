@@ -1,4 +1,4 @@
-local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/RedzhubuiD.lua"))()
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/RedzLibb.txt"))()
 
 local Window = Lib:MakeWindow({
     Title = "Nova Hub (Español) 🎆",
