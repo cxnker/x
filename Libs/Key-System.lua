@@ -490,7 +490,7 @@ end
 local function CreateStatus(parent)
     local statusContainer = Instance.new("Frame")
     statusContainer.Size = UDim2.new(1, 0, 0, 60)
-    statusContainer.Position = UDim2.new(0, 0, 0, 330)
+    statusContainer.Position = UDim2.new(0, 0, 0, 115)
     statusContainer.BackgroundTransparency = 1
     statusContainer.ZIndex = 12
     statusContainer.Selectable = false
