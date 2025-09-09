@@ -426,8 +426,8 @@ if UserInputService.TouchEnabled then
 
     local Button = Instance.new("TextButton")
     Button.Parent = HideGui
-    Button.Size = UDim2.new(0,60,0,60)
-    Button.Position = UDim2.new(0.65,0,0.45,0)
+    Button.Size = UDim2.new(0,35,0,35)
+    Button.Position = UDim2.new(0.6,0,0.4,0)
     Button.AnchorPoint = Vector2.new(0.5,0.5)
     Button.Text = ":3"
     Button.TextScaled = true
@@ -442,9 +442,9 @@ if UserInputService.TouchEnabled then
     UICorner.CornerRadius = UDim.new(1,0)
 
     local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    local squish = TweenService:Create(Button, tweenInfo, {Size = UDim2.new(0,75,0,50)})
-    local normal = TweenService:Create(Button, tweenInfo, {Size = UDim2.new(0,60,0,60)})
-    local pressed = TweenService:Create(Button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0,55,0,55)})
+    local squish = TweenService:Create(Button, tweenInfo, {Size = UDim2.new(0,50,0,30)})
+    local normal = TweenService:Create(Button, tweenInfo, {Size = UDim2.new(0,35,0,35)})
+    local pressed = TweenService:Create(Button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0,30,0,30)})
 
     Button.MouseButton1Down:Connect(function() pressed:Play() end)
     Button.MouseButton1Up:Connect(function() normal:Play() end)
@@ -464,7 +464,6 @@ if UserInputService.TouchEnabled then
     end)
 end
 
-
  topBar= Instance.new("Frame")
 topBar.Size= UDim2.new(1, 0, 0, scale("Y", 40))
 topBar.BackgroundColor3= Color3.fromRGB(50, 50, 50)
@@ -483,7 +482,7 @@ title.TextXAlignment= Enum.TextXAlignment.Left
 title.Position= UDim2.new(0, 5, 0, 0)
 title.Parent= topBar
 
-gazeLabel = Instance.new("TextLabel")
+ gazeLabel = Instance.new("TextLabel")
 gazeLabel.Size = UDim2.new(0, scale("X", 70), 0, scale("Y", 28))
 gazeLabel.Position = UDim2.new(0, scale("X", 110), 0.5, -scale("Y", 14))
 gazeLabel.BackgroundTransparency = 1
@@ -564,7 +563,6 @@ AllAround(filterFrame, 12)
 createShadow(filterFrame, UDim2.new(1, 10, 1, 10), UDim2.new(0, -5, 0, -5))
 createGradient(filterFrame, Color3.fromRGB(50, 50, 50), Color3.fromRGB(40, 40, 40))
 
-
 local stripes2 = RacingStripes.new(filterFrame, {
      StripeColors = {Color3.fromRGB(44,44, 44), Color3.fromRGB(55,55,55)}
 })
@@ -630,7 +628,6 @@ minButton.MouseButton1Click:Connect(function()
     end
 end)
 
-
 local function stopCurrentAnimation()
     if currentAnimationTrack then
         currentAnimationTrack:Stop(0.1)
@@ -638,13 +635,11 @@ local function stopCurrentAnimation()
     end
 end
 
-
 local function createConfirmation(title, message, beg, callback)
     if gui:FindFirstChild("ConfirmationFrame") then
         gui:FindFirstChild("ConfirmationFrame"):Destroy()
     end
-    
-    
+
     local confirmationFrame= Instance.new("Frame")
     confirmationFrame.Size= UDim2.new(2, 0, 2, 0)
     confirmationFrame.Position= UDim2.new(-0.5, 0, -0.5, 0)
