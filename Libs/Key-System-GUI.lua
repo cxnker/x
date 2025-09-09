@@ -100,8 +100,8 @@ end
 local function CreateContainer(parent)
     local container = Instance.new("Frame")
     container.Name = "MainContainer"
-    container.Size = UDim2.new(0, 420, 0, 600)
-    container.Position = UDim2.new(0.5, -210, 0.5, -300)
+    container.Size = UDim2.new(0, 400, 0, 400)
+    container.Position = UDim2.new(0.5, -200, 0.5, -200)
     container.BackgroundColor3 = Colors.Background
     container.BorderSizePixel = 0
     container.ZIndex = 110
@@ -240,15 +240,15 @@ end
 local function CreateContent(parent)
     local content = Instance.new("Frame")
     content.Name = "Content"
-    content.Size = UDim2.new(1, -64, 0, 440)
-    content.Position = UDim2.new(0, 32, 0, 120)
+    content.Size = UDim2.new(1, -60, 0, 80)
+    content.Position = UDim2.new(0, 30, 0, 100)
     content.BackgroundTransparency = 1
     content.ZIndex = 11
     content.Selectable = false
     content.Parent = parent
     
     local title = Instance.new("TextLabel")
-    title.Size = UDim2.new(1, 0, 0, 32)
+    title.Size = UDim2.new(1, 0, 0, 30)
     title.BackgroundTransparency = 1
     title.Text = "Access Key Required"
     title.TextColor3 = Colors.TextPrimary
@@ -259,7 +259,7 @@ local function CreateContent(parent)
     title.Parent = content
     
     local subtitle = Instance.new("TextLabel")
-    subtitle.Size = UDim2.new(1, 0, 0, 40)
+    subtitle.Size = UDim2.new(1, 0, 0, 30)
     subtitle.Position = UDim2.new(0, 0, 0, 40)
     subtitle.BackgroundTransparency = 1
     subtitle.Text = "Enter your access key to continue"
@@ -281,15 +281,15 @@ end
 
 local function CreateInputSection(parent)
     local section = Instance.new("Frame")
-    section.Size = UDim2.new(1, 0, 0, 100)
-    section.Position = UDim2.new(0, 0, 0, 100)
+    section.Size = UDim2.new(1, 0, 0, 50)
+    section.Position = UDim2.new(0, 0, 0, 80)
     section.BackgroundTransparency = 1
     section.ZIndex = 12
     section.Selectable = false
     section.Parent = parent
     
     local inputContainer = Instance.new("Frame")
-    inputContainer.Size = UDim2.new(1, 0, 0, 52)
+    inputContainer.Size = UDim2.new(1, 0, 0, 50)
     inputContainer.BackgroundColor3 = Colors.Surface
     inputContainer.BorderSizePixel = 0
     inputContainer.ZIndex = 13
@@ -384,8 +384,8 @@ end
 
 local function CreateButtons(parent)
     local submitButton = Instance.new("TextButton")
-    submitButton.Size = UDim2.new(1, 0, 0, 48)
-    submitButton.Position = UDim2.new(0, 0, 0, 200)
+    submitButton.Size = UDim2.new(1, 0, 0, 50)
+    submitButton.Position = UDim2.new(0, 0, 0, 160)
     submitButton.BackgroundColor3 = Colors.Primary
     submitButton.BorderSizePixel = 0
     submitButton.Text = "Verify Access Key"
@@ -431,15 +431,15 @@ local function CreateButtons(parent)
     spinnerGradient.Parent = spinner
     
     local buttonsContainer = Instance.new("Frame")
-    buttonsContainer.Size = UDim2.new(1, 0, 0, 48)
-    buttonsContainer.Position = UDim2.new(0, 0, 0, 260)
+    buttonsContainer.Size = UDim2.new(1, 0, 0, 50)
+    buttonsContainer.Position = UDim2.new(0, 0, 0, 20)
     buttonsContainer.BackgroundTransparency = 1
     buttonsContainer.ZIndex = 12
     buttonsContainer.Selectable = false
     buttonsContainer.Parent = parent
     
     local getKeyButton = Instance.new("TextButton")
-    getKeyButton.Size = UDim2.new(0.48, 0, 1, 0)
+    getKeyButton.Size = UDim2.new(0.50, 0, 1, 0)
     getKeyButton.BackgroundColor3 = Colors.GetKey
     getKeyButton.BorderSizePixel = 0
     getKeyButton.Text = "Get Key"
