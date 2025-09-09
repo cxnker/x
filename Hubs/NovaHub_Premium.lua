@@ -29,8 +29,8 @@ local Tab7 = Window:MakeTab({"Music All", "radio"})
 local Tab8 = Window:MakeTab({"Music", "music"})
 local Tab9 = Window:MakeTab({"Troll", "skull"})
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
-local Tab11 = Window:MakeTab({"Scripts", "scroll"})
-local Tab12 = Window:MakeTab({"Teleportes", "map-pin"})
+local Tab11 = Window:MakeTab({"Teleportes", "map-pin"})
+local Tab12 = Window:MakeTab({"Scripts", "scroll"})
 local Tab13 = Window:MakeTab({"Shaders", "wind"})
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 1: Credits === --
@@ -3991,146 +3991,7 @@ end})
 ----------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------
-                                -- === Tab 11: Scripts === --
-----------------------------------------------------------------------------------------------------
-Tab11:AddButton({
-    Name = "Super Ring Parts",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/SuperRing.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Bring Parts",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BringParts.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Highlight Players",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/HighlightPlayers.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Click Teleport Tool",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TPTool.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Shift Lock Mobile",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Shiftlock.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Virtual Keyboard",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/VirtualKeyboard.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "FE Particles Giver",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/ParticleGiver.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "TP To Player",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TptoPlayer.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "ServerHop (Low Players)",
-    Callback = function()
-        local success, _ = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Serverhop.lua"))()
-        end)
-
-        game.StarterGui:SetCore("SendNotification", {
-            Title = success and "Exito" or "Error",
-            Text = success and "Has sido teletransportado!" or "Fallo el teletransporte.",
-            Duration = 5
-        })
-    end
-})
-
-Tab11:AddButton({
-    Name = "Rejoin Server",
-    Callback = function()
-        local success, _ = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/RejoinServer.lua"))()
-        end)
-
-        game.StarterGui:SetCore("SendNotification", {
-            Title = success and "Exito" or "Error",
-            Text = success and "Has sido Reingresado!" or "Fallo el Reingreso.",
-            Duration = 5
-        })
-    end
-})
-----------------------------------------------------------------------------------------------------
-Tab11:AddSection({"Paneles"})
-
-Tab11:AddButton({
-    Name = "AFEM Emotes Menu",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AFEM.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Animation Changer Gui",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AnimationChangerGui.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Admin Panel by @Roun95",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/AdminPanel.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "PShade-Ultimate",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/pshade-ultimate/refs/heads/main/src/cd.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "System Broken HUB",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/SystemBroken.lua"))()
-    end
-})
-
-----------------------------------------------------------------------------------------------------
-                                -- === Tab 12: Teleportes === --
+                                -- === Tab 11: Teleportes === --
 ----------------------------------------------------------------------------------------------------
 local teleportPlayer = game.Players.LocalPlayer
 local teleportLocation = "Inicio" -- Valor Predeterminado
@@ -4145,7 +4006,7 @@ local locations = {
     ["CentroComercial"] = Vector3.new(151.05, 3.52, -190.64)
 }
 
-Tab12:AddDropdown({
+Tab11:AddDropdown({
     Name = "Lugares de Brookhaven",
     Description = "Seleccione un lugar para teletransportarse",
     Default = teleportLocation,
@@ -4164,7 +4025,7 @@ Tab12:AddDropdown({
     end
 })
 
-Tab12:AddButton({
+Tab11:AddButton({
     Name = "Teletransportarse",
     Description = "Teletransportarse al lugar seleccionado",
     Callback = function()
@@ -4191,7 +4052,148 @@ Tab12:AddButton({
         end
     end
 })
+----------------------------------------------------------------------------------------------------
+                                -- === Tab 12: Scripts === --
+----------------------------------------------------------------------------------------------------
+Tab12:AddButton({
+    Name = "Super Ring Parts",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/SuperRing.lua"))()
+    end
+})
 
+Tab12:AddButton({
+    Name = "Bring Parts",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/BringParts.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "Highlight Players",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/HighlightPlayers.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "Click Teleport Tool",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TPTool.lua"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "Shift Lock Mobile",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Shiftlock.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "Virtual Keyboard",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/VirtualKeyboard.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "FE Particles Giver",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/ParticleGiver.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "TP To Player",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/TptoPlayer.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "ServerHop (Low Players)",
+    Callback = function()
+        local success, _ = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Serverhop.lua"))()
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Has sido teletransportado!" or "Fallo el teletransporte.",
+            Duration = 5
+        })
+    end
+})
+
+Tab12:AddButton({
+    Name = "Rejoin Server",
+    Callback = function()
+        local success, _ = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/RejoinServer.lua"))()
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Title = success and "Exito" or "Error",
+            Text = success and "Has sido Reingresado!" or "Fallo el Reingreso.",
+            Duration = 5
+        })
+    end
+})
+----------------------------------------------------------------------------------------------------
+Tab12:AddSection({"Paneles"})
+
+Tab12:AddButton({
+    Name = "AFEM Emotes Menu",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AFEM.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "Animation Changer Gui",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/AnimationChangerGui.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "Admin Panel by @Roun95",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/AdminPanel.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "PShade-Ultimate",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/pshade-ultimate/refs/heads/main/src/cd.lua"))()
+    end
+})
+
+Tab12:AddButton({
+    Name = "System Broken HUB",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/SystemBroken.lua"))()
+    end
+})
+
+----------------------------------------------------------------------------------------------------
+                                -- === Tab 13: Shaders === --
+----------------------------------------------------------------------------------------------------
 Tab13:AddSection({"Optimizacion"})
 
 Tab13:AddButton({
