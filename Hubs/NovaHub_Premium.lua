@@ -196,7 +196,7 @@ Tab2:AddSlider({
     Name = "Velocidad",
     Increase = 1,
     MinValue = 16,
-    MaxValue = 500,
+    MaxValue = 600,
     Default = 16,
     Callback = function(Value)
     local player = game.Players.LocalPlayer
@@ -212,7 +212,7 @@ Tab2:AddSlider({
     Name = "Salto",
     Increase = 1,
     MinValue = 50,
-    MaxValue = 500,
+    MaxValue = 600,
     Default = 50,
     Callback = function(Value)
     local player = game.Players.LocalPlayer
@@ -228,7 +228,7 @@ Tab2:AddSlider({
     Name = "Gravedad",
     Increase = 1,
     MinValue = 0,
-    MaxValue = 5000,
+    MaxValue = 900,
     Default = 196.2,
     Callback = function(Value)
         game.Workspace.Gravity = Value
