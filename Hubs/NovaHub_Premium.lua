@@ -4120,6 +4120,14 @@ Tab12:AddButton({
 })
 
 Tab12:AddButton({
+    Name = "Active Old Chat",
+    Description = "Universal",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.Visible = true
+    end
+})
+
+Tab12:AddButton({
     Name = "ServerHop (Low Players)",
     Callback = function()
         local success, _ = pcall(function()
@@ -4150,6 +4158,14 @@ Tab12:AddButton({
 })
 ----------------------------------------------------------------------------------------------------
 Tab12:AddSection({"Paneles"})
+
+Tab12:AddButton({
+    Name = ":3 Emotes",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/Emotes/Emotes.lua"))()
+    end
+})
 
 Tab12:AddButton({
     Name = "AFEM Emotes Menu",
