@@ -224,7 +224,7 @@ local StarterGui = game:GetService("StarterGui")
 
 repeat
 local success, result = pcall(function()
-		return loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/Emotes/Notify"))()
+		return loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/Emotes/Notify.lua"))()
 	end)
 	if success then
 		Notification = result
@@ -246,10 +246,8 @@ SoundPlay.CustomId = "rbxassetid://6655708496"
 	})
 end
 
-
  SoundPlay.CustomId = "rbxassetid://2084290015"
- DoNotif("Origin V 5.16","RandomEmote BugFix", 10)
-
+ DoNotif(":3 Emotes","New V5.16", 10)
 
 local LineStuff = {
     "applied duct tape..",
@@ -295,7 +293,6 @@ end)
 task.delay(12, function()
     DoNotif(":3 Emotes", GazePain(), 10)
 end)
-
 
  Players= Services.Players
  player= Players.LocalPlayer
@@ -370,14 +367,10 @@ initEmotes()
     return shadow
 end
 
- 
-
-gui= Instance.new("ScreenGui")
+ gui= Instance.new("ScreenGui")
 gui.Name= "EmoteGui"
 gui.ZIndexBehavior= Enum.ZIndexBehavior.Sibling
 gui.Parent= game:GetService("CoreGui")
-
-
 
  shadowContainer= Instance.new("Frame")
 shadowContainer.Size= UDim2.new(0, scale("X", 500), 0, scale("Y", 600))
