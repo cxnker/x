@@ -4661,7 +4661,9 @@ end
 Tab14:AddSection({"Animaciones"})
 
 Tab14:AddButton({"Animacion Adidas Cool Npk", function()
-local Animation = game:GetService("Players").LocalPlayer.Character.Animate
+
+local Players = game:GetService("Players")
+local Animation = Players.LocalPlayer.Character.Animate
 
 Animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
 Animation.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
