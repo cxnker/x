@@ -4658,9 +4658,9 @@ end
 ----------------------------------------------------------------------------------------------------
                                 -- === Tab 14: Animations === --
 ----------------------------------------------------------------------------------------------------
-Tab13:AddSection({"Animaciones"})
+Tab14:AddSection({"Animaciones"})
 
-Tab9:AddButton({"Animacion Adidas Cool Npk", function()
+Tab14:AddButton({"Animacion Adidas Cool Npk", function()
 local Animation = game:GetService("Players").LocalPlayer.Character.Animate
 
 Animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
