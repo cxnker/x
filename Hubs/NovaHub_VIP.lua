@@ -32,6 +32,7 @@ local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
 local Tab11 = Window:MakeTab({"Teleportes", "map-pin"})
 local Tab12 = Window:MakeTab({"Scripts", "scroll"})
 local Tab13 = Window:MakeTab({"Shaders", "wind"})
+local Tab14 = Window:MakeTab({"Animations", "pencil"})
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 1: Credits === --
 ----------------------------------------------------------------------------------------------------
@@ -331,6 +332,7 @@ Tab2:AddToggle({
         end
     end
 })
+
 -- Ejecutar Noclip
 Tab2:AddButton({
     Name = "Noclip GUI Universal",
@@ -4159,6 +4161,14 @@ Tab12:AddButton({
 Tab12:AddSection({"Paneles"})
 
 Tab12:AddButton({
+    Name = "Dex Explorer (API Less)",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/DexApiLess.lua"))()
+    end
+})
+
+Tab12:AddButton({
     Name = ":3 Emotes",
     Description = "Universal",
     Callback = function()
@@ -4643,5 +4653,23 @@ sunRays.Spread = 0.8
 
 local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
+end
+})
+----------------------------------------------------------------------------------------------------
+                                -- === Tab 14: Animations === --
+----------------------------------------------------------------------------------------------------
+Tab13:AddSection({"Animaciones"})
+
+Tab9:AddButton({"Animacion Adidas Cool Npk", function()
+local Animation = game:GetService("Players").LocalPlayer.Character.Animate
+
+Animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
+Animation.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
+Animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=910034870"
+Animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
+Animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
+Animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=910001910"
+Animation.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=910030921"
+Animation.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=910028158"
 end
 })
