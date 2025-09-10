@@ -4160,6 +4160,14 @@ Tab12:AddButton({
 Tab12:AddSection({"Paneles"})
 
 Tab12:AddButton({
+    Name = "Dex Explorer (API Less)",
+    Description = "Universal",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/DexApiLess.lua"))()
+    end
+})
+
+Tab12:AddButton({
     Name = ":3 Emotes",
     Description = "Universal",
     Callback = function()
