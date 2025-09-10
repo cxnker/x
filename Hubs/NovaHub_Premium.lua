@@ -30,8 +30,9 @@ local Tab8 = Window:MakeTab({"Music", "music"})
 local Tab9 = Window:MakeTab({"Troll", "skull"})
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
 local Tab11 = Window:MakeTab({"Teleportes", "map-pin"})
-local Tab12 = Window:MakeTab({"Scripts", "scroll"})
-local Tab13 = Window:MakeTab({"Shaders", "wind"})
+local Tab12 = Window:MakeTab({"Animations", "pencil"})
+local Tab13 = Window:MakeTab({"Scripts", "scroll"})
+local Tab14 = Window:MakeTab({"Shaders", "wind"})
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 1: Credits === --
 ----------------------------------------------------------------------------------------------------
@@ -4053,9 +4054,30 @@ Tab11:AddButton({
     end
 })
 ----------------------------------------------------------------------------------------------------
-                                -- === Tab 12: Scripts === --
+                                -- === Tab 12: Animations === --
 ----------------------------------------------------------------------------------------------------
-Tab12:AddButton({
+Tab12:AddSection({"Animaciones"})
+
+Tab12:AddButton({"Animacion Adidas Cool Npk", function()
+
+local Players = game:GetService("Players")
+local Animation = Players.LocalPlayer.Character.Animate
+
+Animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
+Animation.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
+Animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=910034870"
+Animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
+Animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
+Animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=910001910"
+Animation.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=910030921"
+Animation.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=910028158"
+end
+})
+
+----------------------------------------------------------------------------------------------------
+                                -- === Tab 13: Scripts === --
+----------------------------------------------------------------------------------------------------
+Tab13:AddButton({
     Name = "Super Ring Parts",
     Description = "Universal",
     Callback = function()
@@ -4063,7 +4085,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Bring Parts",
     Description = "Universal",
     Callback = function()
@@ -4071,7 +4093,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Highlight Players",
     Description = "Universal",
     Callback = function()
@@ -4079,7 +4101,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Click Teleport Tool",
     Description = "Universal",
     Callback = function()
@@ -4087,7 +4109,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Shift Lock Mobile",
     Description = "Universal",
     Callback = function()
@@ -4095,7 +4117,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Virtual Keyboard",
     Description = "Universal",
     Callback = function()
@@ -4103,7 +4125,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "FE Particles Giver",
     Description = "Universal",
     Callback = function()
@@ -4111,7 +4133,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "TP To Player",
     Description = "Universal",
     Callback = function()
@@ -4119,7 +4141,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Active Old Chat",
     Description = "Universal",
     Callback = function()
@@ -4127,7 +4149,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "ServerHop (Low Players)",
     Callback = function()
         local success, _ = pcall(function()
@@ -4142,7 +4164,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Rejoin Server",
     Callback = function()
         local success, _ = pcall(function()
@@ -4157,9 +4179,9 @@ Tab12:AddButton({
     end
 })
 ----------------------------------------------------------------------------------------------------
-Tab12:AddSection({"Paneles"})
+Tab13:AddSection({"Paneles"})
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Dex Explorer (API Less)",
     Description = "Universal",
     Callback = function()
@@ -4167,7 +4189,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = ":3 Emotes",
     Description = "Universal",
     Callback = function()
@@ -4175,7 +4197,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "AFEM Emotes Menu",
     Description = "Universal",
     Callback = function()
@@ -4183,7 +4205,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Animation Changer Gui",
     Description = "Universal",
     Callback = function()
@@ -4191,7 +4213,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "Admin Panel by @Roun95",
     Description = "Universal",
     Callback = function()
@@ -4199,7 +4221,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "PShade-Ultimate",
     Description = "Universal",
     Callback = function()
@@ -4207,7 +4229,7 @@ Tab12:AddButton({
     end
 })
 
-Tab12:AddButton({
+Tab13:AddButton({
     Name = "System Broken HUB",
     Description = "Universal",
     Callback = function()
@@ -4216,11 +4238,11 @@ Tab12:AddButton({
 })
 
 ----------------------------------------------------------------------------------------------------
-                                -- === Tab 13: Shaders === --
+                                -- === Tab 14: Shaders === --
 ----------------------------------------------------------------------------------------------------
-Tab13:AddSection({"Optimizacion"})
+Tab14:AddSection({"Optimizacion"})
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "FPS Counter",
     Description = "Universal",
     Callback = function()
@@ -4228,7 +4250,7 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "FPS Booster",
     Description = "Universal",
     Callback = function()
@@ -4236,7 +4258,7 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "FPS Booster V2",
     Description = "Universal",
     Callback = function()
@@ -4244,7 +4266,7 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "FPS Booster (Max)",
     Description = "Universal",
     Callback = function()
@@ -4252,9 +4274,9 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddSection({"Mejoras graficas"})
+Tab14:AddSection({"Mejoras graficas"})
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "Improved Graphics",
     Description = "Universal",
     Callback = function()
@@ -4262,7 +4284,7 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddButton({
+Tab14:AddButton({
     Name = "Improved Graphics V2",
     Description = "Universal",
     Callback = function()
@@ -4270,7 +4292,7 @@ Tab13:AddButton({
     end
 })
 
-Tab13:AddButton({"Shaders", function()
+Tab14:AddButton({"Shaders", function()
 
 local workspace = game:GetService("Workspace")
 local Lighting = game:GetService("Lighting")
