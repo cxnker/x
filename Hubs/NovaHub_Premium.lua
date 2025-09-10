@@ -4058,19 +4058,20 @@ Tab11:AddButton({
 ----------------------------------------------------------------------------------------------------
 Tab12:AddSection({"Animaciones"})
 
-Tab12:AddButton({"Animacion Adidas Cool Npk", function()
+Tab12:AddButton({"adidas Community Animation Pack (Test)", function()
 
 local Players = game:GetService("Players")
 local Animation = Players.LocalPlayer.Character.Animate
 
 Animation.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
 Animation.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
-Animation.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=910034870"
+Animation.walk.WalkAnim.AnimationId = "rbxassetid://122150855457006"
 Animation.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
 Animation.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
-Animation.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=910001910"
-Animation.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=910030921"
-Animation.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=910028158"
+Animation.fall.FallAnim.AnimationId = "rbxassetid://98600215928904"
+Animation.swimidle.SwimIdle.AnimationId = "rbxassetid://109346520324160"
+Animation.swim.Swim.AnimationId = "rbxassetid://133308483266208"
+Animation.climb.Climb.AnimationId = 'rbxassetid://88763136693023'
 end
 })
 
