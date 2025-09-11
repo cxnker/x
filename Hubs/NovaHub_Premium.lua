@@ -1561,7 +1561,7 @@ Tab6:AddToggle({
 Tab6:AddSection({"Nombre Personalizado"})
 
 local names = {
-    {"𝐍 𝐎 𝐕 𝐀 𝐇 𝐔 𝐁", "@Roun95"}
+    {"N O V A H U B", "Welcome"}
 }
 
 for _, name in ipairs(names) do
