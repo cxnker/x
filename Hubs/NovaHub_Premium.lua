@@ -341,9 +341,9 @@ Tab2:AddToggle({
     end
 })
 
-RunService.Stepped:Connect(function()
-    if NoclipActived and LocalPlayer.Character then
-        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+game:GetService("RunService").Stepped:Connect(function()
+    if NoclipActived and game.Players.LocalPlayer.Character then
+        for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
             if part:IsA("BasePart") and part.CanCollide then
                 part.CanCollide = false
             end
