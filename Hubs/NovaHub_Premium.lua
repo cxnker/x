@@ -342,21 +342,21 @@ Tab2:AddToggle({
 })
 
 game:GetService("RunService").Stepped:Connect(function()
-    if NoclipActived and game.Player.LocalPlayer.Character then
-        for _, part in pairs(game.Player.LocalPlayer.Character:GetDescendants()) do
+    if NoclipActived and game.Players.LocalPlayer.Character then
+        for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
             if part:IsA("BasePart") and part.CanCollide then
                 part.CanCollide = false
             end
         end
 	else
-	if NoclipActived then NoclipActived:Disconnect() end
-		for _, part in pairs(game.Player.LocalPlayer.Character:GetDescendants()) do
-			if part:IsA("BasePart") then
-				part.CanCollide = true
+		if NoclipActived then NoclipActived:Disconnect() end
+			for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if part:IsA("BasePart") then
+					part.CanCollide = true
+				end
 			end
 		end
-	end
-end)
+	end)
 -- Ejecutar Fly
 Tab2:AddButton({
     Name = "Fly GUI Universal",
