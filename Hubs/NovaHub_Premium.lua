@@ -333,21 +333,23 @@ Tab2:AddToggle({
     end
 })
 
--- Ejecutar Noclip
-Tab2:AddButton({
-    Name = "Noclip GUI Universal",
-    Callback = function()
-		local success, _ = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Noclip.lua"))()
-        end)
-
-        game.StarterGui:SetCore("SendNotification", {
-            Title = success and "Exito" or "Error",
-            Text = success and "Noclip GUI cargado!" or "Fallo al cargar Noclip GUI.",
-            Duration = 5
-        })
+Tab2:AddToggle({
+    Name = "Noclip",
+    Default = false,
+    Callback = function(v)
+        NoclipActived = v
     end
 })
+
+RunService.Stepped:Connect(function()
+    if NoclipActived and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") and part.CanCollide then
+                part.CanCollide = false
+            end
+        end
+    end
+end)
 
 -- Ejecutar Fly
 Tab2:AddButton({
@@ -1555,6 +1557,23 @@ Tab6:AddToggle({
         end
     end
 })
+
+Tab6:AddSection({
+    Name = "Nombre Personalizado"
+})
+
+local names = {
+    {"𝐍 𝐎 𝐕 𝐀 𝐇 𝐔 𝐁", "@Roun95"}
+}
+
+for _, name in ipairs(names) do
+    Tab6:Button({
+        Title = "Name: " .. name[1],
+        Callback = function()
+            game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayName", name[2])
+        end
+    })
+end
 ----------------------------------------------------------------------------------------------------
 Tab6:AddSection({"Vehiculos y casas"})
 
@@ -3987,6 +4006,194 @@ Tab9:AddButton({"Parar todo", function()
     originalProperties = nil
     showNotification("Aviso", "Se han desactivado todas las funciones.", nil)
 end})
+
+Tab9:AddButton({
+    Name = "Annoy server (primeira versão)",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local LocalPlayer = Players.LocalPlayer
+
+        local RE = ReplicatedStorage:WaitForChild("RE")
+        local ClearEvent = RE:FindFirstChild("1Clea1rTool1s")
+        local ToolEvent = RE:FindFirstChild("1Too1l")
+        local FireEvent = RE:FindFirstChild("1Gu1n")
+
+        -- Limpa todas as ferramentas
+        local function clearAllTools()
+            if ClearEvent then
+                ClearEvent:FireServer("ClearAllTools")
+            end
+        end
+
+        -- Solicita a arma
+        local function getAssault()
+            if ToolEvent then
+                ToolEvent:InvokeServer("PickingTools", "Assault")
+            end
+        end
+
+        -- Verifica se a arma foi pega
+        local function hasAssault()
+            return LocalPlayer.Backpack:FindFirstChild("Assault") ~= nil
+        end
+
+        -- Dispara contra uma parte
+        local function fireAtPart(targetPart)
+            local gunScript = LocalPlayer.Backpack:FindFirstChild("Assault")
+                and LocalPlayer.Backpack.Assault:FindFirstChild("GunScript_Local")
+
+            if not gunScript or not targetPart then return end
+
+            local args = {
+                targetPart,
+                targetPart,
+                Vector3.new(9e16, 9e16, 9e16),
+                targetPart.Position,
+                gunScript:FindFirstChild("MuzzleEffect"),
+                gunScript:FindFirstChild("HitEffect"),
+                0,
+                0,
+                { false },
+                {
+                    25,
+                    Vector3.new(1000, 1000, 1000),
+                    BrickColor.new(29),
+                    0.25,
+                    Enum.Material.SmoothPlastic,
+                    0.25
+                },
+                true,
+                false
+            }
+
+            FireEvent:FireServer(unpack(args))
+        end
+
+        -- Atira em todos os jogadores
+        local function fireAtAllPlayers(times)
+            for i = 1, times do
+                for _, player in ipairs(Players:GetPlayers()) do
+                    if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        fireAtPart(player.Character.HumanoidRootPart)
+                        task.wait(0.1)
+                    end
+                end
+            end
+        end
+
+        -- Função principal em loop infinito até equipar a arma
+        task.spawn(function()
+            while true do
+                clearAllTools()
+                getAssault()
+
+                repeat
+                    task.wait(0.2)
+                until hasAssault()
+
+                fireAtAllPlayers(3)
+
+                task.wait(1)
+            end
+        end)
+    end
+})
+
+local TextChatService = game:GetService("TextChatService")
+
+Tab9:AddButton({
+    Name = "Annoy no server inteiro kkkkk (2)",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local LocalPlayer = Players.LocalPlayer
+
+        local RE = ReplicatedStorage:WaitForChild("RE")
+        local ClearEvent = RE:FindFirstChild("1Clea1rTool1s")
+        local ToolEvent = RE:FindFirstChild("1Too1l")
+        local FireEvent = RE:FindFirstChild("1Gu1n")
+
+        -- Limpa todas as ferramentas
+        local function clearAllTools()
+            if ClearEvent then
+                ClearEvent:FireServer("ClearAllTools")
+            end
+        end
+
+        -- Solicita a arma
+        local function getAssault()
+            if ToolEvent then
+                ToolEvent:InvokeServer("PickingTools", "Assault")
+            end
+        end
+
+        -- Verifica se a arma foi pega
+        local function hasAssault()
+            return LocalPlayer.Backpack:FindFirstChild("Assault") ~= nil
+        end
+
+        -- Dispara contra uma parte
+        local function fireAtPart(targetPart)
+            local gunScript = LocalPlayer.Backpack:FindFirstChild("Assault")
+                and LocalPlayer.Backpack.Assault:FindFirstChild("GunScript_Local")
+
+            if not gunScript or not targetPart then return end
+
+            local args = {
+                targetPart,
+                targetPart,
+                Vector3.new(1e14, 1e14, 1e14),
+                targetPart.Position,
+                gunScript:FindFirstChild("MuzzleEffect"),
+                gunScript:FindFirstChild("HitEffect"),
+                0,
+                0,
+                { false },
+                {
+                    25,
+                    Vector3.new(100, 100, 100),
+                    BrickColor.new(29),
+                    0.25,
+                    Enum.Material.SmoothPlastic,
+                    0.25
+                },
+                true,
+                false
+            }
+
+            FireEvent:FireServer(unpack(args))
+        end
+
+        -- Atira em todos os jogadores
+        local function fireAtAllPlayers(times)
+            for i = 1, times do
+                for _, player in ipairs(Players:GetPlayers()) do
+                    if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        fireAtPart(player.Character.HumanoidRootPart)
+                        task.wait(0.1)
+                    end
+                end
+            end
+        end
+
+        -- Função principal em loop infinito até equipar a arma
+        task.spawn(function()
+            while true do
+                clearAllTools()
+                getAssault()
+
+                repeat
+                    task.wait(0.2)
+                until hasAssault()
+
+                fireAtAllPlayers(3)
+
+                task.wait(1)
+            end
+        end)
+    end
+})
 ----------------------------------------------------------------------------------------------------
                                 -- === Tab 10: lag server === --
 ----------------------------------------------------------------------------------------------------
@@ -4676,4 +4883,126 @@ sunRays.Spread = 0.8
 local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
 end
+})
+
+local SpawnFabricaTab = Window:MakeTab({"Spawn Fábrica", "factory"})
+
+-- Lista de casas com suas posições e IDs
+local casas = {
+    {id = 1, pos = Vector3.new(257, 2, 207), nome = "Casa 1"},
+    {id = 2, pos = Vector3.new(231, 2, 226), nome = "Casa 2"},
+    {id = 3, pos = Vector3.new(260, 19, 208), nome = "Casa 3"},
+    {id = 4, pos = Vector3.new(227, 19, 223), nome = "Casa 4"},
+    {id = 5, pos = Vector3.new(171, 19, 226), nome = "Casa 5"},
+    {id = 6, pos = Vector3.new(-37, 19, -145), nome = "Casa 6"}, -- Posição original que funciona
+    {id = 7, pos = Vector3.new(-37, 34, -145), nome = "Casa 7"},
+    {id = 11, pos = Vector3.new(-18, 38, 434), nome = "Casa 11"},
+    {id = 12, pos = Vector3.new(152, 35, 431), nome = "Casa 12"},
+    {id = 13, pos = Vector3.new(252, 33, 429), nome = "Casa 13"},
+    {id = 14, pos = Vector3.new(251, 36, 392), nome = "Casa 14"},
+    {id = 15, pos = Vector3.new(145, 37, 385), nome = "Casa 15"},
+    {id = 16, pos = Vector3.new(-14, 40, 393), nome = "Casa 16"},
+    {id = 17, pos = Vector3.new(-186, 35, -249), nome = "Casa 17"},
+    {id = 18, pos = Vector3.new(-351, 35, -246), nome = "Casa 18"},
+    {id = 19, pos = Vector3.new(-453, 34, -247), nome = "Casa 19"},
+    {id = 20, pos = Vector3.new(-450, 36, -297), nome = "Casa 20"},
+    {id = 21, pos = Vector3.new(-353, 36, -296), nome = "Casa 21"},
+    {id = 22, pos = Vector3.new(-184, 35, -297), nome = "Casa 22"},
+    {id = 23, pos = Vector3.new(-407, 66, -449), nome = "Casa 23"},
+    {id = 24, pos = Vector3.new(-345, 67, -498), nome = "Casa 24"},
+    {id = 28, pos = Vector3.new(-100, 10, 1085), nome = "Casa 28"},
+    {id = 29, pos = Vector3.new(-727, 4, 806), nome = "Casa 29"},
+    {id = 30, pos = Vector3.new(-242, 5, 820), nome = "Casa 30"},
+    {id = 31, pos = Vector3.new(636, 74, -363), nome = "Casa 31"},
+    {id = 32, pos = Vector3.new(-905, 4, -363), nome = "Casa 32"},
+    {id = 33, pos = Vector3.new(-108, 68, -419), nome = "Casa 33"},
+    {id = 34, pos = Vector3.new(227, 36, 567), nome = "Casa 34"},
+    {id = 35, pos = Vector3.new(-27, 11, 2207), nome = "Casa 35"},
+    {id = 36, pos = Vector3.new(249, 13, -2336), nome = "Casa 36"},
+    {id = 37, pos = Vector3.new(-1955, 31, 328), nome = "Casa 37"}
+}
+
+-- Criar lista de opções para o dropdown
+local opcoesCasas = {}
+for i, casa in ipairs(casas) do
+    table.insert(opcoesCasas, casa.nome)
+end
+
+-- Variável para armazenar a casa selecionada
+local casaSelecionada = "Casa 6" -- Padrão
+
+-- Função para encontrar dados da casa pelo nome
+local function getCasaData(nomeCasa)
+    for i, casa in ipairs(casas) do
+        if casa.nome == nomeCasa then
+            return casa
+        end
+    end
+    return nil
+end
+
+SpawnFabricaTab:AddSection({ "Spawn Factory" })
+
+-- Dropdown para selecionar a casa
+SpawnFabricaTab:AddDropdown({
+    Name = "Selecionar Casa Para Factory",
+    Default = casaSelecionada,
+    Options = opcoesCasas,
+    Callback = function(Value)
+        casaSelecionada = Value
+        print("Casa selecionada: " .. Value)
+    end    
+})
+
+-- Botão principal para spawnar factory
+SpawnFabricaTab:AddButton({
+    Name = "Spawn Factory",
+    Description = "TP na casa selecionada, spawna Factory e volta",
+    Callback = function()
+        local casaData = getCasaData(casaSelecionada)
+        if not casaData then
+            warn("Casa não encontrada: " .. casaSelecionada)
+            return
+        end
+
+        local player = game.Players.LocalPlayer
+
+        -- Espera o personagem
+        if not player.Character or not player.Character:FindFirstChild("HumanoidRootPart") then
+            player.CharacterAdded:Wait()
+        end
+
+        local character = player.Character
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+        -- Salva posição original
+        local originalPosition = humanoidRootPart.CFrame
+
+        print("TP para " .. casaData.nome .. " (ID: " .. casaData.id .. ")")
+        print("Posição original salva")
+
+        -- 1. Teletransporte instantâneo
+        humanoidRootPart.CFrame = CFrame.new(casaData.pos)
+        wait(0.3) -- Pausa para servidor processar
+
+        -- 2. Spawna Factory
+        pcall(function()
+            -- Lot:Claim
+            local args1 = { casaData.id }
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Lot:Claim"):InvokeServer(unpack(args1))
+
+            -- Lot:BuildProperty  
+            local args2 = { casaData.id, "001_Landmark" }
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Lot:BuildProperty"):FireServer(unpack(args2))
+
+            print("Factory spawnada na " .. casaData.nome .. "!")
+        end)
+
+        -- Pequena pausa antes de voltar
+        wait(0.5)
+
+        -- 3. Volta para posição original
+        humanoidRootPart.CFrame = originalPosition
+        print("Voltou para posição original!")
+    end
 })
