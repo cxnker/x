@@ -341,14 +341,20 @@ Tab2:AddToggle({
     end
 })
 
-game:GetService("RunService").Stepped:Connect(function()
+local nclp = game:GetService("RunService").Stepped:Connect(function()
     if NoclipActived and game.Players.LocalPlayer.Character then
         for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
             if part:IsA("BasePart") and part.CanCollide then
                 part.CanCollide = false
             end
         end
-    end
+	else
+	if nclp then nclp:Disconnect() end
+	for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if part:IsA("BasePart") then
+			part.CanCollide = true
+		end
+	end
 end)
 
 -- Ejecutar Fly
