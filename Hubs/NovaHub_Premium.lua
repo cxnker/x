@@ -1561,12 +1561,12 @@ Tab6:AddToggle({
 Tab6:AddSection({"Nombre Personalizado"})
 
 local names = {
-    {"Nova", "╰NOVA HUB╯", "⌠ Bienvenido ⌡"}
+    {"Nova", "╰NOVA HUB╯", "⌠ Bienvenido ⌡" .. game.Players.LocalPlayer.DisplayName}
 }
 
 for _, name in ipairs(names) do
     Tab6:AddButton({
-        Title = "Name: " .. name[1],
+        Title = "Nombre: " .. name[1],
         Callback = function()
             game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayName", name[2])
 			game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayBio", name[3])
