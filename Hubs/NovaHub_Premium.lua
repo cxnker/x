@@ -1561,7 +1561,7 @@ Tab6:AddToggle({
 Tab6:AddSection({"Nombre Personalizado"})
 
 local names = {
-    {"N O V A H U B", "Welcome"}
+    {"NovaHub", "𝐍 𝐎 𝐕 𝐀 𝐇 𝐔 𝐁", "Bienvenido"}
 }
 
 for _, name in ipairs(names) do
@@ -1569,6 +1569,7 @@ for _, name in ipairs(names) do
         Title = "Name: " .. name[1],
         Callback = function()
             game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayName", name[2])
+			game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayBio", name[2])
         end
     })
 end
