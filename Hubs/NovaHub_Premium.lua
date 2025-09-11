@@ -1565,7 +1565,7 @@ local names = {
 }
 
 for _, name in ipairs(names) do
-    Tab6:AddToggle({
+    Tab6:AddButton({
         Title = "Name: " .. name[1],
         Callback = function()
             game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayName", name[2])
