@@ -355,9 +355,8 @@ game:GetService("RunService").Stepped:Connect(function()
 					part.CanCollide = true
 				end
 			end
-		end	
-	end
-end)
+		end
+	end)
 -- Ejecutar Fly
 Tab2:AddButton({
     Name = "Fly GUI Universal",
