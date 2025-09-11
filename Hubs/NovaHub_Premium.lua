@@ -1558,16 +1558,14 @@ Tab6:AddToggle({
     end
 })
 
-Tab6:AddSection({
-    Name = "Nombre Personalizado"
-})
+Tab6:AddSection({"Nombre Personalizado"})
 
 local names = {
     {"𝐍 𝐎 𝐕 𝐀 𝐇 𝐔 𝐁", "@Roun95"}
 }
 
 for _, name in ipairs(names) do
-    Tab6:Button({
+    Tab6:AddToggle({
         Title = "Name: " .. name[1],
         Callback = function()
             game:GetService("ReplicatedStorage").RE["1RPNam1eTex1t"]:FireServer("RolePlayName", name[2])
