@@ -348,15 +348,15 @@ local nclp = game:GetService("RunService").Stepped:Connect(function()
                 part.CanCollide = false
             end
         end
-	else
-	if nclp then nclp:Disconnect() end
+	end)
+else
+	if NoclipActived then nclp:Disconnect() end
 	for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 		if part:IsA("BasePart") then
 			part.CanCollide = true
 		end
 	end
-end)
-
+end
 -- Ejecutar Fly
 Tab2:AddButton({
     Name = "Fly GUI Universal",
