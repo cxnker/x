@@ -6,6 +6,7 @@ local RootPart = Character:WaitForChild("HumanoidRootPart")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local StarterGui = game:GetService("StarterGui")
 
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/DESARROLLO/NovaHubUi.lua"))()
 local Window = Lib:MakeWindow({
@@ -70,112 +71,6 @@ Tab1:AddButton({
 ----------------------------------------------------------------------------------------------------
 Tab2:AddSection({"Personaje del jugador"})
 
-local selectedPlayerName = nil
-local headsitActive = false
-
-local function headsitOnPlayer(targetPlayer)
-    if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
-        warn("Su personaje no tiene cabeza.")
-        return false
-    end
-    local targetHead = targetPlayer.Character.Head
-    local localRoot = Character:FindFirstChild("HumanoidRootPart")
-    if not localRoot then
-        warn("Su personaje no tiene HumanoidRootPart.")
-        return false
-    end
-    localRoot.CFrame = targetHead.CFrame * CFrame.new(0, 2.2, 0)
-    for _, v in pairs(localRoot:GetChildren()) do
-        if v:IsA("WeldConstraint") then
-            v:Destroy()
-        end
-    end
-
-    local weld = Instance.new("WeldConstraint")
-    weld.Part0 = localRoot
-    weld.Part1 = targetHead
-    weld.Parent = localRoot
-
-    if Humanoid then
-        Humanoid.Sit = true
-    end
-
-    print("Headsit activado en " .. targetPlayer.Name)
-    return true
-end
-
-local function removeHeadsit()
-    local localRoot = Character:FindFirstChild("HumanoidRootPart")
-    if localRoot then
-        for _, v in pairs(localRoot:GetChildren()) do
-            if v:IsA("WeldConstraint") then
-                v:Destroy()
-            end
-        end
-    end
-    if Humanoid then
-        Humanoid.Sit = false
-    end
-    print("Headsit desactivado.")
-end
-
--- Funcion para buscar jugadores por nombre parcial
-local function findPlayerByPartialName(partial)
-    partial = partial:lower()
-    for _, player in pairs(Players:GetPlayers()) do
-        if player ~= localPlayer and player.Name:lower():sub(1, #partial) == partial then
-            return player
-        end
-    end
-    return nil
-end
-
--- Notificacion con imagen del jugador seleccionado
-local function notifyPlayerSelected(player)
-    local thumbType = Enum.ThumbnailType.HeadShot
-    local thumbSize = Enum.ThumbnailSize.Size100x100
-    local content, _ = Players:GetUserThumbnailAsync(player.UserId, thumbType, thumbSize)
-
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Jugador Seleccionado",
-        Text = player.Name .. " fue seleccionado!",
-        Icon = content,
-        Duration = 5
-    })
-end
-
--- Cuadro de texto para escribir el nombre del jugador
-Tab2:AddTextBox({
-    Name = "Headsit Player",
-    Description = "Ingrese parte del nombre del jugador",
-    PlaceholderText = "ej: Rou → Roun95",
-    Callback = function(Value)
-    local foundPlayer = findPlayerByPartialName(Value)
-        if foundPlayer then
-            selectedPlayerName = foundPlayer.Name
-            notifyPlayerSelected(foundPlayer)
-        else
-            warn("Ningun jugador encontrado con ese nombre.")
-        end
-    end
-})
-
--- Boton para activar/desactivar el head-sit
-Tab2:AddButton({"Activar Headsit", function()
-    if not selectedPlayerName then
-        return
-    end
-    if not headsitActive then
-        local target = Players:FindFirstChild(selectedPlayerName)
-        if target and headsitOnPlayer(target) then
-			headsitActive = true
-        end
-    else
-        removeHeadsit()
-		headsitActive = false
-    end
-end
-})
 
 Tab2:AddSlider({
     Name = "Velocidad",
@@ -220,7 +115,7 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
 end)
 
 Tab2:AddButton({
-    Name = "Resetear estado",
+    Name = "Reset Status",
     Callback = function()
         workspace.Gravity = 196.2
         Humanoid.JumpPower = 50
@@ -230,7 +125,7 @@ Tab2:AddButton({
 })
 
 Tab2:AddToggle({
-	Name = "Salto infinito",
+	Name = "Infinite Jump",
     Default = false,
     Callback = function(Value)
        InfJumpEnabled = Value
@@ -285,8 +180,8 @@ RunService.Stepped:Connect(function()
 					part.CanCollide = true
 				end
 			end
-		end
-	end)
+	end
+end)
 
 -- Ejecutar Fly
 Tab2:AddButton({
@@ -296,7 +191,7 @@ Tab2:AddButton({
             loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Scripts/Fly.lua"))()
         end)
 
-        game.StarterGui:SetCore("SendNotification", {
+        StarterGui:SetCore("SendNotification", {
             Title = success and "Exito" or "Error",
             Text = success and "Fly GUI cargado!" or "Fallo al cargar Fly GUI.",
             Duration = 5
@@ -351,29 +246,26 @@ end
 
 -- Funcion para crear el ESP
 local function updateESP(player)
-    if player == Players.LocalPlayer then return end
+    if player == LocalPlayer then return end
     if not espEnabled then return end
 
-    local character = player.Character
-    if character then
-        local head = character:FindFirstChild("Head")
+    if Character then
+        local head = Character:FindFirstChild("Head")
         if head then
             if billboardGuis[player] then
                 billboardGuis[player]:Destroy()
             end
 
             local billboard = Instance.new("BillboardGui")
-            billboard.Name = "ESP_Billboard"
             billboard.Parent = head
             billboard.Adornee = head
-            billboard.Size = UDim2.new(0, 200, 0, 50)
-            billboard.StudsOffset = Vector3.new(0, 3, 0)
+            billboard.Size = UDim2.new(0,200,0,50)
+            billboard.StudsOffset = Vector3.new(0,3,0)
             billboard.AlwaysOnTop = true
 
             local textLabel = Instance.new("TextLabel")
-            textLabel.Name = "TextLabel"
             textLabel.Parent = billboard
-            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.Size = UDim2.new(1,0,1,0)
             textLabel.BackgroundTransparency = 1
             textLabel.TextStrokeTransparency = 0.5
             textLabel.Font = Enum.Font.SourceSansBold
@@ -643,11 +535,11 @@ local AvatarManager = {}
 AvatarManager.ReplicatedStorage = ReplicatedStorage
 
 -- Funcion para la notificacion
-function AvatarManager:showNotify(mensagem)
+function AvatarManager:showNotify(msgN)
     pcall(function()
-        game:GetService("StarterGui"):SetCore("SendNotification", {
+        StarterGui:SetCore("SendNotification", {
             Title = "Aviso",
-            Text = mensagem,
+            Text = msgN,
             Duration = 5
         })
     end)
@@ -666,11 +558,11 @@ AvatarManager.Avatares = {
 
 -- Funcion para obtener los nombres de los avatares del menu
 function AvatarManager:GetAvatarNames()
-    local nomes = {}
+    local names = {}
     for _, avatar in ipairs(self.Avatares) do
-        table.insert(nomes, avatar.Nome)
+        table.insert(names, avatar.Nome)
     end
-    return nomes
+    return names
 end
 
 -- Funcion para equipar el avatar seleccionado
@@ -697,8 +589,8 @@ Tab3:AddDropdown({
     Name = "Selecciona una opcion",
     Default = nil,
     Options = AvatarManager:GetAvatarNames(),
-    Callback = function(avatarSelecionado)
-        _G.SelectedAvatar = avatarSelecionado
+    Callback = function(SelectedAvatar)
+        eSelectedAvatar = SelectedAvatar
     end
 })
 
@@ -706,11 +598,11 @@ Tab3:AddDropdown({
 Tab3:AddButton({
     Name = "Equipar",
     Callback = function()
-        if not _G.SelectedAvatar or _G.SelectedAvatar == "" then
+        if not eSelectedAvatar or eSelectedAvatar == "" then
             AvatarManager:showNotify("Ningun avatar seleccionado!")
             return
         end
-        AvatarManager:EquiparAvatar(_G.SelectedAvatar)
+        AvatarManager:EquiparAvatar(eSelectedAvatar)
     end
 })
 ----------------------------------------------------------------------------------------------------
