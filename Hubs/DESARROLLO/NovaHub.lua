@@ -9,9 +9,29 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterGui = game:GetService("StarterGui")
 
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/DESARROLLO/NovaHubUi.lua"))()
+local function detectExecutor()
+    if identifyexecutor then
+        return identifyexecutor()
+    elseif syn then
+        return "Synapse X"
+    elseif KRNL_LOADED then
+        return "KRNL"
+    elseif is_sirhurt_closure then
+        return "SirHurt"
+    elseif pebc_execute then
+        return "ProtoSmasher"
+    elseif getexecutorname then
+        return getexecutorname()
+    else
+        return "Executor Desconocido"
+    end
+end
+
+local executorName = detectExecutor()
+
 local Window = Lib:MakeWindow({
-    Title = "Nova Hub (Español) | Brookhaven 🎆",
-    SubTitle = "by Roun95",
+    Title = "Nova Hub (Español) | Brookhaven 🎆 V1.4 by @Roun95",
+    SubTitle = "Executor", executorName,
     SaveFolder = "NovaData"
 })
 
@@ -36,28 +56,6 @@ local Tab13 = Window:MakeTab({"Shaders", "rbxassetid://10747382750"})
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 1: Credits === --
 ----------------------------------------------------------------------------------------------------
-local function detectExecutor()
-    if identifyexecutor then
-        return identifyexecutor()
-    elseif syn then
-        return "Synapse X"
-    elseif KRNL_LOADED then
-        return "KRNL"
-    elseif is_sirhurt_closure then
-        return "SirHurt"
-    elseif pebc_execute then
-        return "ProtoSmasher"
-    elseif getexecutorname then
-        return getexecutorname()
-    else
-        return "Executor Desconocido"
-    end
-end
-
-local executorName = detectExecutor()
-Tab1:AddParagraph({"Executor", executorName})
-
-Tab1:AddSection({"Version 1.4"})
 Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
 
 Tab1:AddButton({
@@ -71,6 +69,112 @@ Tab1:AddButton({
 ----------------------------------------------------------------------------------------------------
 Tab2:AddSection({"Personaje del jugador"})
 
+local selectedPlayerName = nil
+local headsitActive = false
+
+local function headsitOnPlayer(targetPlayer)
+    if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
+        warn("Su personaje no tiene cabeza.")
+        return false
+    end
+    local targetHead = targetPlayer.Character.Head
+    local localRoot = Character:FindFirstChild("HumanoidRootPart")
+    if not localRoot then
+        warn("Su personaje no tiene HumanoidRootPart.")
+        return false
+    end
+    localRoot.CFrame = targetHead.CFrame * CFrame.new(0, 2.2, 0)
+    for _, v in pairs(localRoot:GetChildren()) do
+        if v:IsA("WeldConstraint") then
+            v:Destroy()
+        end
+    end
+
+    local weld = Instance.new("WeldConstraint")
+    weld.Part0 = localRoot
+    weld.Part1 = targetHead
+    weld.Parent = localRoot
+
+    if Humanoid then
+        Humanoid.Sit = true
+    end
+
+    print("Headsit activado en " .. targetPlayer.Name)
+    return true
+end
+
+local function removeHeadsit()
+    local localRoot = Character:FindFirstChild("HumanoidRootPart")
+    if localRoot then
+        for _, v in pairs(localRoot:GetChildren()) do
+            if v:IsA("WeldConstraint") then
+                v:Destroy()
+            end
+        end
+    end
+    if Humanoid then
+        Humanoid.Sit = false
+    end
+    print("Headsit desactivado.")
+end
+
+-- Funcion para buscar jugadores por nombre parcial
+local function findPlayerByPartialName(partial)
+    partial = partial:lower()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= localPlayer and player.Name:lower():sub(1, #partial) == partial then
+            return player
+        end
+    end
+    return nil
+end
+
+-- Notificacion con imagen del jugador seleccionado
+local function notifyPlayerSelected(player)
+    local thumbType = Enum.ThumbnailType.HeadShot
+    local thumbSize = Enum.ThumbnailSize.Size100x100
+    local content, _ = Players:GetUserThumbnailAsync(player.UserId, thumbType, thumbSize)
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "Jugador Seleccionado",
+        Text = player.Name .. " fue seleccionado!",
+        Icon = content,
+        Duration = 5
+    })
+end
+
+-- Cuadro de texto para escribir el nombre del jugador
+Tab2:AddTextBox({
+    Name = "Headsit Player",
+    Description = "Ingrese parte del nombre del jugador",
+    PlaceholderText = "ej: Rou → Roun95",
+    Callback = function(Value)
+    local foundPlayer = findPlayerByPartialName(Value)
+        if foundPlayer then
+            selectedPlayerName = foundPlayer.Name
+            notifyPlayerSelected(foundPlayer)
+        else
+            warn("Ningun jugador encontrado con ese nombre.")
+        end
+    end
+})
+
+-- Boton para activar/desactivar el head-sit
+Tab2:AddButton({"Activar Headsit", function()
+    if not selectedPlayerName then
+        return
+    end
+    if not headsitActive then
+        local target = Players:FindFirstChild(selectedPlayerName)
+        if target and headsitOnPlayer(target) then
+			headsitActive = true
+        end
+    else
+        removeHeadsit()
+		headsitActive = false
+    end
+end
+})
 
 Tab2:AddSlider({
     Name = "Velocidad",
