@@ -7,7 +7,7 @@ local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Libs/RedzhubUiLib.lua"))()
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/DESARROLLO/NovaHubUi.lua"))()
 local Window = Lib:MakeWindow({
     Title = "Nova Hub (Español) | Brookhaven 🎆",
     SubTitle = "by Roun95",
@@ -19,7 +19,7 @@ Window:AddMinimizeButton({
     Corner = {CornerRadius = UDim.new(35, 1)},
 })
 
-local TrollTab = Window:MakeTab({ Title = "Scripts Trolls", Icon = "rbxassetid://13364900349" })
+local TrollTab = Window:MakeTab({"Scripts Trolls", "rbxassetid://13364900349" })
 local Tab1 = Window:MakeTab({"Credits", "info"})
 local Tab2 = Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
