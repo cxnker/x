@@ -9,29 +9,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterGui = game:GetService("StarterGui")
 
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/cxnker/x/refs/heads/main/Hubs/DESARROLLO/NovaHubUi.lua"))()
-local function detectExecutor()
-    if identifyexecutor then
-        return identifyexecutor()
-    elseif syn then
-        return "Synapse X"
-    elseif KRNL_LOADED then
-        return "KRNL"
-    elseif is_sirhurt_closure then
-        return "SirHurt"
-    elseif pebc_execute then
-        return "ProtoSmasher"
-    elseif getexecutorname then
-        return getexecutorname()
-    else
-        return "Executor Desconocido"
-    end
-end
-
-local executorName = detectExecutor()
-
 local Window = Lib:MakeWindow({
-    Title = "Nova Hub (Español) | Brookhaven 🎆 V1.4 by @Roun95",
-    SubTitle = "Executor", executorName,
+    Title = "Nova Hub (Español) | Brookhaven 🎆",
+    SubTitle = "by Roun95",
     SaveFolder = "NovaData"
 })
 
@@ -56,6 +36,28 @@ local Tab13 = Window:MakeTab({"Shaders", "rbxassetid://10747382750"})
 ----------------------------------------------------------------------------------------------------
                                     -- === Tab 1: Credits === --
 ----------------------------------------------------------------------------------------------------
+local function detectExecutor()
+    if identifyexecutor then
+        return identifyexecutor()
+    elseif syn then
+        return "Synapse X"
+    elseif KRNL_LOADED then
+        return "KRNL"
+    elseif is_sirhurt_closure then
+        return "SirHurt"
+    elseif pebc_execute then
+        return "ProtoSmasher"
+    elseif getexecutorname then
+        return getexecutorname()
+    else
+        return "Executor Desconocido"
+    end
+end
+
+local executorName = detectExecutor()
+Tab1:AddParagraph({"Executor", executorName})
+
+Tab1:AddSection({"Version 1.4"})
 Tab1:AddParagraph({"Creador", "Sigueme en Roblox como:\n@Roun95 (Nova)"})
 
 Tab1:AddButton({
@@ -445,3 +447,288 @@ Toggle1:Callback(function(value)
         billboardGuis = {}
     end
 end)
+----------------------------------------------------------------------------------------------------
+Tab3:AddSection({"Ropa 3D"})
+
+-- Espacio de nombres para evitar conflictos
+local AvatarManager = {}
+AvatarManager.ReplicatedStorage = ReplicatedStorage
+
+-- Funcion para la notificacion
+function AvatarManager:showNotify(msgN)
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Aviso",
+            Text = msgN,
+            Duration = 5
+        })
+    end)
+end
+
+-- Lista de ropa 3D
+AvatarManager.Avatares = {
+    { Nome = "Black-Arm-Bandages-1-0", ID = 11458078735 },
+    { Nome = "Black-Oversized-Warmers", ID = 10789914680 },
+    { Nome = "Black-Oversized-Off-Shoulder-Hoodie", ID = 18396592827 },
+    { Nome = "White-Oversized-Off-Shoulder-Hoodie", ID = 18396754379 },
+    { Nome = "Left-Leg-Spikes", ID = 10814325667 },
+
+    { Nome = "Mini-Cat-Suit", ID = 121465611890520 }
+}
+
+-- Funcion para obtener los nombres de los avatares del menu
+function AvatarManager:GetAvatarNames()
+    local names = {}
+    for _, avatar in ipairs(self.Avatares) do
+        table.insert(names, avatar.Nome)
+    end
+    return names
+end
+
+-- Funcion para equipar el avatar seleccionado
+function AvatarManager:EquiparAvatar(avatarName)
+    for _, avatar in ipairs(self.Avatares) do
+        if avatar.Nome == avatarName then
+            local args = { avatar.ID }
+            local success, result = pcall(function()
+                return self.ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
+            end)
+            if success then
+                self:showNotify("Avatar " .. avatarName .. " Equipado!")
+            else
+                self:showNotify("No se pudo equipar " .. avatarName .. "!")
+            end
+            return
+        end
+    end
+    self:showNotify("Avatar " .. avatarName .. " no encontrado!")
+end
+
+-- Menu desplegable
+Tab3:AddDropdown({
+    Name = "Selecciona una opcion",
+    Default = nil,
+    Options = AvatarManager:GetAvatarNames(),
+    Callback = function(SelectedAvatar)
+        eSelectedAvatar = SelectedAvatar
+    end
+})
+
+-- Boton para equipar el avatar seleccionado
+Tab3:AddButton({
+    Name = "Equipar",
+    Callback = function()
+        if not eSelectedAvatar or eSelectedAvatar == "" then
+            AvatarManager:showNotify("Ningun avatar seleccionado!")
+            return
+        end
+        AvatarManager:EquiparAvatar(eSelectedAvatar)
+    end
+})
+----------------------------------------------------------------------------------------------------
+Tab3:AddSection({"Editor de avatar"})
+
+Tab3:AddParagraph({"Tu avatar se reiniciara, Ajusta las proporciones de tu avatar para un mejor resultado"})
+
+-- Boton para equipar todas las partes del cuerpo.
+Tab3:AddButton({
+    Name = "Mini-Plushie (Headless)",
+    Callback = function()
+        local args = {
+            {
+                107431241133468, -- Right Leg
+                103380121023771,  -- Left Leg
+                76079756909323,  -- Right Arm
+                82598238110471,  -- Left Arm
+                112722466960512, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "S15-Thin-Hourglass (Headless)",
+    Callback = function()
+        local args = {
+            {
+                128776848621889, -- Right Leg
+                81547744637409,  -- Left Leg
+                133466157082146,  -- Right Arm
+                73001997018020,  -- Left Arm
+                129543160215232, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "inf15-Thin (Headless)",
+    Callback = function()
+        local args = {
+            {
+                84418052877367, -- Right Leg
+                124343282827669,  -- Left Leg
+                99519402284266,  -- Right Arm
+                115905570886697,  -- Left Arm
+                92757812011061, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "Blush-Fashion-Doll (Headless)",
+    Callback = function()
+        local args = {
+            {
+                127241951574732, -- Right Leg
+                118303475394830,  -- Left Leg
+                18839824209,  -- Right Arm
+                18839824132,  -- Left Arm
+                115745153758680, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "E-Girl Body (Headless)",
+    Callback = function()
+        local args = {
+            {
+                127241951574732, -- Right Leg
+                118303475394830,  -- Left Leg
+                18839824209,  -- Right Arm
+                18839824132,  -- Left Arm
+                114206707267907, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "E-Girl Body (Headless/Korblox)",
+    Callback = function()
+        local args = {
+            {
+                139607718, -- Right Leg
+                118303475394830,  -- Left Leg
+                18839824209,  -- Right Arm
+                18839824132,  -- Left Arm
+                114206707267907, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "E-Boy Body (Headless)",
+    Callback = function()
+        local args = {
+            {
+                2517207746, -- Right Leg
+                2517204456,  -- Left Leg
+                4416788553,  -- Right Arm
+                4416785861,  -- Left Arm
+                32336059, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "E-Girl Body ()",
+    Callback = function()
+        local args = {
+            {
+                127968751428204, -- Right Leg
+                101521138059051,  -- Left Leg
+                18839824209,  -- Right Arm
+                18839824132,  -- Left Arm
+                114206707267907, -- Torso
+                14970560459   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "Classic-Female-v2-Torso (Headless)",
+    Callback = function()
+        local args = {
+            {
+                4637265517, -- Torso
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
+
+Tab3:AddButton({
+    Name = "Headless/Korblox (BETA)",
+    Callback = function()
+        local args = {
+            {
+                139607718, -- Right Leg
+                15093053680   -- Head
+            }
+        }
+        ReplicatedStorage
+        :WaitForChild("Remotes")
+        :WaitForChild("ChangeCharacterBody")
+        :InvokeServer(unpack(args))
+        print("Todas las partes han sido equipadas!")
+    end
+})
