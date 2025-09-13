@@ -57,7 +57,7 @@ end
 local executorName = detectExecutor()
 Tab1:AddParagraph({"Executor", executorName})
 
-Tab1:AddSection({"Version 1.4\nBy @Roun95"})
+Tab1:AddSection({"Version 1.4"})
 
 Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
@@ -210,9 +210,9 @@ Tab2:AddSlider({
     end
 })
  
-local InfJumpEnabled = false
+local infjumpEnabled = false
 game:GetService("UserInputService").JumpRequest:Connect(function()
-	if InfJumpEnabled then
+	if infjumpEnabled then
       if Character and Character:FindFirstChild("Humanoid") then
 		Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
       end
@@ -225,7 +225,7 @@ Tab2:AddButton({
         workspace.Gravity = 196.2
         Humanoid.JumpPower = 50
         Humanoid.WalkSpeed = 16
-        InfJumpEnabled = false
+        infjumpEnabled = false
     end
 })
 
@@ -233,7 +233,7 @@ Tab2:AddToggle({
 	Name = "Infinite Jump",
     Default = false,
     Callback = function(Value)
-       InfJumpEnabled = Value
+       infjumpEnabled = Value
     end
 })
 
@@ -285,8 +285,8 @@ RunService.Stepped:Connect(function()
 					part.CanCollide = true
 				end
 			end
-	end
-end)
+		end
+	end)
 
 -- Ejecutar Fly
 Tab2:AddButton({
@@ -303,9 +303,8 @@ Tab2:AddButton({
         })
     end
 })
-----------------------------------------------------------------------------------------------------
-Tab2:AddSection({"ESP"})
 
+Tab2:AddSection({"ESP"})
 local billboardGuis = {}
 local connections = {}
 local espEnabled = false
@@ -323,7 +322,6 @@ Tab2:AddDropdown({
         selectedColor = value
     end
 })
-
 -- Funcion para obtener el color
 local function getESPColor()
     if selectedColor == "RGB" then
@@ -348,7 +346,6 @@ local function getESPColor()
     end
     return Color3.new(1, 1, 1)
 end
-
 -- Funcion para crear el ESP
 local function updateESP(player)
     if player == LocalPlayer then return end
@@ -382,7 +379,6 @@ local function updateESP(player)
         end
     end
 end
-
 -- Funcion para eliminar el ESP
 local function removeESP(player)
     if billboardGuis[player] then
@@ -390,7 +386,6 @@ local function removeESP(player)
         billboardGuis[player] = nil
     end
 end
-
 -- Interruptor para activar el ESP
 local Toggle1 = Tab2:AddToggle({
     Name = "Espiar jugadores",
@@ -450,12 +445,10 @@ end)
                                 -- === Tab 3: Avatar Editor === --
 ----------------------------------------------------------------------------------------------------
 Tab3:AddSection({"Copiar avatar"})
-
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 
 local PlayerValue
 local Target = nil
-
 -- Funcion para obtener los nombres de los jugadores
 local function GetPlayerNames()
     local playerNames = {}
@@ -466,7 +459,6 @@ local function GetPlayerNames()
     end
     return playerNames
 end
-
 -- Menu desplegable
 local Dropdown = Tab3:AddDropdown({
     Name = "Seleccionar jugador",
@@ -484,7 +476,6 @@ local function UptadePlayers()
 end
 
 UptadePlayers()
-
 -- Boton para actualizar lista de jugadores
 Tab3:AddButton({"Actualizar lista", function()
     UptadePlayers()
@@ -492,7 +483,6 @@ end})
 
 Players.PlayerAdded:Connect(UptadePlayers)
 Players.PlayerRemoving:Connect(UptadePlayers)
-
 -- Boton para copiar el avatar del jugador seleccionado
 Tab3:AddButton({
     Name = "Copiar avatar",
@@ -510,7 +500,6 @@ Tab3:AddButton({
             if LHumanoid and THumanoid then
                 -- REINICIAR PERSONAJE
                 local LDesc = LHumanoid:GetAppliedDescription()
-
                 -- Remover accesorios, ropa y caras actuales
                 for _, acc in ipairs(LDesc:GetAccessories(true)) do
                     if acc.AssetId and tonumber(acc.AssetId) then
@@ -607,7 +596,6 @@ Tab3:AddButton({
                     Remotes.Wear:InvokeServer(tonumber(PDesc.SwimAnimation))
                     task.wait(0.3)
                 end
-
                 -- Nombre, Bio y Color
                 local Bag = TPlayer:FindFirstChild("PlayersBag")
                 if Bag then
@@ -633,8 +621,6 @@ Tab3:AddButton({
     end
 })
 
-
-----------------------------------------------------------------------------------------------------
 Tab3:AddSection({"Ropa 3D"})
 
 Tab3:AddDropdown({
@@ -668,11 +654,10 @@ Tab3:AddDropdown({
         end
     end
 })
-----------------------------------------------------------------------------------------------------
+
 Tab3:AddSection({"Editor de avatar (Tu avatar se reiniciara)"})
 
 Tab3:AddParagraph({"Ajusta las proporciones de tu avatar para un mejor resultado"})
-
 -- Boton para equipar todas las partes del cuerpo.
 Tab3:AddButton({
     Name = "Mini-Plushie (Headless)",
@@ -688,7 +673,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -706,7 +690,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -724,7 +707,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -742,7 +724,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -760,7 +741,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -778,7 +758,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -796,7 +775,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -814,7 +792,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -828,7 +805,6 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
 
@@ -842,6 +818,5 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
-        print("Todas las partes han sido equipadas!")
     end
 })
