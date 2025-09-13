@@ -57,7 +57,7 @@ end
 local executorName = detectExecutor()
 Tab1:AddParagraph({"Executor", executorName})
 
-Tab1:AddSection({"Version 1.4\nSigueme en Roblox como: @Roun95 (Creador)"})
+Tab1:AddSection({"Version 1.4\nBy @Roun95"})
 
 Tab1:AddButton({
     Name = "Sigueme en Tiktok (Copiar URL)",
@@ -637,85 +637,39 @@ Tab3:AddButton({
 ----------------------------------------------------------------------------------------------------
 Tab3:AddSection({"Ropa 3D"})
 
--- Espacio de nombres para evitar conflictos
-local AvatarManager = {}
-AvatarManager.ReplicatedStorage = ReplicatedStorage
-
--- Funcion para la notificacion
-function AvatarManager:showNotify(msgN)
-    pcall(function()
-        StarterGui:SetCore("SendNotification", {
-            Title = "Aviso",
-            Text = msgN,
-            Duration = 5
-        })
-    end)
-end
-
--- Lista de ropa 3D
-AvatarManager.Avatares = {
-    { Nome = "Black-Arm-Bandages-1-0", ID = 11458078735 },
-    { Nome = "Black-Oversized-Warmers", ID = 10789914680 },
-    { Nome = "Black-Oversized-Off-Shoulder-Hoodie", ID = 18396592827 },
-    { Nome = "White-Oversized-Off-Shoulder-Hoodie", ID = 18396754379 },
-    { Nome = "Left-Leg-Spikes", ID = 10814325667 },
-
-    { Nome = "Mini-Cat-Suit", ID = 121465611890520 }
-}
-
--- Funcion para obtener los nombres de los avatares del menu
-function AvatarManager:GetAvatarNames()
-    local names = {}
-    for _, avatar in ipairs(self.Avatares) do
-        table.insert(names, avatar.Nome)
-    end
-    return names
-end
-
--- Funcion para equipar el avatar seleccionado
-function AvatarManager:EquiparAvatar(avatarName)
-    for _, avatar in ipairs(self.Avatares) do
-        if avatar.Nome == avatarName then
-            local args = { avatar.ID }
-            local success, result = pcall(function()
-                return self.ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
-            end)
-            if success then
-                self:showNotify("Avatar " .. avatarName .. " Equipado!")
-            else
-                self:showNotify("No se pudo equipar " .. avatarName .. "!")
-            end
-            return
-        end
-    end
-    self:showNotify("Avatar " .. avatarName .. " no encontrado!")
-end
-
--- Menu desplegable
 Tab3:AddDropdown({
     Name = "Selecciona una opcion",
     Default = nil,
-    Options = AvatarManager:GetAvatarNames(),
-    Callback = function(SelectedAvatar)
-        eSelectedAvatar = SelectedAvatar
-    end
-})
-
--- Boton para equipar el avatar seleccionado
-Tab3:AddButton({
-    Name = "Equipar",
-    Callback = function()
-        if not eSelectedAvatar or eSelectedAvatar == "" then
-            AvatarManager:showNotify("Ningun avatar seleccionado!")
-            return
+    Options = {
+        "Black-Arm-Bandages-1-0",
+        "Black-Oversized-Warmers",
+        "Black-Oversized-Off-Shoulder-Hoodie",
+        "White-Oversized-Off-Shoulder-Hoodie",
+        "Left-Leg-Spikes",
+        "Mini-Cat-Suit"
+    },
+    Callback = function(selected)
+        local avatars = {
+            ["Black-Arm-Bandages-1-0"] = 75183593514657,
+            ["Black-Oversized-Warmers"] = 75183593514657,
+            ["Black-Oversized-Off-Shoulder-Hoodie"] = 75183593514657,
+            ["White-Oversized-Off-Shoulder-Hoodie"] = 75183593514657,
+            ["Left-Leg-Spikes"] = 10814325667,
+            ["Mini-Cat-Suit"] = 121465611890520
+        }
+        if avatars[selected] then
+            pcall(function()
+                local args = {avatars[selected]}
+                ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
+                StarterGui:SetCore("SendNotification", {
+                    Title = "Avatar",
+                    Text = "Avatar " .. selected .. " equipado!",
+                    Duration = 5
+                })
+            end)
         end
-        AvatarManager:EquiparAvatar(eSelectedAvatar)
     end
 })
-
-
-
-
 ----------------------------------------------------------------------------------------------------
 Tab3:AddSection({"Editor de avatar (Tu avatar se reiniciara)"})
 
