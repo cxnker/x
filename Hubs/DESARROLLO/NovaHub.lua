@@ -645,17 +645,15 @@ Tab3:AddDropdown({
         "Black-Oversized-Warmers",
         "Black-Oversized-Off-Shoulder-Hoodie",
         "White-Oversized-Off-Shoulder-Hoodie",
-        "Left-Leg-Spikes",
-        "Mini-Cat-Suit"
+        "Left-Leg-Spikes"
     },
     Callback = function(selected)
         local avatars = {
-            ["Black-Arm-Bandages-1-0"] = 75183593514657,
-            ["Black-Oversized-Warmers"] = 75183593514657,
-            ["Black-Oversized-Off-Shoulder-Hoodie"] = 75183593514657,
-            ["White-Oversized-Off-Shoulder-Hoodie"] = 75183593514657,
-            ["Left-Leg-Spikes"] = 10814325667,
-            ["Mini-Cat-Suit"] = 121465611890520
+            ["Black-Arm-Bandages-1-0"] = 11458078735,
+            ["Black-Oversized-Warmers"] = 10789914680,
+            ["Black-Oversized-Off-Shoulder-Hoodie"] = 18396592827,
+            ["White-Oversized-Off-Shoulder-Hoodie"] = 18396754379,
+            ["Left-Leg-Spikes"] = 10814325667
         }
         if avatars[selected] then
             pcall(function()
