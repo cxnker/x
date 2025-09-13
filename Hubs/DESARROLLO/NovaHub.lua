@@ -448,83 +448,192 @@ Toggle1:Callback(function(value)
     end
 end)
 ----------------------------------------------------------------------------------------------------
-Tab3:AddSection({"Ropa 3D"})
+                                -- === Tab 3: Avatar Editor === --
+----------------------------------------------------------------------------------------------------
+Tab3:AddSection({"Copiar avatar"})
 
--- Espacio de nombres para evitar conflictos
-local AvatarManager = {}
-AvatarManager.ReplicatedStorage = ReplicatedStorage
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 
--- Funcion para la notificacion
-function AvatarManager:showNotify(msgN)
-    pcall(function()
-        StarterGui:SetCore("SendNotification", {
-            Title = "Aviso",
-            Text = msgN,
-            Duration = 5
-        })
-    end)
-end
+local PlayerValue
+local Target = nil
 
--- Lista de ropa 3D
-AvatarManager.Avatares = {
-    { Nome = "Black-Arm-Bandages-1-0", ID = 11458078735 },
-    { Nome = "Black-Oversized-Warmers", ID = 10789914680 },
-    { Nome = "Black-Oversized-Off-Shoulder-Hoodie", ID = 18396592827 },
-    { Nome = "White-Oversized-Off-Shoulder-Hoodie", ID = 18396754379 },
-    { Nome = "Left-Leg-Spikes", ID = 10814325667 },
-
-    { Nome = "Mini-Cat-Suit", ID = 121465611890520 }
-}
-
--- Funcion para obtener los nombres de los avatares del menu
-function AvatarManager:GetAvatarNames()
-    local names = {}
-    for _, avatar in ipairs(self.Avatares) do
-        table.insert(names, avatar.Nome)
-    end
-    return names
-end
-
--- Funcion para equipar el avatar seleccionado
-function AvatarManager:EquiparAvatar(avatarName)
-    for _, avatar in ipairs(self.Avatares) do
-        if avatar.Nome == avatarName then
-            local args = { avatar.ID }
-            local success, result = pcall(function()
-                return self.ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
-            end)
-            if success then
-                self:showNotify("Avatar " .. avatarName .. " Equipado!")
-            else
-                self:showNotify("No se pudo equipar " .. avatarName .. "!")
-            end
-            return
+-- Funcion para obtener los nombres de los jugadores
+local function GetPlayerNames()
+    local playerNames = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name ~= LocalPlayer.Name then
+            table.insert(playerNames, player.Name)
         end
     end
-    self:showNotify("Avatar " .. avatarName .. " no encontrado!")
+    return playerNames
 end
 
 -- Menu desplegable
-Tab3:AddDropdown({
-    Name = "Selecciona una opcion",
-    Default = nil,
-    Options = AvatarManager:GetAvatarNames(),
-    Callback = function(SelectedAvatar)
-        eSelectedAvatar = SelectedAvatar
+local Dropdown = Tab3:AddDropdown({
+    Name = "Seleccionar jugador",
+    Options = GetPlayerNames(),
+    Default = "",
+    Flag = "player list",
+    Callback = function(playername)
+        PlayerValue = playername
+        Target = playername -- Conecta el menu con Copiar avatar
     end
 })
 
--- Boton para equipar el avatar seleccionado
+local function UptadePlayers()
+    Dropdown:Set(GetPlayerNames())
+end
+
+UptadePlayers()
+
+-- Boton para actualizar lista de jugadores
+Tab3:AddButton({"Actualizar lista", function()
+    UptadePlayers()
+end})
+
+Players.PlayerAdded:Connect(UptadePlayers)
+Players.PlayerRemoving:Connect(UptadePlayers)
+
+-- Boton para copiar el avatar del jugador seleccionado
 Tab3:AddButton({
-    Name = "Equipar",
+    Name = "Copiar avatar",
     Callback = function()
-        if not eSelectedAvatar or eSelectedAvatar == "" then
-            AvatarManager:showNotify("Ningun avatar seleccionado!")
-            return
+        if not Target then return end
+
+        local LP = Players.LocalPlayer
+        local LChar = LP.Character
+        local TPlayer = Players:FindFirstChild(Target)
+
+        if TPlayer and TPlayer.Character then
+            local LHumanoid = LChar and LChar:FindFirstChildOfClass("Humanoid")
+            local THumanoid = TPlayer.Character:FindFirstChildOfClass("Humanoid")
+
+            if LHumanoid and THumanoid then
+                -- REINICIAR PERSONAJE
+                local LDesc = LHumanoid:GetAppliedDescription()
+
+                -- Remover accesorios, ropa y caras actuales
+                for _, acc in ipairs(LDesc:GetAccessories(true)) do
+                    if acc.AssetId and tonumber(acc.AssetId) then
+                        Remotes.Wear:InvokeServer(tonumber(acc.AssetId))
+                        task.wait(0.2)
+                    end
+                end
+
+                if tonumber(LDesc.Shirt) then
+                    Remotes.Wear:InvokeServer(tonumber(LDesc.Shirt))
+                    task.wait(0.2)
+                end
+
+                if tonumber(LDesc.Pants) then
+                    Remotes.Wear:InvokeServer(tonumber(LDesc.Pants))
+                    task.wait(0.2)
+                end
+
+                if tonumber(LDesc.Face) then
+                    Remotes.Wear:InvokeServer(tonumber(LDesc.Face))
+                    task.wait(0.2)
+                end
+
+                local PDesc = THumanoid:GetAppliedDescription()
+
+                -- Copiar partes del cuerpo
+                local argsBody = {
+                    [1] = {
+                        [1] = PDesc.Torso,
+                        [2] = PDesc.RightArm,
+                        [3] = PDesc.LeftArm,
+                        [4] = PDesc.RightLeg,
+                        [5] = PDesc.LeftLeg,
+                        [6] = PDesc.Head
+                    }
+                }
+                Remotes.ChangeCharacterBody:InvokeServer(unpack(argsBody))
+                task.wait(0.5)
+
+                if tonumber(PDesc.Shirt) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.Shirt))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.Pants) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.Pants))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.Face) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.Face))
+                    task.wait(0.3)
+                end
+
+                for _, v in ipairs(PDesc:GetAccessories(true)) do
+                    if v.AssetId and tonumber(v.AssetId) then
+                        Remotes.Wear:InvokeServer(tonumber(v.AssetId))
+                        task.wait(0.3)
+                    end
+                end
+
+                local SkinColor = TPlayer.Character:FindFirstChild("Body Colors")
+                if SkinColor then
+                    Remotes.ChangeBodyColor:FireServer(tostring(SkinColor.HeadColor))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.IdleAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.IdleAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.WalkAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.WalkAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.RunAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.RunAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.JumpAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.JumpAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.FallAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.FallAnimation))
+                    task.wait(0.3)
+                end
+
+                if tonumber(PDesc.SwimAnimation) then
+                    Remotes.Wear:InvokeServer(tonumber(PDesc.SwimAnimation))
+                    task.wait(0.3)
+                end
+
+                -- Nombre, Bio y Color
+                local Bag = TPlayer:FindFirstChild("PlayersBag")
+                if Bag then
+                    if Bag:FindFirstChild("RPName") and Bag.RPName.Value ~= "" then
+                        Remotes.RPNameText:FireServer("RolePlayName", Bag.RPName.Value)
+                        task.wait(0.3)
+                    end
+                    if Bag:FindFirstChild("RPBio") and Bag.RPBio.Value ~= "" then
+                        Remotes.RPNameText:FireServer("RolePlayBio", Bag.RPBio.Value)
+                        task.wait(0.3)
+                    end
+                    if Bag:FindFirstChild("RPNameColor") then
+                        Remotes.RPNameColor:FireServer("PickingRPNameColor", Bag.RPNameColor.Value)
+                        task.wait(0.3)
+                    end
+                    if Bag:FindFirstChild("RPBioColor") then
+                        Remotes.RPNameColor:FireServer("PickingRPBioColor", Bag.RPBioColor.Value)
+                        task.wait(0.3)
+                    end
+                end
+            end
         end
-        AvatarManager:EquiparAvatar(eSelectedAvatar)
     end
 })
+----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 Tab3:AddSection({"Editor de avatar"})
 
@@ -544,10 +653,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -565,10 +671,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -586,10 +689,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args)))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -607,10 +707,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -628,10 +725,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -649,10 +743,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -670,10 +761,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -691,10 +779,7 @@ Tab3:AddButton({
                 14970560459   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -708,10 +793,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
@@ -725,10 +807,7 @@ Tab3:AddButton({
                 15093053680   -- Head
             }
         }
-        ReplicatedStorage
-        :WaitForChild("Remotes")
-        :WaitForChild("ChangeCharacterBody")
-        :InvokeServer(unpack(args))
+        ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
         print("Todas las partes han sido equipadas!")
     end
 })
