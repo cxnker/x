@@ -206,7 +206,7 @@ Tab2:AddSlider({
     Increase = 1,
     Default = 196,
     Callback = function(Value)
-        workspace.Gravity = Value
+        Workspace.Gravity = Value
     end
 })
  
@@ -222,7 +222,7 @@ end)
 Tab2:AddButton({
     Name = "Reset Status",
     Callback = function()
-        workspace.Gravity = 196.2
+        Workspace.Gravity = 196.2
         Humanoid.JumpPower = 50
         Humanoid.WalkSpeed = 16
         infjumpEnabled = false
@@ -459,7 +459,7 @@ local function GetPlayerNames()
     end
     return playerNames
 end
--- Menu desplegable
+
 local Dropdown = Tab3:AddDropdown({
     Name = "Seleccionar jugador",
     Options = GetPlayerNames(),
@@ -467,23 +467,22 @@ local Dropdown = Tab3:AddDropdown({
     Flag = "player list",
     Callback = function(playername)
         PlayerValue = playername
-        Target = playername -- Conecta el menu con Copiar avatar
+        Target = playername
     end
 })
 
-local function UptadePlayers()
+local function UpdatePlayers()
     Dropdown:Set(GetPlayerNames())
 end
+UpdatePlayers()
 
-UptadePlayers()
--- Boton para actualizar lista de jugadores
 Tab3:AddButton({"Actualizar lista", function()
-    UptadePlayers()
+    UpdatePlayers()
 end})
 
-Players.PlayerAdded:Connect(UptadePlayers)
-Players.PlayerRemoving:Connect(UptadePlayers)
--- Boton para copiar el avatar del jugador seleccionado
+Players.PlayerAdded:Connect(UpdatePlayers)
+Players.PlayerRemoving:Connect(UpdatePlayers)
+
 Tab3:AddButton({
     Name = "Copiar avatar",
     Callback = function()
@@ -658,7 +657,7 @@ Tab3:AddDropdown({
 Tab3:AddSection({"Editor de avatar (Tu avatar se reiniciara)"})
 
 Tab3:AddParagraph({"Ajusta las proporciones de tu avatar para un mejor resultado"})
--- Boton para equipar todas las partes del cuerpo.
+
 Tab3:AddButton({
     Name = "Mini-Plushie (Headless)",
     Callback = function()
@@ -818,5 +817,113 @@ Tab3:AddButton({
             }
         }
         ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody"):InvokeServer(unpack(args))
+    end
+})
+----------------------------------------------------------------------------------------------------
+                                    -- === Tab4: House === --
+----------------------------------------------------------------------------------------------------
+Tab4:AddButton({
+    Name = "Desbanear de todas las casas",
+    Callback = function()
+        local successCount = 0
+        local failCount = 0
+        for i = 1, 37 do
+            local bannedBlockName = "BannedBlock" .. i
+            local bannedBlock = Workspace:FindFirstChild(bannedBlockName, true)
+            if bannedBlock then
+                local success, _ = pcall(function()
+                    bannedBlock:Destroy()
+                end)
+                if success then
+                    successCount = successCount + 1
+                else
+                    failCount = failCount + 1
+                end
+            end
+        end
+        for _, house in pairs(Workspace:GetDescendants()) do
+            if house.Name:match("BannedBlock") then
+                local success, _ = pcall(function()
+                    house:Destroy()
+                end)
+                if success then
+                    successCount = successCount + 1
+                else
+                    failCount = failCount + 1
+                end
+            end
+        end
+        if successCount > 0 then
+            StarterGui:SetCore("SendNotification", {
+                Title = "Exito",
+                Text = "Desbaneado de " .. successCount .. " casas!",
+                Duration = 5
+            })
+        end
+        if failCount > 0 then
+            StarterGui:SetCore("SendNotification", {
+                Title = "Aviso",
+                Text = "Falta ser desbaneado de " .. failCount .. " casas.",
+                Duration = 5
+            })
+        end
+        if successCount == 0 and failCount == 0 then
+            StarterGui:SetCore("SendNotification", {
+                Title = "Aviso",
+                Text = "Ningun baneo encontrado.",
+                Duration = 5
+            })
+        end
+    end
+})
+----------------------------------------------------------------------------------------------------
+                                    -- === Tab6: RGB === --
+----------------------------------------------------------------------------------------------------
+Tab6:AddSection({"Velocidad RGB"})
+local rgbSpeed = 1
+
+Tab6:AddSlider({
+    Name = "Ajusta la velocidad del RGB",
+    Min = 1,
+    Max = 5,
+    Increase = 1,
+    Default = 2,
+    Callback = function(Value)
+        rgbSpeed = Value
+    end
+})
+
+local function getRainbowColor(speedMultiplier)
+    local h = (tick() * speedMultiplier % 5) / 5
+    return Color3.fromHSV(h, 1, 1)
+end
+
+local function fireServer(eventName, args)
+    local event = ReplicatedStorage:FindFirstChild("RE")
+    if event and event:FindFirstChild(eventName) then
+        pcall(function()
+            event[eventName]:FireServer(unpack(args))
+        end)
+    end
+end
+
+Tab6:AddSection({"Jugador RGB"})
+
+local nameBioRGBActive = false
+Tab6:AddToggle({
+    Name = "Nombre + Bio RGB",
+    Default = false,
+    Callback = function(state)
+        nameBioRGBActive = state
+        if state then
+            task.spawn(function()
+                while nameBioRGBActive and LocalPlayer.Character do
+                    local color = getRainbowColor(rgbSpeed)
+                    fireServer("1RPNam1eColo1r", {"PickingRPNameColor", color})
+                    fireServer("1RPNam1eColo1r", {"PickingRPBioColor", color})
+                    task.wait(0.03)
+                end
+            end)
+        end
     end
 })
